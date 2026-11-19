@@ -1,0 +1,25 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps --no-shell chromium firefox webkit
+      - run: npm run verify:local
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reproduction-evidence
+          path: artifacts/reproduction/
+          if-no-files-found: ignore
