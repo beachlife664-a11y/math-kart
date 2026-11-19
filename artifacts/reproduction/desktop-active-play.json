@@ -1,0 +1,78 @@
+{
+  "url": "http://127.0.0.1:28476/?qa=1",
+  "mode": "desktop",
+  "state": "active-play",
+  "requestedState": "active-play",
+  "appliedState": "active-play",
+  "runId": "github-reproduction",
+  "seed": 42,
+  "screenshotPath": "artifacts/reproduction/desktop-active-play.png",
+  "gpu": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "softwareRendered": false
+  },
+  "result": {
+    "ok": true,
+    "reason": "nonblank",
+    "metrics": {
+      "colorBuckets": 992,
+      "colorEntropyBits": 6.79,
+      "edgeDensity": 0.175,
+      "luminance": {
+        "mean": 131.1,
+        "p5": 33.8,
+        "p95": 212,
+        "contrast": 178.2
+      },
+      "dominantColorShare": 0.08,
+      "nonBackgroundShare": 0.92
+    },
+    "renderBudget": {
+      "tier": "desktop",
+      "rows": [
+        {
+          "metric": "calls",
+          "actual": 123,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "triangles",
+          "actual": 556934,
+          "limit": 750000,
+          "ok": true
+        },
+        {
+          "metric": "geometries",
+          "actual": 226,
+          "limit": 300,
+          "ok": true
+        },
+        {
+          "metric": "textures",
+          "actual": 33,
+          "limit": 60,
+          "ok": true
+        }
+      ],
+      "withinBudget": true
+    },
+    "diagnostics": {
+      "renderer": {
+        "render": {
+          "frame": 87,
+          "calls": 123,
+          "triangles": 556934,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 226,
+          "textures": 33
+        }
+      }
+    },
+    "errors": []
+  }
+}
