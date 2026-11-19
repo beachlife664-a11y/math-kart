@@ -1,0 +1,34 @@
+{
+  "pipeline": "reference-image -> Hyper3D Rodin image-to-3D -> 120k original inspection -> desktop/mobile simplification -> WebP texture compression -> garage and race QA",
+  "tier": "Gen-2.5-Medium",
+  "qualityOverride": 120000,
+  "referenceRoot": "artifacts/art-v6/references",
+  "originalRoot": "artifacts/art-v6/models",
+  "runtimeRoot": "public/models",
+  "jobs": {
+    "comet": { "generationId": "43b5af1d-da44-4509-b50d-7d36a964c521", "uploadId": "Btf5RlqCy5XYIhFD3GAkJA", "status": "completed" },
+    "reef": { "generationId": "75fac199-826c-42da-80db-d1f5ce81dea9", "uploadId": "FzIFUJfjdGndW3xexNZ1Pw", "status": "completed" },
+    "bolt": { "generationId": "d97f61c4-ebfc-498a-88cf-846aaae0c11a", "uploadId": "V1xHSmi9eCetFJ_s1JZKpA", "status": "completed" },
+    "sprout": { "generationId": "d82ba7ae-18b5-4505-a01e-a0da18c754ba", "uploadId": "0CHxPx28ojzH7wj42NgWGQ", "status": "completed" },
+    "nova": { "generationId": "4531101c-8748-4bf9-a95b-9ab625d791a5", "uploadId": "EiK8R9ydyJr4YEf3GGtOLw", "status": "completed" },
+    "titan": { "generationId": "c60ea536-a610-41e3-a0d3-d33e4dd09b27", "uploadId": "mhjVKqoOmYKjFOpLGYQw7Q", "status": "completed" },
+    "mochi": { "generationId": "0074e095-1436-46ed-91ed-c2792bd14d6d", "uploadId": "KgY1ENBxE-MXF5gVzkOjNw", "status": "completed" }
+  },
+  "inspection": {
+    "original": "All seven rendered and visually inspected: coherent toy-like materials, distinct silhouettes, four wheels, empty seats; no browser errors.",
+    "originalTrianglesPerKart": 120000,
+    "desktopTrianglesBudgetPerKart": 40000,
+    "mobileTrianglesBudgetPerKart": 14000,
+    "desktopTextureSize": 1024,
+    "mobileTextureSize": 512,
+    "runtimeGarageCapture": "artifacts/v6-showroom-calibration-1",
+    "duplicateProceduralWheels": "Disabled whenever a Hyper3D kart is loaded; initial seven-kart garage capture confirms no duplicate tires. The baked GLB tires do not rotate as separate meshes."
+  },
+  "environmentOptimization": {
+    "desktopPalmTriangles": 5000,
+    "desktopPalmSource": "artifacts/art-v5/models/palm-cartoon-race-5000-webp.glb",
+    "runtimePalm": "public/models/palm-tree-desktop.glb",
+    "reason": "Eight instanced palms accounted for 95,984 triangles in the boosted camera view; the repeated midground asset was reduced without reducing the seven hero karts.",
+    "procedural": "Desktop grass uses six blades per clump, guardrail upper beams retain rounded geometry while posts use boxes, and the ocean uses a 64 by 64 grid. Mobile LODs remain separate."
+  }
+}
