@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v6/models/nova-original.glb",
+  "originalSize": [
+    0.9283041954040527,
+    0.5801167488098145,
+    1.8993048667907715
+  ],
+  "normalizedSize": [
+    1.4662799189883535,
+    0.9163090543594976,
+    3
+  ],
+  "meshes": 1,
+  "triangles": 120000,
+  "materials": 1,
+  "textures": 1,
+  "calls": 1,
+  "errors": []
+}
