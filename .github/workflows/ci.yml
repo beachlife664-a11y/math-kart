@@ -15,6 +15,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps --no-shell chromium
       # Hosted runners have no hardware WebGL. Run the deterministic and production
       # asset checks here; verify:local retains the full real-input graphics suite.
       - run: npm run verify:ci
