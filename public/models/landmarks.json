@@ -1,0 +1,8 @@
+{
+  "models": {
+    "harbor": { "url": "models/harbor-hq-desktop.glb", "targetHeight": 12, "maxWidth": 22, "rotationY": -1.57079632679 },
+    "lighthouse": { "url": "models/lighthouse-desktop.glb", "targetHeight": 14, "maxWidth": 13, "rotationY": -1.57079632679 },
+    "cave": { "url": "models/cave-entrance-desktop.glb", "targetHeight": 14, "maxWidth": 32, "rotationY": 3.14159265359, "widthScale": 1.35, "depthScale": 0.55 },
+    "bridge": { "url": "models/bridge-tower-desktop.glb", "targetHeight": 24, "maxWidth": 22, "rotationY": 3.14159265359, "widthScale": 1.4 }
+  }
+}

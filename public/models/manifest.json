@@ -1,0 +1,11 @@
+{
+  "models": {
+    "comet": { "url": "models/comet.glb", "mobileUrl": "models/comet-mobile.glb", "rotationY": 0, "integratedSteeringWheel": true },
+    "reef": { "url": "models/reef.glb", "mobileUrl": "models/reef-mobile.glb", "rotationY": 0, "integratedSteeringWheel": true },
+    "bolt": { "url": "models/bolt.glb", "mobileUrl": "models/bolt-mobile.glb", "rotationY": 0, "integratedSteeringWheel": true },
+    "sprout": { "url": "models/sprout.glb", "mobileUrl": "models/sprout-mobile.glb", "rotationY": 0, "integratedSteeringWheel": false },
+    "nova": { "url": "models/nova.glb", "mobileUrl": "models/nova-mobile.glb", "rotationY": 0, "integratedSteeringWheel": true },
+    "titan": { "url": "models/titan.glb", "mobileUrl": "models/titan-mobile.glb", "rotationY": 0, "integratedSteeringWheel": true },
+    "mochi": { "url": "models/mochi.glb", "mobileUrl": "models/mochi-mobile.glb", "rotationY": 0, "integratedSteeringWheel": true }
+  }
+}
