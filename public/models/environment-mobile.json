@@ -1,0 +1,8 @@
+{
+  "models": {
+    "boat": { "url": "models/fishing-boat-mobile.glb", "targetHeight": 7, "maxWidth": 12 },
+    "palm": { "url": "models/palm-tree-mobile.glb", "targetHeight": 9, "maxWidth": 8 },
+    "cliff": { "url": "models/cliff-rock-mobile.glb", "targetHeight": 11, "maxWidth": 16 },
+    "hill": { "url": "models/toy-hill-mobile.glb", "targetHeight": 11, "maxWidth": 16 }
+  }
+}

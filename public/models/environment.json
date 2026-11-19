@@ -1,0 +1,8 @@
+{
+  "models": {
+    "boat": { "url": "models/fishing-boat-desktop.glb", "targetHeight": 7, "maxWidth": 12 },
+    "palm": { "url": "models/palm-tree-desktop.glb", "targetHeight": 9, "maxWidth": 8 },
+    "cliff": { "url": "models/cliff-rock-desktop.glb", "targetHeight": 12, "maxWidth": 17 },
+    "hill": { "url": "models/toy-hill-desktop.glb", "targetHeight": 12, "maxWidth": 17 }
+  }
+}
