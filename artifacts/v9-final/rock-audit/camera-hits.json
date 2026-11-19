@@ -1,0 +1,222 @@
+[
+  {
+    "target": 29.8,
+    "elapsed": 29.849999999999586,
+    "progress": 0.4567635884928482,
+    "lane": -2.770966312608817,
+    "section": "cliff",
+    "audit": {
+      "camera": [
+        40.25336807132343,
+        19.9241439252162,
+        -67.16799075066683
+      ],
+      "hits": [
+        {
+          "name": "hyper3d-instanced-hill",
+          "type": "Mesh",
+          "parent": "",
+          "distance": 2.5937996862714896,
+          "point": [
+            37.76423187450068,
+            19.512773237795088,
+            -67.77029629082028
+          ],
+          "instanceId": 4,
+          "instanceMatrix": [
+            -6.586345195770264,
+            0,
+            3.3373138904571533,
+            0,
+            0,
+            10.644317626953125,
+            0,
+            0,
+            -4.244445323944092,
+            0,
+            -8.376611709594727,
+            0,
+            43.128700256347656,
+            22.399986267089844,
+            -70.58040618896484,
+            1
+          ],
+          "color": "ffffff"
+        },
+        {
+          "name": "hyper3d-instanced-hill",
+          "type": "Mesh",
+          "parent": "",
+          "distance": 8.444245518424438,
+          "point": [
+            32.149859814298935,
+            18.584905933148956,
+            -69.12882677246232
+          ],
+          "instanceId": 2,
+          "instanceMatrix": [
+            -6.594077110290527,
+            0,
+            3.6933767795562744,
+            0,
+            0,
+            11.124446868896484,
+            0,
+            0,
+            -3.9411423206329346,
+            0,
+            -7.036432266235352,
+            0,
+            39.77730178833008,
+            22.71769905090332,
+            -68.3432388305664,
+            1
+          ],
+          "color": "ffffff"
+        },
+        {
+          "name": "v4-crowned-asphalt-with-metric-uv",
+          "type": "Mesh",
+          "parent": "v4-authored-road-kit",
+          "distance": 11.71844955329196,
+          "point": [
+            29.007774547611618,
+            18.06562467495875,
+            -69.88912882671552
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": "b9c2c5"
+        },
+        {
+          "name": "single-valued-island-heightfield",
+          "type": "Mesh",
+          "parent": "",
+          "distance": 13.821843381604474,
+          "point": [
+            26.989255638099245,
+            17.732031233009483,
+            -70.37755735210342
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": "ffffff"
+        },
+        {
+          "name": "v4-dynamic-coastal-water",
+          "type": "Mesh",
+          "parent": "v4-nature-systems",
+          "distance": 143.59692893688748,
+          "point": [
+            -97.54922148916384,
+            -2.849999999999971,
+            -100.51259569663881
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": null
+        },
+        {
+          "name": "single-valued-island-heightfield",
+          "type": "Mesh",
+          "parent": "",
+          "distance": 153.3700845943526,
+          "point": [
+            -106.92801647974707,
+            -4.400000095367435,
+            -102.78201759086954
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": "ffffff"
+        },
+        {
+          "name": "",
+          "type": "Mesh",
+          "parent": "",
+          "distance": 456.7612594342284,
+          "point": [
+            -398.0769278962898,
+            -52.51714530590708,
+            -173.23240217796803
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": null
+        }
+      ]
+    }
+  },
+  {
+    "target": 33.8,
+    "elapsed": 33.84999999999936,
+    "progress": 0.6612866588121269,
+    "lane": -3.599999811451795,
+    "section": "cave",
+    "audit": {
+      "camera": [
+        -42.74784390384784,
+        9.733641677476824,
+        -35.60765959935138
+      ],
+      "hits": [
+        {
+          "name": "v4-crowned-asphalt-with-metric-uv",
+          "type": "Mesh",
+          "parent": "v4-authored-road-kit",
+          "distance": 11.731395397787965,
+          "point": [
+            -51.75704963351078,
+            6.61773085494669,
+            -42.44512622419779
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": "b9c2c5"
+        },
+        {
+          "name": "single-valued-island-heightfield",
+          "type": "Mesh",
+          "parent": "",
+          "distance": 13.45855421158943,
+          "point": [
+            -53.08343311592857,
+            6.158989788119548,
+            -43.45177465302865
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": "ffffff"
+        },
+        {
+          "name": "v4-dynamic-coastal-water",
+          "type": "Mesh",
+          "parent": "v4-nature-systems",
+          "distance": 47.37737517875856,
+          "point": [
+            -79.13162481343554,
+            -2.8499999999999877,
+            -63.22084716770065
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": null
+        },
+        {
+          "name": "",
+          "type": "Mesh",
+          "parent": "",
+          "distance": 385.87440789899915,
+          "point": [
+            -339.0827476979407,
+            -92.75631820714267,
+            -260.5087302673187
+          ],
+          "instanceId": null,
+          "instanceMatrix": null,
+          "color": null
+        }
+      ]
+    }
+  }
+]
