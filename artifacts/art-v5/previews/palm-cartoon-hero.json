@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/palm-cartoon-source.glb",
+  "originalSize": [
+    1.5689281225204468,
+    1.9039757251739502,
+    1.3592853546142578
+  ],
+  "normalizedSize": [
+    2.4720821307379435,
+    3,
+    2.141758432067307
+  ],
+  "meshes": 1,
+  "triangles": 30000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

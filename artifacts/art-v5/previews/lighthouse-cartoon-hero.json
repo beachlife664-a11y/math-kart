@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/lighthouse-cartoon-source.glb",
+  "originalSize": [
+    1.5808653831481934,
+    1.8975379467010498,
+    1.600250244140625
+  ],
+  "normalizedSize": [
+    2.499341927622467,
+    3,
+    2.5299893162970384
+  ],
+  "meshes": 1,
+  "triangles": 50000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/comet-cartoon-runtime.glb",
+  "originalSize": [
+    1.3489173650741577,
+    0.9135701656341553,
+    1.902151107788086
+  ],
+  "normalizedSize": [
+    2.127460893434609,
+    1.4408479356245771,
+    3
+  ],
+  "meshes": 1,
+  "triangles": 30000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

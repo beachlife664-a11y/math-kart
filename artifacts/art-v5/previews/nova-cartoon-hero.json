@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/nova-cartoon-source.glb",
+  "originalSize": [
+    1.413027286529541,
+    0.9684507250785828,
+    1.8990782499313354
+  ],
+  "normalizedSize": [
+    2.2321786159900965,
+    1.529874914496439,
+    3
+  ],
+  "meshes": 1,
+  "triangles": 45000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

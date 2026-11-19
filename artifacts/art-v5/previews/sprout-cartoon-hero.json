@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/sprout-cartoon-source.glb",
+  "originalSize": [
+    1.3753124475479126,
+    0.8515907526016235,
+    1.8979480266571045
+  ],
+  "normalizedSize": [
+    2.173893744556766,
+    1.3460707152790925,
+    3
+  ],
+  "meshes": 1,
+  "triangles": 45000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

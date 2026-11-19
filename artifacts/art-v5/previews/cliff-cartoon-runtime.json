@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/cliff-cartoon-desktop.glb",
+  "originalSize": [
+    1.898339033126831,
+    1.4280710220336914,
+    1.8242138624191284
+  ],
+  "normalizedSize": [
+    3,
+    2.2568218802541153,
+    2.8828578519207797
+  ],
+  "meshes": 1,
+  "triangles": 22000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}
