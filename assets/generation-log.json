@@ -1,0 +1,792 @@
+{
+  "description": "实际制作过程中使用的图像、Hyper3D 与音频生成提示词和参数；仅保留创作数据，不包含 URL、密钥、本机路径或内部运行轨迹。",
+  "images": [
+    {
+      "image_name": "港口主楼参考",
+      "prompt": "一张用于图生三维建模的单主体参考图。精致风格化海岛卡丁车游戏中的彩色港口主楼，横向展开的两层仓储建筑与一侧小型航运控制塔组合，正前方偏右的三分之四视角，完整建筑与地基清晰可见。珊瑚橙、奶油白、海青色统一配色，包含独立屋檐、梁架、卷帘门、玻璃窗、遮阳棚、楼梯、护栏、屋顶通风设备、管道、救生圈和小型货物平台，结构合理，轮廓丰富但不过度零碎，高质量游戏美术，精细硬表面建模感，柔和日光，中性浅灰纯背景，无环境杂物，无人物，无文字，无裁切。",
+      "width": 1024,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "港口渔船参考",
+      "prompt": "一张用于图生三维建模的单主体参考图。精致风格化海岛卡丁车游戏中的小型彩色近海渔船，正前方偏左的三分之四视角，完整船体、船尾和桅杆可见。海青色船壳、奶油白船舱、珊瑚橙顶棚，具有清楚的船壳分板、船舷护栏、轮胎防撞垫、船舱门窗、桅杆、信号灯、绳索、甲板货箱与小型绞盘，比例紧凑可爱，细节丰富且适合实时游戏，柔和日光，中性浅灰纯背景，无海面、无码头、无人物、无文字、无裁切。",
+      "width": 1024,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "山崖岩体参考",
+      "prompt": "一张用于图生三维建模的单主体参考图。精致风格化海岛卡丁车游戏中的模块化海岸山崖岩体，宽阔稳定的实心基座，正前方偏右的三分之四视角，完整岩体可见。由多层错落的沉积岩板块组成，具有清晰层理、裂隙、切面和坡面，顶部带少量低矮海岛植被与一条窄小瀑布出口，深青灰岩石与暖色边缘统一配色，结构能自然拼接成连续山崖，精细风格化游戏模型，中性浅灰纯背景，无悬空碎块、无道路、无车辆、无文字、无裁切。",
+      "width": 1024,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "水晶洞穴参考",
+      "prompt": "一张用于图生三维建模的单主体参考图。精致风格化海岛卡丁车游戏中的水晶洞穴入口，完整可见的厚重岩石拱洞与实体山基，正前方略偏左视角，中央通道开阔、贯穿且没有遮挡。深青灰层状岩壁，洞口镶嵌青色与少量紫色水晶簇，带矿车轨道入口、木质支撑梁、局部金属固定件和小型灯具，结构连贯、轮廓清晰、细节精密，风格化实时游戏资产，中性浅灰纯背景，无室内场景、无人物、无车辆、无文字、无裁切。",
+      "width": 1024,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "跨海桥塔参考",
+      "prompt": "一张用于图生三维建模的单主体参考图。精致风格化海岛卡丁车游戏中的跨海大桥桥塔，完整双立柱门式结构，正前方偏右的三分之四视角。奶油白与浅珊瑚色混凝土主结构，海青色金属连接件，具有分层基座、横梁、缆索鞍座、检修平台、梯子、护栏、铆钉与细长装饰凹槽，比例修长但稳固，细节丰富、结构合理、适合实时游戏，柔和日光，中性浅灰纯背景，无桥面、无车辆、无人物、无文字、无裁切。",
+      "width": 1024,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "海岛棕榈参考",
+      "prompt": "一张用于图生三维建模的单主体参考图。精致风格化海岛卡丁车游戏中的热带棕榈树，完整树干、树根与全部叶片可见，略微仰视的三分之四视角。树干有清楚的分节、纹理与轻微自然弯曲，树冠由多片独立、有厚度和弯曲层次的长形棕榈叶组成，叶脉明确，少量椰子与根部低矮植物，海绿色与暖棕色统一配色，造型生动、精细但轮廓易读，适合近景实时游戏资产，中性浅灰纯背景，无地面场景、无文字、无裁切。",
+      "width": 1024,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "灯塔参考",
+      "prompt": "生成一张用于 Hyper3D 图生 3D 的单主体灯塔参考图。一座完整的海岛赛车灯塔地标，奶油白圆形塔身带清晰石材分缝与珊瑚橙水平饰带，海青色金属观景平台、环绕护栏、多面玻璃灯室、金属屋顶与风向标；底部有拱形入口、石阶、门窗、小型机房、管道与系船柱，结构真实可读、细节精致但轮廓简洁。精致风格化 3D 游戏资产设计，统一珊瑚橙、海青、奶油白配色，三分之四正面视角，完整轮廓居中，脚踏实地，中性浅灰背景，柔和均匀布光，PBR 材质分区清楚。不要人物、汽车、船只、海面场景、远景岛屿、文字、标志或水印，不要裁切。",
+      "width": 1536,
+      "height": 1536
+    },
+    {
+      "image_name": "彗星车身",
+      "prompt": "一张用于图生3D的高品质赛车车身参考图，单个完整卡丁车车身壳体，正后方偏左约35度视角，整车完整入镜，车身长度约为宽度的1.6倍。原创珊瑚红与奶油白火箭风格，流线但坚实的复合材质车壳，明确的前鼻锥、开放式驾驶座、黑色座椅、双后喷射器、金属排气环、碳纤维底板、后扰流板、进气口、螺钉、分件接缝和细腻赛事拉花，不包含车轮、不包含驾驶员、不包含背景道具，四个轮拱留空。精细PBR材质，磨砂金属与清漆外壳区分，柔和均匀棚拍光，浅灰纯背景，轮廓清晰，无运动模糊，无文字，无标志，无水印。",
+      "width": 1536,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "闪电车身",
+      "prompt": "一张用于图生3D的高品质赛车车身参考图，单个完整卡丁车车身壳体，正后方偏左约35度视角，整车完整入镜，车身长度约为宽度的1.6倍。原创明黄色与石墨黑方程式风格，低矮宽体单体壳、开放式黑色驾驶座、分层前翼、后翼支架与双梁尾翼、侧面散热百叶、后轮传动机构、金属底盘、碳纤维扩散器、细小螺栓与分件接缝，不包含车轮、不包含驾驶员、不包含背景道具，四个轮拱留空。精细PBR材质，喷漆外壳、橡胶与拉丝金属区分，柔和均匀棚拍光，浅灰纯背景，轮廓清晰，无运动模糊，无文字，无标志，无水印。",
+      "width": 1536,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "嫩芽车身",
+      "prompt": "一张用于图生3D的高品质赛车车身参考图，单个完整卡丁车车身壳体，正后方偏左约35度视角，整车完整入镜，车身长度约为宽度的1.6倍。原创薄荷绿与深森林绿越野风格，较高底盘、短促耐冲击车壳、开放式黑色驾驶座、管式防滚架、叶片形装饰但结构合理、侧面护板、后部小型货架、金属滑板的、圆形尾灯、螺栓、泥土磨损与分件接缝，不包含车轮、不包含驾驶员、不包含背景道具，四个轮拱留空。精细PBR材质，哑光涂层、金属和橡胶区分，柔和均匀棚拍光，浅灰纯背景，轮廓清晰，无运动模糊，无文字，无标志，无水印。",
+      "width": 1536,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "星辉车身",
+      "prompt": "一张用于图生3D的高品质赛车车身参考图，单个完整卡丁车车身壳体，正后方偏左约35度视角，整车完整入镜，车身长度约为宽度的1.6倍。原创紫罗兰与银白星际科幻风格，尖头单体壳、开放式黑色驾驶座、弧形后侧整流罩、星形小尾翼、双环形能量推进器、分层装甲片、青色细小发光槽、金属紧固件、底部扩散器和精密分件接缝，不包含车轮、不包含驾驶员、不包含背景道具，四个轮拱留空。精细PBR材质，珍珠漆、深色玻璃与钛金属区分，柔和均匀棚拍光，浅灰纯背景，轮廓清晰，无运动模糊，无文字，无标志，无水印。",
+      "width": 1536,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "浪花车身",
+      "prompt": "一张用于图生3D的高品质赛车车身参考图，单个完整卡丁车车身壳体，正后方偏左约35度视角，整车完整入镜，车身长度约为宽度的1.6倍。原创深 teal 海青与珊瑚橙街头风格，紧凑宽体车壳、开放式黑色驾驶座、弧形后保险杠、双侧排气、鸭尾扰流板、波浪形侧面导流片、碳纤维下护板、金属油箱盖、圆形尾灯、螺栓、轻微使用磨损与分件接缝，不包含车轮、不包含驾驶员、不包含背景道具，四个轮拱留空。精细PBR材质，清漆外壳、阳极氧化金属与橡胶区分，柔和均匀棚拍光，浅灰纯背景，轮廓清晰，无运动模糊，无文字，无标志，无水印。",
+      "width": 1536,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "坐姿车手",
+      "prompt": "一张用于图生3D的高品质驾驶员参考图，单个完整原创卡通写实小车手，采用标准驾驶坐姿，臀部与膝盖弯曲，双脚向前下方踩踏板，双臂向前伸出，双手握住一个看不见的方向盘，手掌之间留有方向盘空间，身体略微前倾。佩戴珊瑚红与奶油白全盔，清晰深色面罩、头盔分件和通风口，穿完整赛车服、黑色手套、赛车靴，衣服有褶皱、护肩、腰带、缝线和材质分区。人物比例适合精品3D卡丁车游戏，全身完整可见，正前方偏左约30度视角，不包含卡丁车、不包含座椅、不包含方向盘、不包含底座。柔和均匀棚拍光，浅灰纯背景，无文字，无标志，无水印。",
+      "width": 1280,
+      "height": 1280,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "看台维修区",
+      "prompt": "一张用于图生3D的高品质海岛赛车看台与维修区组合建筑参考图，单个完整建筑，正面偏右约30度视角。左侧两层开放看台，五排独立珊瑚橙与海青座椅、清晰台阶、金属栏杆、支撑柱和屋顶桁架；右侧两个维修车库，卷帘门、工具柜、轮胎架、挑檐与通风窗；中央有楼梯、旗杆和奶油白遮阳棚。整体为原创精品3D赛车游戏风格，结构合理，材质包括喷漆金属、混凝土、木材与织物，细节丰富但轮廓清楚，不包含车辆、不包含人物、不包含文字。浅灰纯背景，完整建筑入镜，无标志，无水印。",
+      "width": 1536,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "立体云簇",
+      "prompt": "一张用于图生3D的高品质立体积云参考图，单个完整云簇，具有清晰的大中小体积组合、底部较平、顶部多座弧形云峰、边缘自然破碎的小云团和前后层次，像精品风格化3D动画电影中的雕塑云，不要简单三个球拼接。白色与浅蓝灰明暗分区，柔和均匀棚拍光，完整云簇居中，浅灰纯背景，不包含天空场景、不包含太阳、不包含飞鸟、不包含底座、无文字、无水印。",
+      "width": 1280,
+      "height": 1280,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "草花植被",
+      "prompt": "一张用于图生3D的高品质近景草花植被簇参考图，单个完整小型植物簇，包含十余片长短不同的真实草叶、三株宽叶海滨海桐、五朵小型奶油白与珊瑚橙野花，叶片有弯曲、扭转、厚薄与前后遮挡，茎秆连接合理，少量细小土壤根部，不要花盆，不要大面积地面，不要树木。精品3D海岛赛车游戏植被，轮廓清晰，柔和均匀棚拍光，浅灰纯背景，完整植物入镜，无文字、无水印。",
+      "width": 1280,
+      "height": 1280,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "层状山岩",
+      "prompt": "一张用于图生3D的高品质海岛层状山岩模块参考图，单个完整巨大岩石山体，正面偏左约30度视角。具有明显侵蚀层理、断裂台阶、尖锐山脊、浅色石灰岩与深灰玄武岩分区，顶部覆盖少量薄荷绿草皮和灌木，底部有海浪侵蚀凹槽，结构自然且不是规则多面体。原创精品3D赛车游戏环境资产，完整山体入镜，浅灰纯背景，不包含房屋、不包含道路、不包含树木、不包含海洋场景、无文字、无水印。",
+      "width": 1536,
+      "height": 1024,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "轮胎路障",
+      "prompt": "一张用于图生3D的高品质赛车轮胎墙路障参考图，单个完整轮胎墙模块，由十二个具有胎纹的旧橡胶轮胎分三层堆叠并用海青绑带固定，前方有一块奶油白与珊瑚橙反光护板、金属连接件和螺栓，轮胎内侧结构清晰，大小统一，整体紧凑。精品3D赛车游戏资产，正面偏左约30度视角，浅灰纯背景，不包含文字、不包含车辆、不包含交通锥、无标志、无水印。",
+      "width": 1280,
+      "height": 1280,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "沥青材质",
+      "prompt": "生成一张可无缝平铺的赛车沥青路面PBR颜色贴图，严格正交俯视，画面充满材质本身，无透视、无边界、无强烈烘焙阴影。中深灰色细密碎石颗粒，包含轻微新旧沥青色差、极细裂缝、少量修补压痕和微弱橡胶磨损，细节尺度适合真实赛道，不能有大石子、路标、文字、车轮或路缘。整体对比适中，适合在Three.js中重复平铺并叠加程序车道线。",
+      "width": 1536,
+      "height": 1536,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "草地材质",
+      "prompt": "生成一张可无缝平铺的海岛草甸PBR颜色贴图，严格正交俯视，画面充满材质本身，无透视、无边界、无强烈烘焙阴影。以薄荷绿和暖草绿为基底，包含大量细小草叶、三叶草、少量裸露土壤和极细碎野花点，疏密自然，不能出现单棵大植物、树木、花盆、道路、石头或文字。细节清晰但重复平铺时不形成明显斑块，适合Three.js地形。",
+      "width": 1536,
+      "height": 1536,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "岩层材质",
+      "prompt": "生成一张可无缝平铺的海岸层状岩石PBR颜色贴图，严格正交正视岩石表面，画面充满材质本身，无透视、无物体轮廓、无边界、无强烈烘焙阴影。浅灰石灰岩和深灰玄武岩层理，具有侵蚀裂纹、细小断面、矿物颗粒和少量苔色，不要洞穴入口、不要整块山体、不要天空、不要海水、不要植被主体或文字。适合Three.js山崖与洞穴重复平铺。",
+      "width": 1536,
+      "height": 1536,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "海沙材质",
+      "prompt": "生成一张可无缝平铺的海滨细沙PBR颜色贴图，严格正交俯视，画面充满材质本身，无透视、无边界、无强烈烘焙阴影。温暖浅米色细沙，包含非常细的沙粒、轻柔风浪纹、少量更浅的贝壳碎屑与潮湿色差，细节自然低对比，不要大贝壳、脚印、海藻、石头、人物或文字。适合Three.js海岛岸边重复平铺。",
+      "width": 1536,
+      "height": 1536,
+      "model": "seedream_5.5"
+    },
+    {
+      "image_name": "彗星新车",
+      "prompt": "用于图生3D的干净车辆参考图。珊瑚橙与奶油白配色的卡通开放式轮式方程式卡丁车，修长低趴车身，尖圆长鼻锥，四个完全外露且彼此分离的宽轮胎，明确的前翼、高尾翼、单侧中央座舱，空的深色座椅与方向盘清楚可见，不要驾驶员。圆润倒角、大色块、玩具收藏品比例，与奶油白、珊瑚橙、青蓝色的卡通港口建筑同一风格。三分之四前视角，完整车辆居中，纯浅灰背景，柔和均匀棚拍光，轮廓与四个车轮无遮挡，无场景、无文字、无标志、无水印。",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "image_name": "浪花新车",
+      "prompt": "用于图生3D的干净车辆参考图。青蓝色与奶油白配色的卡通沙滩越野卡丁车，管式防滚架、短车头、高坐姿空座舱、四个粗纹越野轮胎、长行程悬挂与圆形前灯，车身轻巧开放，与低趴方程式明显不同。空座椅和方向盘清楚可见，不要驾驶员。圆润倒角、大色块、玩具收藏品比例，与奶油白、珊瑚橙、青蓝色卡通港口建筑同一风格。三分之四前视角，完整车辆居中，纯浅灰背景，柔和均匀棚拍光，四个车轮与悬挂清晰，无场景、无文字、无标志、无水印。",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "image_name": "闪电新车",
+      "prompt": "用于图生3D的干净车辆参考图。金黄色与深石墨色配色的卡通低宽楔形双座敞篷 speedster，尖锐楔形车头、宽车身、低矮挡风玻璃、空的双座座舱、四个半包覆宽轮、尾部短扰流板，轮廓扁平宽展，和管式沙滩车及方程式明显不同。不要驾驶员，座椅和方向盘可见。圆润倒角、大色块、玩具收藏品比例，与奶油白、珊瑚橙、青蓝色卡通港口建筑同一风格。三分之四前视角，完整车辆居中，纯浅灰背景，柔和均匀棚拍光，无场景、无文字、无标志、无水印。",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "image_name": "嫩芽新车",
+      "prompt": "用于图生3D的干净车辆参考图。嫩绿色与奶油白配色的卡通圆泡形敞篷微型车，高而短的圆润车身、直立挡风玻璃、四个较小车轮、圆形大灯、较高的单座空座舱，像可爱的城市泡泡车，轮廓明显高于低趴赛车且与沙滩车不同。不要驾驶员，座椅和方向盘清楚可见。圆润倒角、大色块、玩具收藏品比例，与奶油白、珊瑚橙、青蓝色卡通港口建筑同一风格。三分之四前视角，完整车辆居中，纯浅灰背景，柔和均匀棚拍光，无场景、无文字、无标志、无水印。",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "image_name": "星辉新车",
+      "prompt": "用于图生3D的干净车辆参考图。紫罗兰色与奶油白配色的卡通未来流线型单座 speedster，水滴状长车身、弧形车头、空的开顶座舱、两个外露前轮与带可拆轮罩的后轮、短小尾部鳍片，整体流畅优雅，与楔形跑车和方程式轮廓不同。不要驾驶员，空座椅与方向盘可见。圆润倒角、大色块、玩具收藏品比例，与奶油白、珊瑚橙、青蓝色卡通港口建筑同一风格。三分之四前视角，完整车辆居中，纯浅灰背景，柔和均匀棚拍光，无场景、无文字、无标志、无水印。",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "image_name": "巨石新车",
+      "prompt": "用于图生3D的干净车辆参考图。橙红色与深蓝配色的卡通迷你怪兽卡车，抬高的方正车身、四个超大粗纹轮胎、清晰可见的悬挂弹簧、宽大轮拱、高坐姿空座舱和小型防滚架，轮廓高大强壮但车长与小型卡丁车接近。不要驾驶员，座椅与方向盘可见。圆润倒角、大色块、玩具收藏品比例，与奶油白、珊瑚橙、青蓝色卡通港口建筑同一风格。三分之四前视角，完整车辆居中，纯浅灰背景，柔和均匀棚拍光，无场景、无文字、无标志、无水印。",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "image_name": "麻薯新车",
+      "prompt": "用于图生3D的干净车辆参考图。蜜桃粉与奶油白配色的卡通复古圆顶敞篷小车，短轴距、半圆车身、 upright 车头、圆形前灯、四个小宽轮、镀铬风格圆保险杠、较高的单人空座椅，造型像上世纪微型 bubble car，与其他赛车显著不同。不要驾驶员，座椅和方向盘清楚可见。圆润倒角、大色块、玩具收藏品比例，与奶油白、珊瑚橙、青蓝色卡通港口建筑同一风格。三分之四前视角，完整车辆居中，纯浅灰背景，柔和均匀棚拍光，无场景、无文字、无标志、无水印。",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "image_name": "台地山体",
+      "prompt": "生成用于图生3D的单体游戏山体参考图。一个完整独立的玩具海岛台地山，低矮宽体，宽度明显大于高度，三层不对称的圆润台阶式山体轮廓，奶油米色与浅暖棕色岩石，每层顶部覆盖厚实的嫩绿色草地，岩壁柔和圆钝、带少量宽圆层理，不要尖锐山峰，不要垂直针状石柱。高品质卡通3D模型渲染，圆润倒角，简洁清晰的PBR色块材质，与彩色玩具赛车和圆润港口房屋同一风格。正交三分之四视角，完整底座和全部轮廓可见，平整底部，浅灰纯背景，柔和均匀棚拍光，无道路、无房屋、无树木、无人物、无文字、无水印。",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "image_name": "双峰山体",
+      "prompt": "生成用于图生3D的单体游戏山体参考图。一个完整独立的玩具海岛双峰山，两个宽圆山体自然连在一起，一高一低，整体横向舒展且坡度饱满，不要尖峰。奶油色与浅砂岩色圆润岩体，山腰有两层柔和的岩石台阶，顶部和台地覆盖鲜嫩的草绿色厚草坡，少量温暖浅棕色岩层分区和柔和倒角。高品质卡通3D模型渲染，干净PBR材质，和彩色玩具赛车、圆润海边房屋统一风格。正交三分之四视角，完整山体与平整底座可见，浅灰纯背景，柔和均匀棚拍光，无道路、无建筑、无树木、无人物、无文字、无水印。",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "image_name": "海岸山崖",
+      "prompt": "生成用于图生3D的单体海岸坡崖模块参考图。一个完整独立的玩具海岛缓坡山崖，宽而厚实，侧面是圆润分层的奶油米色岩壁，岩壁从宽大底座向顶部逐步后退形成可辨认的缓坡与三层台地，不要九十度直立高墙。顶部覆盖连续嫩绿色厚草地，边缘圆钝，岩石只有少量宽大柔和层理，无碎石、无尖锐裂片。高品质卡通3D模型渲染，干净PBR色块和柔软倒角，与圆润港口建筑和玩具赛车一致。正交侧面略俯视三分之四视角，完整底座与所有边缘可见，浅灰纯背景，均匀棚拍光，无海水、无道路、无建筑、无树木、无人物、无文字、无水印。",
+      "width": 1024,
+      "height": 1024
+    }
+  ],
+  "hyper3d": [
+    {
+      "prompt": "A single compact toy-like racing kart for a premium colorful browser kart game, coral red rocket-inspired body with warm ivory accents, exposed four black rubber wheels, rounded hard-surface panels, small rear spoiler, chunky readable silhouette, realistic kart proportions, no driver, no text, no logos, no background, PBR materials, game-ready mesh, centered at origin, ground level at wheel contact, approximately 2.2 meters long and 1.5 meters wide",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 28000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single stylized premium electric formula go-kart game asset, empty open single-seat cockpit with no driver, four exposed compact racing wheels, low wide wedge nose, lemon yellow and ivory paint, sculpted navy lightning bolt motif on the side pods, slim rear wing shaped like a lightning flash, small cyan energy strips, glossy painted body with rubber and dark metal accents, playful educational arcade racer, toy-like hand-painted PBR, clean readable silhouette, no text, no letters, no logos, no track, no background, no extra vehicles, no people, front three-quarter view, all wheels grounded, same compact kart proportions as a retro coral kart, approximately 2.8 meters wide and 3.4 meters long.",
+      "quality": "Gen2",
+      "quality_mode": "gen",
+      "material": true,
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single stylized premium adventure off-road go-kart game asset, empty open single-seat cockpit with no driver, four exposed chunky but compact all-terrain wheels, mint green and cream body panels, rounded protective bumper, small roof rack with two tiny rolled camping blankets, mud guards, warm amber marker lights, playful educational arcade racer, toy-like hand-painted PBR, clean readable silhouette, no text, no letters, no logos, no track, no background, no extra vehicles, no people, front three-quarter view, all wheels grounded, same compact kart proportions as a retro coral kart, approximately 2.8 meters wide and 3.4 meters long.",
+      "quality": "Gen2",
+      "quality_mode": "gen",
+      "material": true,
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single stylized premium futuristic space go-kart game asset, empty open single-seat cockpit with no driver, four exposed compact wheels, violet and pearl white rounded body, short swept fins, two small rocket-style rear pods with warm peach engine rings, gold star-shaped side emblem without any letters, playful educational arcade racer rather than realistic spacecraft, toy-like hand-painted PBR, clean readable silhouette, no text, no logos, no track, no background, no extra vehicles, no people, front three-quarter view, all wheels grounded, same compact kart proportions as a retro coral kart, approximately 2.8 meters wide and 3.4 meters long.",
+      "quality": "Gen2",
+      "quality_mode": "gen",
+      "material": true,
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single stylized premium midnight street-racing go-kart game asset, empty open single-seat cockpit with no driver, four exposed compact racing wheels, deep midnight teal and black body, angular low hood, subtle turquoise pinstripes, coral rear light bar, compact rear spoiler, small side exhausts, playful educational arcade racer, toy-like hand-painted PBR with glossy clearcoat and rubber tires, clean readable silhouette, no text, no letters, no logos, no track, no background, no extra vehicles, no people, front three-quarter view, all wheels grounded, same compact kart proportions as a retro coral kart, approximately 2.8 meters wide and 3.4 meters long.",
+      "quality": "Gen2",
+      "quality_mode": "gen",
+      "material": true,
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single colorful toy-like harbor master building for a premium cartoon kart racing game, compact two-story Mediterranean port control tower, coral and cream walls, turquoise shutters, small observation balcony, clock without readable numerals, layered roof and dockside crates integrated at base, clean readable silhouette, game-ready PBR, centered origin, no text, no people, no vehicles, no surrounding terrain",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 18000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single charming toy-like coastal lighthouse for a premium cartoon kart racing game, white tapered tower with two broad coral red bands, mint metal lantern room, warm glowing lamp lens, tiny gallery railing and rounded stone base, clean readable silhouette, game-ready PBR, centered origin, no text, no people, no island terrain",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 16000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single stylized crystal cave entrance arch for a premium cartoon kart racing game, wide drive-through rocky tunnel mouth, faceted dark teal stone, clusters of large luminous cyan and violet crystals on the outer sides only, clear open center large enough for a kart, wooden mine supports and short rail details at sides, game-ready PBR, centered origin, no text, no people, no long tunnel",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 20000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "A single elegant toy-like suspension bridge tower for a premium cartoon kart racing game, two cream concrete legs joined by a coral crossbeam, mint cable anchor details and gold beacon caps, clear wide drive-through center, readable nautical engineering shapes, game-ready PBR, centered origin, no text, no people, no bridge deck, no vehicles",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 16000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb"
+    },
+    {
+      "prompt": "Reconstruct the single harbor headquarters from the reference image as a detailed stylized game environment asset. Preserve the wide two-story warehouse, side control tower, coral tiled roofs, teal structural trim, cream walls, stairs, balconies, awnings, windows, vents and loading platform. Full freestanding geometry on a compact base, clean proportions, no surrounding scenery, no people, no text.",
+      "tier": "Gen-2.5-High",
+      "quality_override": 60000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "Z_ye3dGaD0nfj18_hwngvg"
+      ]
+    },
+    {
+      "prompt": "以参考图生成精细近海渔船：完整船壳与海青、珊瑚橙、奶油白配色，保留船舱、窗户、桅杆、吊杆、甲板护栏、绞盘、轮胎护舷与船底；单主体、背面完整、贴图清晰，适合风格化海岛卡丁车近景与港水中景。",
+      "tier": "Gen-2.5",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 40000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "phwn6ubTeKzu6N1DrTKdOA"
+      ]
+    },
+    {
+      "prompt": "以参考图生成完整实心层状海岸岩体，保留明确岩层、裂隙、侵蚀台阶、海青瀑布出口与少量植被；外轮廓自然但底部稳定，不能成为空心薄片，适合与连续盘山地形拼接，风格化 PBR。",
+      "tier": "Gen-2.5",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 45000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "BxNDc-nhUw2HWtoGmTx0Mg"
+      ]
+    },
+    {
+      "prompt": "以参考图生成精细水晶洞穴入口：完整厚岩壁与可穿行拱洞，保留层状岩石、洞口水晶簇、木制支架、矿车轨道、绳索与局部灯具；拱洞内部留出足够道路空间，外壁适合衔接山体，风格化海岛卡丁车美术。",
+      "tier": "Gen-2.5",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 50000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "MtrJDjlv-_H5nYVQTmArCg"
+      ]
+    },
+    {
+      "prompt": "以参考图生成精致风格化棕榈树：完整分节弯曲树干、树皮环纹、独立清晰的大型棕榈叶片、叶脉与椰子簇，叶片不能糊成整块；单主体，中性光照，适合海岛卡丁车近景实例化。",
+      "tier": "Gen-2.5",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 30000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "QHT6fd53pAptsBgIjN0WxA"
+      ]
+    },
+    {
+      "prompt": "以参考图生成精细近海渔船：完整船壳与海青、珊瑚橙、奶油白配色，保留船舱、窗户、桅杆、吊杆、甲板护栏、绞盘、轮胎护舷与船底；单主体、背面完整、贴图清晰，适合风格化海岛卡丁车近景与港水中景。",
+      "tier": "Gen-2.5-High",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 40000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "phwn6ubTeKzu6N1DrTKdOA"
+      ]
+    },
+    {
+      "prompt": "以参考图生成完整实心层状海岸岩体，保留明确岩层、裂隙、侵蚀台阶、海青瀑布出口与少量植被；外轮廓自然但底部稳定，不能成为空心薄片，适合与连续盘山地形拼接，风格化 PBR。",
+      "tier": "Gen-2.5-High",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 45000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "BxNDc-nhUw2HWtoGmTx0Mg"
+      ]
+    },
+    {
+      "prompt": "以参考图生成精细水晶洞穴入口：完整厚岩壁与可穿行拱洞，保留层状岩石、洞口水晶簇、木制支架、矿车轨道、绳索与局部灯具；拱洞内部留出足够道路空间，外壁适合衔接山体，风格化海岛卡丁车美术。",
+      "tier": "Gen-2.5-High",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 50000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "MtrJDjlv-_H5nYVQTmArCg"
+      ]
+    },
+    {
+      "prompt": "以参考图生成精致风格化棕榈树：完整分节弯曲树干、树皮环纹、独立清晰的大型棕榈叶片、叶脉与椰子簇，叶片不能糊成整块；单主体，中性光照，适合海岛卡丁车近景实例化。",
+      "tier": "Gen-2.5-High",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 30000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "QHT6fd53pAptsBgIjN0WxA"
+      ]
+    },
+    {
+      "prompt": "以参考图生成双立柱门式跨海桥塔：完整海青桥塔、珊瑚橙横梁与奶油白钢结构节点，保留阶梯、平台、护栏、铆钉、拉索锚点、检修梯与铭牌形装饰；结构稳固，左右对称，适合大桥路段近景，风格化精细 PBR。",
+      "tier": "Gen-2.5-High",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 45000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "tdod7BoFlP-umqaGodlcIA"
+      ]
+    },
+    {
+      "prompt": "以参考图生成精细海岛灯塔：完整奶油白圆形塔身、珊瑚橙饰带、海青观景平台与护栏、多面玻璃灯室、金属屋顶和风向标，保留拱形入口、石阶、小型机房、系船柱与石材分缝；结构完整、轮廓清晰，适合海滨赛车地标，风格化 PBR。",
+      "tier": "Gen-2.5-High",
+      "quality": "High",
+      "quality_mode": "Quality",
+      "triangle_limit": 45000,
+      "material": "PBR",
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "resolution": "Basic",
+      "reference_upload_ids": [
+        "mfqCyuS7zcyp9IBD1gbkNQ"
+      ]
+    },
+    {
+      "prompt": "A single freestanding stylized crystal cave entrance asset for a kart racing game. Thick volumetric dark blue-gray rock arch with a genuinely open central vehicle passage, complete outer rock shell, short stone foundation and very short mine rails. Wooden supports, small lanterns and restrained teal and purple crystals. Front three-quarter form matching the reference. Do not remove the rock walls or turn the asset into a flat facade; no distant landscape, no long tunnel, no text.",
+      "tier": "Gen-2.5-High",
+      "quality_override": 60000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "ZjAPuOvcnAx1hpHMezhLzA"
+      ]
+    },
+    {
+      "prompt": "Create a game-ready seated kart driver matching the reference: full racing helmet with visor, detailed suit, gloves, boots and bent driving pose, hands holding an invisible steering wheel. Preserve the empty space between hands. No kart, chair, steering wheel or display base. PBR materials, complete watertight character, centered pivot.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 45000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "h3NwNuvbSQeU2NRqMIo1wA"
+      ]
+    },
+    {
+      "prompt": "Create a detailed game-ready seaside kart grandstand and pit building matching the reference. Preserve individual seats, stairs, railings, roof trusses, two garages, awnings and structural supports. No people, vehicles or text. Complete freestanding architecture with PBR materials and grounded pivot.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 65000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "W-zb23Lv4DBCCB5XDXs6Iw"
+      ]
+    },
+    {
+      "prompt": "Create a complete stylized volumetric cumulus cloud cluster matching the reference, with layered sculpted billows, a flatter underside and natural small edge puffs. Single isolated cloud model, no sky, ground, sun, birds or base. Soft white and pale blue-gray material, lightweight game environment asset.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 14000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "pR67h1T3Q0BinqCPl3dwxw"
+      ]
+    },
+    {
+      "prompt": "Create a detailed game-ready coastal grass and flower clump matching the reference. Preserve curved grass blades, broad leaves, stems and five small cream/coral flowers. Thin leaves must keep their silhouette and UVs. No pot, landscape or large soil base. PBR materials, grounded pivot, suitable for instancing.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 22000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "94RDFs48sGe7ZIhjTeu3_w"
+      ]
+    },
+    {
+      "prompt": "Create a detailed coastal layered rock formation matching the reference, with eroded strata, fractured ledges, natural ridge silhouette and sparse grass on top. Single complete rock module, no ocean, buildings, road or sky. Preserve geometric rock detail and PBR material zones for a racing game environment.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 60000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "perSp4-EPlCF5GFN52khVA"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon single-seat go-kart, rounded toy-like proportions, coral-orange and cream-white body with teal accents, four chunky rubber wheels, open cockpit, small comet tail fin, simplified hard-surface geometry, clean large color zones, no driver, no text, no background. Match the reference silhouette and preserve the four-wheel layout. Game-ready asset with a centered pivot and grounded wheels.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 60000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "rMh4PwSxame6v2htKGb36Q"
+      ]
+    },
+    {
+      "prompt": "A complete stylized cartoon harbor lighthouse matching the reference: rounded cream tower, coral-orange trim, teal dome and accents, circular stepped base, small attached entry house, open gallery railing, chunky toy-like proportions, simplified clean geometry, no people, no text, no terrain or background. Preserve the full freestanding structure and make it suitable for a colorful kart racing game.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 50000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "wNPdo5FazRj6lH2dnZz1hA"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon reef-themed single-seat go-kart matching the reference: rounded teal and cream body, short thick side floats, small wave fin, open cockpit with integrated steering wheel, four chunky rubber wheels, toy-like proportions, clean large color zones, no driver, no text, no background. Similar overall size and wheel layout to the team kart. Game-ready, centered, grounded.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 45000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "wL2KytCyuiUpWGOOvRQaCw"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon lightning-themed single-seat go-kart matching the reference: low wide rounded nose, golden yellow and cream body, teal accents, chunky lightning side graphics and short rear wing, open cockpit with integrated steering wheel, four chunky rubber wheels, toy-like proportions, no driver, no text, no background. Game-ready, centered, grounded.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 45000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "qMFWtW1RD6LZrSX6p0Jn0Q"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon sprout-themed single-seat go-kart matching the reference: rounded leaf-green and cream body, thick leaf-shaped side pods, small curled sprout tail, open cockpit with integrated steering wheel, four chunky rubber wheels, playful toy-like proportions, clean large color zones, no driver, no text, no background. Game-ready, centered, grounded.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 45000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "qZW9nlL7j20DIaXuXFwdIw"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon star-themed single-seat go-kart matching the reference: rounded violet and cream body, teal accents, chunky star-shaped side wings and small star tail, open cockpit with integrated steering wheel, four chunky rubber wheels, toy-like proportions, clean large color zones, no driver, no text, no background. Game-ready, centered, grounded.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 45000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "FcFmzXASOY7KPDMMByAG3g"
+      ]
+    },
+    {
+      "prompt": "One complete rounded cartoon fishing boat matching the reference: short thick cream hull with teal trim, coral wheelhouse, one mast and broad cream sail, chunky black tire fenders, playful toy-like proportions, large clean color zones, no water, no dock, no people, no text, no background. Game-ready single asset, centered and grounded at hull base.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 40000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "VJ3-7Ulw1aTdkgplTZjQag"
+      ]
+    },
+    {
+      "prompt": "One complete stylized cartoon palm tree matching the reference: gently curved thick coral-brown trunk, a compact crown of a few broad rounded teal-green leaves with bold shapes, toy-like proportions, clean large color zones, no ground island, no flowers, no text, no background. Game-ready single asset, centered with origin at trunk base.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 30000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "8VAH0SYZoCi0VjBn4wu7bA"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon coastal cliff module matching the reference: layered rounded blue-gray rock terraces, broad flat ledges, a wide stylized pale cyan waterfall descending the front, subtle cream highlights, chunky toy-like forms, clean large color zones, no buildings, no vegetation, no text, no background. Game-ready single asset, centered and grounded.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 45000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "GP-xJf3qygtzb_F296er_Q"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon crystal cave entrance matching the reference: thick rounded blue-gray rock arch with a genuinely open drive-through central tunnel, chunky wooden support beams, short mine-cart rails and several large teal crystals at the outer sides, cream and coral accents, toy-like proportions, clean large color zones. Keep the road opening unobstructed and the interior visible; no mine cart, no people, no text, no background. Game-ready single asset, centered and grounded.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 50000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "9YFu-ynNRifytoeTEiaDqA"
+      ]
+    },
+    {
+      "prompt": "One complete cartoon suspension bridge tower portal matching the reference: two thick rounded cream columns with coral caps, teal structural accents, upper and lower crossbeams, short stylized suspension cable details, toy-like proportions, clean large color zones. Preserve a wide completely open central drive-through gap with no floor and no objects in the road; no bridge deck, no vehicles, no text, no background. Game-ready single asset, centered and grounded.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 40000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "MFpsTcg0gh0HyUxI8Cmd7g"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized open-wheel formula kart matching the reference: coral orange and cream, long rounded nose, four exposed wheels, front wing, high rear wing, one empty central seat and integrated steering wheel, no driver. Rounded bevels, large clean color blocks, premium toy proportions consistent with a cheerful coastal cartoon world. Vehicle forward along +Z, up +Y, ground contact at Y=0. No text, no logos, no extra wheels, no background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "Btf5RlqCy5XYIhFD3GAkJA"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized dune buggy kart matching the reference: teal and cream, short nose, exposed tubular roll cage, high empty seat with integrated steering wheel, no driver, four chunky off-road tires, visible long-travel suspension and round headlights. Rounded bevels, large color blocks, premium coastal toy style. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "FzIFUJfjdGndW3xexNZ1Pw"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized low-wide wedge spyder matching the reference: golden yellow and graphite, sharp wedge nose, low windshield, two empty seats, integrated steering wheel, no driver, four wide wheels, short rear spoiler. Rounded bevels, clean color blocks, premium coastal toy proportions. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "V1xHSmi9eCetFJ_s1JZKpA"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized rounded bubble micro kart matching the reference: leaf green and cream, tall short body, upright windshield, four small wheels, round headlights, high empty seat with integrated steering wheel, no driver. Cute city bubble-car silhouette distinct from a buggy and formula car. Rounded bevels, large color blocks, premium coastal toy style. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "0CHxPx28ojzH7wj42NgWGQ"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized dune buggy kart matching the reference: teal and cream, short nose, exposed tubular roll cage, high empty seat with integrated steering wheel, no driver, four chunky off-road tires, visible long-travel suspension and round headlights. Rounded bevels, large color blocks, premium coastal toy style. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "FzIFUJfjdGndW3xexNZ1Pw"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized rounded bubble micro kart matching the reference: leaf green and cream, tall short body, upright windshield, four small wheels, round headlights, high empty seat with integrated steering wheel, no driver. Cute city bubble-car silhouette distinct from a buggy and formula car. Rounded bevels, large color blocks, premium coastal toy style. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "0CHxPx28ojzH7wj42NgWGQ"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized teardrop streamliner kart matching the reference: violet and cream, flowing curved body panels, low teardrop canopy, long nose, subtle rear wing, one empty central seat with integrated steering wheel, no driver, four wheels. Rounded aerodynamic silhouette distinct from a wedge spyder. Premium coastal toy proportions, clean color blocks. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "EiK8R9ydyJr4YEf3GGtOLw"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized mini monster truck matching the reference: cobalt blue and cream, tall boxy open cab, lifted chassis, exposed suspension, four oversized tires, two external auxiliary lights, high empty seat with integrated steering wheel, no driver. Compact playful proportions, not a full-size truck. Rounded bevels, large color blocks, premium coastal toy style. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "mhjVKqoOmYKjFOpLGYQw7Q"
+      ]
+    },
+    {
+      "prompt": "Game-ready stylized vintage rounded micro roadster matching the reference: butter yellow and cream, curved hood, upright windshield, small rounded fenders, rear luggage rack, two empty seats with integrated steering wheel, no driver, four small wheels and round headlights. Friendly retro silhouette distinct from a modern spyder and bubble car. Rounded bevels, premium coastal toy proportions. Forward +Z, up +Y, tires touching Y=0. No text, logos, extra wheels, driver, or background geometry.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 120000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "KgY1ENBxE-MXF5gVzkOjNw"
+      ]
+    },
+    {
+      "prompt": "Single self-contained stylized toy-island terraced mountain game asset. Match the reference: broad low silhouette, three asymmetric rounded terraces, creamy beige rock, thick fresh green grass caps, soft bevels and chunky forms. Closed solid base, all geometry connected and grounded, no floating fragments, no separate pebbles, no houses, trees, roads, text or background plane. Clean PBR materials and UV textures suitable for Three.js.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 20000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "s3uyKgLh4TZ_Cy_bKKW-DA"
+      ]
+    },
+    {
+      "prompt": "Single self-contained stylized toy-island twin-peak mountain game asset. Match the reference: two broad rounded connected hills of different heights, wide horizontal silhouette, creamy sandstone terraces and thick fresh green grass slopes, soft chunky bevels. Closed solid flat-bottom base, all geometry connected and grounded, no floating fragments, no separate pebbles, houses, trees, roads, text or background plane. Clean PBR materials and UV textures suitable for Three.js.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 20000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "23nAJFATINOuPYTQ6St8pg"
+      ]
+    },
+    {
+      "prompt": "Single self-contained stylized toy-island coastal bluff game asset. Match the reference: wide thick stepped landform, rounded creamy beige rock terraces receding toward the top, continuous fresh green grass caps, gentle readable slopes rather than a vertical wall. Closed solid flat-bottom base touching ground, no floating island, no gaps under the base, no detached rocks, houses, trees, roads, water, text or background plane. Clean PBR materials and UV textures suitable for Three.js.",
+      "tier": "Gen-2.5-Medium",
+      "quality_override": 20000,
+      "mesh_mode": "Raw",
+      "geometry_file_format": "glb",
+      "reference_upload_ids": [
+        "ul3wQP5nMRWMYmz4FKbvnw"
+      ]
+    }
+  ],
+  "audio": [
+    {
+      "prompt": "Create an upbeat instrumental arcade kart racing music loop: bright 128 BPM electronic pop, punchy round bass, cheerful synth brass, short marimba arpeggios, steady driving drums, constant playful energy, no vocals, no spoken words, no intro, no fade-out, and a clean loop ending suitable for seamless repeat in a Three.js racing game."
+    },
+    {
+      "prompt": "玩具海岛卡丁车游戏的车库选车界面背景音乐，轻快、精致、温暖，尤克里里、马林巴、轻拨贝斯与柔和电子打击乐，中速，悠闲但带有即将出发的期待感，纯器乐，无人声，适合无缝循环，开头结尾能量一致，不要淡入淡出"
+    },
+    {
+      "prompt": "玩具海岛卡丁车比赛背景音乐，明亮高能量放克电子与冲浪摇滚，马林巴、铜管、贝斯、紧凑鼓组和轻盈合成器，快速但清晰，不遮挡答题与碰撞音效，纯器乐，无人声，适合无缝循环，持续稳定能量，无长篇前奏、无结尾淡出"
+    },
+    {
+      "prompt": "玩具赛车游戏的按钮确认音效，短促、清脆、柔和的机械卡扣与微小木琴亮点，高辨识度，无音乐、无人声、无长尾"
+    },
+    {
+      "prompt": "玩具海岛卡丁车游戏的车库选车界面背景音乐，轻快、精致、温暖，尤克里里、马林巴、轻拨贝斯与柔和电子打击乐，中速，悠闲但带有即将出发的期待感，纯器乐，无人声，适合无缝循环，开头结尾能量一致，不要淡入淡出"
+    },
+    {
+      "prompt": "玩具卡丁车答题正确的奖励音效，明亮的两音马林巴成功提示，带轻微闪光感，短促清晰，无背景音乐，无人声，无长尾"
+    },
+    {
+      "prompt": "玩具卡丁车答题错误的提示音效，柔和圆润的木块低音向下滑落，短促，不刺耳，不用蜂鸣器，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车氮气加速音效，短促的空气喷射与上扬电子呼啸，启动有冲击感，活泼轻盈，无爆炸，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车碰到路障的碰撞音效，橡胶保险杠与塑料车身发出圆润低沉的闷响，带一点小碎石子声，短促清楚，无爆炸，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车漂移轮胎摩擦音效，短促的橡胶轮胎擦过沥青，活泼、柔和、可控，不要尖锐刺耳，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车氮气加速音效，短促的空气喷射与上扬电子呼啸，启动有冲击感，活泼轻盈，无爆炸，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车碰到路障的碰撞音效，橡胶保险杠与塑料车身发出圆润低沉的闷响，带一点小碎石子声，短促清楚，无爆炸，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具赛车比赛倒计时的单声提示音，清晰的短木琴与柔和电子音叠加，一次短音，不要连续报数，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车冲线获胜的短小庆祝音效，明亮铜管与马林巴组成向上的三音胜利动机，活泼精致，无歌声，无人声，无长混响"
+    },
+    {
+      "prompt": "玩具卡丁车跳台落地音效，柔和悬挂压缩的低沉闷响与短促轮胎接触声，有重量但不震耳，无爆炸，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车对手即将使用道具的预告音效，两声快速而柔和的电子木琴提示，清楚但不像警报，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车的小型引擎运转循环，稳定中低转速，圆润机械质感与轻微玩具电动车嗡鸣，转速保持恒定，无加速变化，无音乐，无人声，适合无缝循环"
+    },
+    {
+      "prompt": "玩具赛车比赛倒计时的单声提示音，清晰的短木琴与柔和电子音叠加，一次短音，不要连续报数，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车冲线获胜的短小庆祝音效，明亮铜管与马林巴组成向上的三音胜利动机，活泼精致，无歌声，无人声，无长混响"
+    },
+    {
+      "prompt": "玩具卡丁车跳台落地音效，柔和悬挂压缩的低沉闷响与短促轮胎接触声，有重量但不震耳，无爆炸，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车对手即将使用道具的预告音效，两声快速而柔和的电子木琴提示，清楚但不像警报，无背景音乐，无人声"
+    },
+    {
+      "prompt": "玩具卡丁车的小型引擎运转循环，稳定中低转速，圆润机械质感与轻微玩具电动车嗡鸣，转速保持恒定，无加速变化，无音乐，无人声，适合无缝循环"
+    }
+  ],
+  "note": "记录包含被采纳、重试和被否决的生成迭代；最终完成状态以各 art-v*/asset-jobs.json 和当前 public/ 资源为准。精确复刻使用仓库内二进制资源，不需要重新生成。"
+}
