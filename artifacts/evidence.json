@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "runId": "v9-audio-collision-final",
+  "captures": [
+    { "mode": "desktop", "state": "active-play", "report": "artifacts/v9-final/desktop-active-play.json" },
+    { "mode": "desktop", "state": "cliff", "report": "artifacts/v9-final/desktop-cliff.json" },
+    { "mode": "mobile", "state": "active-play", "report": "artifacts/v9-final/mobile-active-play.json" },
+    { "mode": "mobile", "state": "cliff", "report": "artifacts/v9-final/mobile-cliff.json" }
+  ],
+  "artifacts": [
+    "public/audio/menu-bgm.wav",
+    "public/audio/race-bgm.wav",
+    "public/audio/ui-click.wav",
+    "public/audio/correct.wav",
+    "public/audio/wrong.wav",
+    "public/audio/boost.wav",
+    "public/audio/impact.wav",
+    "public/audio/drift.wav",
+    "public/audio/countdown.wav",
+    "public/audio/finish.wav",
+    "public/audio/telegraph.wav",
+    "artifacts/v9-final/audio-collision-tests.json",
+    "artifacts/v9-final/gameplay-tests.json",
+    "artifacts/v9-final/full-race/report.json",
+    "artifacts/v9-final/full-race/full-race.webm",
+    "artifacts/v9-final/browser-compatibility.json",
+    "artifacts/v9-final/release-smoke.json",
+    "artifacts/v9-final/rock-audit/fixed-report.json",
+    "artifacts/v9-final/rock-audit/fixed-29-8.png",
+    "artifacts/v9-final/rock-audit/fixed-33-8.png"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "runId": "github-reproduction",
+  "captures": [
+    { "mode": "desktop", "state": "active-play", "report": "artifacts/reproduction/desktop-active-play.json" },
+    { "mode": "desktop", "state": "cliff", "report": "artifacts/reproduction/desktop-cliff.json" },
+    { "mode": "mobile", "state": "active-play", "report": "artifacts/reproduction/mobile-active-play.json" },
+    { "mode": "mobile", "state": "cliff", "report": "artifacts/reproduction/mobile-cliff.json" }
+  ],
+  "artifacts": []
+}
