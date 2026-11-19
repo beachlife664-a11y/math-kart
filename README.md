@@ -1,5 +1,7 @@
 # 算力狂飙 · Math Kart
 
+[![复刻验证](https://github.com/beachlife664-a11y/math-kart/actions/workflows/ci.yml/badge.svg)](https://github.com/beachlife664-a11y/math-kart/actions/workflows/ci.yml)
+
 一款可离线运行的 Three.js 数学自动卡丁车游戏。五台赛车在五段海岛上进行两圈自动竞速；玩家只需回答小学数学题，用正确答案换取喷射、连对强化、自动道具和路段奖励。
 
 **本仓库是完整复刻版：源码、正式 GLB、原始建模包、参考图、贴图、音频母带、真实生成提示词、制作记录、测试脚本和最终验收证据均已包含。**
@@ -9,7 +11,7 @@
 要求：Node.js `^20.19.0` 或 `>=22.12.0`，npm。首次安装依赖需要访问 npm registry；安装完成后，游戏运行不需要网络、Python、Hyper3D 账号、API Key 或本机 Skill。
 
 ```bash
-git clone <你的仓库地址> math-kart
+git clone https://github.com/beachlife664-a11y/math-kart.git math-kart
 cd math-kart
 node scripts/setup.mjs
 npm run preview:static
@@ -33,7 +35,7 @@ npm run verify:local
 npm run verify:local -- --full-race
 ```
 
-也可使用 `PORT=28476 npm run verify:local` 避免端口冲突。
+也可使用 `PORT=28476 npm run verify:local` 避免端口冲突。无硬件 WebGL 的持续集成环境使用 `npm run verify:ci`；该命令检查依赖、资源、构建、数学逻辑与正式资源访问，不替代本机完整图形回归。
 
 ## 玩法与操作
 

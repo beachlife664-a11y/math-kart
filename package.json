@@ -22,6 +22,7 @@
     "preview:static": "node scripts/static-server.mjs",
     "verify:assets": "node scripts/verify-assets.mjs",
     "verify:local": "node scripts/verify-local.mjs",
+    "verify:ci": "node scripts/verify-local.mjs --ci-smoke",
     "capture:karts": "node scripts/capture-karts.mjs",
     "capture:showroom": "node scripts/capture-showroom.mjs",
     "capture:thumbnails": "node scripts/capture-kart-thumbnails.mjs && python3 scripts/fit-kart-thumbnails.py",

@@ -12,7 +12,7 @@
 ## 2. 一键安装与运行
 
 ```bash
-git clone <你的仓库地址> math-kart
+git clone https://github.com/beachlife664-a11y/math-kart.git math-kart
 cd math-kart
 node scripts/setup.mjs
 npm run preview:static

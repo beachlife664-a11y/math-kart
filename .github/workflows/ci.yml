@@ -15,8 +15,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - run: npx playwright install --with-deps --no-shell chromium firefox webkit
-      - run: npm run verify:local
+      # Hosted runners have no hardware WebGL. Run the deterministic and production
+      # asset checks here; verify:local retains the full real-input graphics suite.
+      - run: npm run verify:ci
       - uses: actions/upload-artifact@v4
         if: always()
         with:

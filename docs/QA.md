@@ -10,6 +10,8 @@ npm run verify:local -- --full-race
 
 `verify:local` 会自行启动和关闭静态服务器。它执行资源校验、TypeScript/ESLint、生产构建、9 项 Playwright、三浏览器、普通玩家入口和四组桌面/手机画布检查。
 
+GitHub 托管 runner 没有硬件 WebGL，因此推送时执行 `npm run verify:ci`：资源 SHA-256、TypeScript/ESLint、生产构建、300 道数学题的确定性检查，以及正式 HTTP 入口和 GLB/WAV/PNG 资源可访问性。它不替代上方在本机已通过的 9 项真实输入、三浏览器和图形回归；完整测试用例均保留，未因 CI 环境删除或标记跳过。
+
 ## 2. 单项命令
 
 先在一个终端运行 `npm run preview:static`，再执行：
