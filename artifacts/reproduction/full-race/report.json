@@ -1,0 +1,464 @@
+{
+  "ok": true,
+  "seed": 42,
+  "input": "start button + real answer clicks only; no driving keys, no setState hook",
+  "wallSeconds": 56.194,
+  "framesAdvanced": 3217,
+  "distanceTravelled": 1304.5434719820996,
+  "correctAnswers": 21,
+  "obstacleHits": 1,
+  "audio": {
+    "scene": "race",
+    "contextState": "running",
+    "loadedMusic": [
+      "menu",
+      "race"
+    ],
+    "loadedSfx": [
+      "click",
+      "correct",
+      "wrong",
+      "impact",
+      "finish",
+      "countdown",
+      "telegraph",
+      "boost",
+      "drift"
+    ],
+    "activeMusic": "race",
+    "musicVoices": 1,
+    "muted": false,
+    "paused": false,
+    "loadErrors": [],
+    "sampleEvents": {
+      "click": 1,
+      "countdown": 3,
+      "boost": 35,
+      "correct": 21,
+      "impact": 2,
+      "drift": 10,
+      "telegraph": 2,
+      "finish": 1
+    },
+    "fallbackEvents": {
+      "land": 2
+    },
+    "masterGain": 0.699999988079071
+  },
+  "audioLoadErrors": [],
+  "bestStreak": 21,
+  "overtakes": 4,
+  "playerRank": 1,
+  "sections": [
+    "跨海大桥",
+    "海滨发车区",
+    "彩色港口",
+    "山崖盘山道",
+    "水晶洞穴"
+  ],
+  "routeRewards": [
+    "harbor",
+    "cliff",
+    "cave",
+    "bridge"
+  ],
+  "rewardEvents": [
+    "落地冲刺已武装 · 瞄准跳台",
+    "港口加速线开启 · 自动切线"
+  ],
+  "telegraphSamples": 104,
+  "softlockWindows": 0,
+  "samples": 202,
+  "peakCalls": 209,
+  "peakTriangles": 701502,
+  "renderBudget": {
+    "calls": true,
+    "triangles": true
+  },
+  "peakState": {
+    "phase": "racing",
+    "selectedKart": "comet",
+    "racers": [
+      {
+        "id": "reef",
+        "name": "浪花号",
+        "color": "#16b8b0",
+        "lap": 2,
+        "totalLaps": 2,
+        "position": 5,
+        "speed": 25.351609292145458,
+        "trackProgress": 0.286575974274228,
+        "lane": 2.416186845538503,
+        "finished": false,
+        "finishTime": null,
+        "isPlayer": false,
+        "boosting": false,
+        "drifting": 0.3399972442414227,
+        "airHeight": 0,
+        "telegraph": 0
+      },
+      {
+        "id": "bolt",
+        "name": "闪电号",
+        "color": "#f4bd32",
+        "lap": 2,
+        "totalLaps": 2,
+        "position": 4,
+        "speed": 14.663705536045017,
+        "trackProgress": 0.28904367826412186,
+        "lane": 0.3852774764938945,
+        "finished": false,
+        "finishTime": null,
+        "isPlayer": false,
+        "boosting": false,
+        "drifting": 0.24810953454641593,
+        "airHeight": 0,
+        "telegraph": 0
+      },
+      {
+        "id": "comet",
+        "name": "彗星号",
+        "color": "#f2554d",
+        "lap": 2,
+        "totalLaps": 2,
+        "position": 1,
+        "speed": 31,
+        "trackProgress": 0.5675046247713135,
+        "lane": -3.5998748581906588,
+        "finished": false,
+        "finishTime": null,
+        "isPlayer": true,
+        "boosting": true,
+        "drifting": 0.5893435120635292,
+        "airHeight": 0,
+        "telegraph": 0
+      },
+      {
+        "id": "sprout",
+        "name": "嫩芽号",
+        "color": "#68b94e",
+        "lap": 2,
+        "totalLaps": 2,
+        "position": 2,
+        "speed": 26.381965314046642,
+        "trackProgress": 0.32073155211314475,
+        "lane": -3.606635872654108,
+        "finished": false,
+        "finishTime": null,
+        "isPlayer": false,
+        "boosting": false,
+        "drifting": 0.308318833559823,
+        "airHeight": 0,
+        "telegraph": 0
+      },
+      {
+        "id": "nova",
+        "name": "星辉号",
+        "color": "#7c6de0",
+        "lap": 2,
+        "totalLaps": 2,
+        "position": 3,
+        "speed": 17.109504734294916,
+        "trackProgress": 0.3099494768967525,
+        "lane": -0.1895742523101432,
+        "finished": false,
+        "finishTime": null,
+        "isPlayer": false,
+        "boosting": true,
+        "drifting": 0.00008211123498590122,
+        "airHeight": 0,
+        "telegraph": 0
+      }
+    ],
+    "elapsed": 32.516666666666104,
+    "countdown": 0,
+    "question": {
+      "id": 17,
+      "text": "5 × 3 + 5 = ?",
+      "options": [
+        20,
+        25,
+        19,
+        23
+      ],
+      "correctIndex": 0,
+      "selectedIndex": 0,
+      "isCorrect": true,
+      "challenge": null,
+      "rewardLabel": null
+    },
+    "questionFeedback": "correct",
+    "correctCount": 17,
+    "streak": 17,
+    "bestStreak": 17,
+    "energy": 26,
+    "powerUp": "overdrive",
+    "inventory": null,
+    "boostRemaining": 3.1833333333333416,
+    "shieldRemaining": 0,
+    "results": [],
+    "muted": false,
+    "loadedModels": [
+      "comet",
+      "reef",
+      "bolt",
+      "sprout",
+      "nova",
+      "titan",
+      "mochi"
+    ],
+    "loadedLandmarks": [
+      "harbor",
+      "lighthouse",
+      "cave",
+      "bridge"
+    ],
+    "eventLabel": "答对了 · 即时喷射",
+    "autoStatus": "奖励路线 · 自动切线",
+    "rivalAlert": "星辉号 · 氮气加速启动",
+    "overtakeCount": 4,
+    "obstacleHits": 1,
+    "collisionSlowRemaining": 0,
+    "sectionId": "cliff",
+    "sectionName": "山崖盘山道",
+    "sectionProgress": 0.9375231238565676,
+    "landingBoostArmed": false,
+    "routeRewards": [
+      "harbor",
+      "cliff",
+      "cave",
+      "bridge"
+    ],
+    "frame": 2131,
+    "fps": 60.01389936088311,
+    "score": 17,
+    "complete": false,
+    "fail": false,
+    "playerPosition": {
+      "x": -1.1764654426305077,
+      "y": 12.027461341545974,
+      "z": -42.239208644032686
+    },
+    "playerDistance": 950.3601386787684,
+    "autoOnly": true,
+    "audio": {
+      "scene": "race",
+      "contextState": "running",
+      "loadedMusic": [
+        "menu",
+        "race"
+      ],
+      "loadedSfx": [
+        "click",
+        "correct",
+        "wrong",
+        "impact",
+        "finish",
+        "countdown",
+        "telegraph",
+        "boost",
+        "drift"
+      ],
+      "activeMusic": "race",
+      "musicVoices": 1,
+      "muted": false,
+      "paused": false,
+      "loadErrors": [],
+      "sampleEvents": {
+        "click": 1,
+        "countdown": 3,
+        "boost": 27,
+        "correct": 17,
+        "impact": 2,
+        "drift": 8,
+        "telegraph": 2
+      },
+      "fallbackEvents": {
+        "land": 1
+      },
+      "masterGain": 0.699999988079071
+    },
+    "dpr": 1,
+    "postPasses": 0,
+    "assets": {
+      "comet": {
+        "triangles": 40000,
+        "meshes": 1,
+        "size": {
+          "x": 1.6600000000000001,
+          "y": 1.08,
+          "z": 2.5
+        }
+      },
+      "reef": {
+        "triangles": 40000,
+        "meshes": 1,
+        "size": {
+          "x": 1.62,
+          "y": 1.48,
+          "z": 2.3
+        }
+      },
+      "bolt": {
+        "triangles": 40000,
+        "meshes": 1,
+        "size": {
+          "x": 1.76,
+          "y": 1,
+          "z": 2.45
+        }
+      },
+      "sprout": {
+        "triangles": 40000,
+        "meshes": 1,
+        "size": {
+          "x": 1.46,
+          "y": 1.4499999999999997,
+          "z": 2.08
+        }
+      },
+      "nova": {
+        "triangles": 40000,
+        "meshes": 1,
+        "size": {
+          "x": 1.58,
+          "y": 1.06,
+          "z": 2.55
+        }
+      },
+      "titan": {
+        "triangles": 39996,
+        "meshes": 1,
+        "size": {
+          "x": 1.88,
+          "y": 1.62,
+          "z": 2.36
+        }
+      },
+      "mochi": {
+        "triangles": 39988,
+        "meshes": 1,
+        "size": {
+          "x": 1.46,
+          "y": 1.4,
+          "z": 2.08
+        }
+      },
+      "landmark-harbor": {
+        "triangles": 46998,
+        "meshes": 1,
+        "size": {
+          "x": 15.455102222603823,
+          "y": 12,
+          "z": 13.141756034900663
+        }
+      },
+      "landmark-lighthouse": {
+        "triangles": 40000,
+        "meshes": 1,
+        "size": {
+          "x": 11.806932052568357,
+          "y": 14,
+          "z": 11.663907086678222
+        }
+      },
+      "landmark-cave": {
+        "triangles": 25996,
+        "meshes": 1,
+        "size": {
+          "x": 27.654255946809013,
+          "y": 14,
+          "z": 10.810395982649844
+        }
+      },
+      "landmark-bridge": {
+        "triangles": 21998,
+        "meshes": 1,
+        "size": {
+          "x": 20.911620310051674,
+          "y": 24,
+          "z": 8.740389886414654
+        }
+      },
+      "environment-boat": {
+        "triangles": 17994,
+        "meshes": 1,
+        "size": {
+          "x": 4.643523372134185,
+          "y": 7,
+          "z": 8.521485249105108
+        }
+      },
+      "environment-palm": {
+        "triangles": 5000,
+        "meshes": 1,
+        "size": {
+          "x": 7.41410609267581,
+          "y": 9,
+          "z": 6.427794655588922
+        }
+      },
+      "environment-cliff": {
+        "triangles": 12000,
+        "meshes": 1,
+        "size": {
+          "x": 15.804453692117464,
+          "y": 8.509372144947305,
+          "z": 17
+        }
+      },
+      "environment-hill": {
+        "triangles": 1800,
+        "meshes": 1,
+        "size": {
+          "x": 15.787530958406467,
+          "y": 8.493578881966265,
+          "z": 17
+        }
+      }
+    }
+  },
+  "results": [
+    {
+      "rank": 1,
+      "id": "comet",
+      "name": "彗星号",
+      "color": "#f2554d",
+      "time": 40.98333333333229,
+      "isPlayer": true
+    },
+    {
+      "rank": 2,
+      "id": "sprout",
+      "name": "嫩芽号",
+      "color": "#68b94e",
+      "time": 48.61666666666519,
+      "isPlayer": false
+    },
+    {
+      "rank": 3,
+      "id": "nova",
+      "name": "星辉号",
+      "color": "#7c6de0",
+      "time": 49.39999999999848,
+      "isPlayer": false
+    },
+    {
+      "rank": 4,
+      "id": "bolt",
+      "name": "闪电号",
+      "color": "#f4bd32",
+      "time": 50.63333333333174,
+      "isPlayer": false
+    },
+    {
+      "rank": 5,
+      "id": "reef",
+      "name": "浪花号",
+      "color": "#16b8b0",
+      "time": 50.68333333333174,
+      "isPlayer": false
+    }
+  ],
+  "errors": []
+}

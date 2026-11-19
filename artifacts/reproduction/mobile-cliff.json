@@ -1,0 +1,78 @@
+{
+  "url": "http://127.0.0.1:28476/?qa=1",
+  "mode": "mobile",
+  "state": "cliff",
+  "requestedState": "cliff",
+  "appliedState": "cliff",
+  "runId": "github-reproduction",
+  "seed": 42,
+  "screenshotPath": "artifacts/reproduction/mobile-cliff.png",
+  "gpu": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "softwareRendered": false
+  },
+  "result": {
+    "ok": true,
+    "reason": "nonblank",
+    "metrics": {
+      "colorBuckets": 676,
+      "colorEntropyBits": 5.53,
+      "edgeDensity": 0.205,
+      "luminance": {
+        "mean": 100.8,
+        "p5": 33.8,
+        "p95": 208.1,
+        "contrast": 174.4
+      },
+      "dominantColorShare": 0.149,
+      "nonBackgroundShare": 0.851
+    },
+    "renderBudget": {
+      "tier": "mobile",
+      "rows": [
+        {
+          "metric": "calls",
+          "actual": 89,
+          "limit": 150,
+          "ok": true
+        },
+        {
+          "metric": "triangles",
+          "actual": 238936,
+          "limit": 300000,
+          "ok": true
+        },
+        {
+          "metric": "geometries",
+          "actual": 161,
+          "limit": 200,
+          "ok": true
+        },
+        {
+          "metric": "textures",
+          "actual": 16,
+          "limit": 40,
+          "ok": true
+        }
+      ],
+      "withinBudget": true
+    },
+    "diagnostics": {
+      "renderer": {
+        "render": {
+          "frame": 101,
+          "calls": 89,
+          "triangles": 238936,
+          "points": 0,
+          "lines": 0
+        },
+        "memory": {
+          "geometries": 161,
+          "textures": 16
+        }
+      }
+    },
+    "errors": []
+  }
+}
