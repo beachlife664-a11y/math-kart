@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "algorithm": "sha256",
+  "root": "public",
+  "files": [
+    {
+      "path": "audio/boost.wav",
+      "bytes": 395658,
+      "sha256": "1b45cd7aaf67950ed194692ac460b0e3b547bdaf79ee017b2a9248d71acb66e6"
+    },
+    {
+      "path": "audio/correct.wav",
+      "bytes": 189874,
+      "sha256": "b9a4390d10766d7c60b61a0108b10982947eb9f5c754ad03c0a81b86c152f263"
+    },
+    {
+      "path": "audio/countdown.wav",
+      "bytes": 228254,
+      "sha256": "f2de80ff50f5f34e667f78244dd74dc8a744a249f28ec1c6a8e72235811e316a"
+    },
+    {
+      "path": "audio/drift.wav",
+      "bytes": 320646,
+      "sha256": "16e6a9a6fadfb7f390bec13d8a59eb01e6c2fb40d33e9c4872f2dc3c21d2ca1f"
+    },
+    {
+      "path": "audio/finish.wav",
+      "bytes": 318594,
+      "sha256": "1690a7e872baf96107d3f4e2f777456e53a66e3c2e1d04a8aec8af4de63a9b76"
+    },
+    {
+      "path": "audio/impact.wav",
+      "bytes": 281878,
+      "sha256": "15dde2233fa76e586ba0b6e264b858e9c6145cbfaf307fad42cf75f45eaba5ad"
+    },
+    {
+      "path": "audio/menu-bgm.wav",
+      "bytes": 1499478,
+      "sha256": "feac7da91ec00d68f2a6c680046897362d71a9707d01847fc5c693099d945049"
+    },
+    {
+      "path": "audio/race-bgm.wav",
+      "bytes": 1499478,
+      "sha256": "8eb3d0910b3aba28211eb06e08a2eb625312a120c7544001641b85968cddd658"
+    },
+    {
+      "path": "audio/race-loop.wav",
+      "bytes": 661544,
+      "sha256": "a07f9152d0f49054da94783acb34cae6d21d4ffc622e9c0315a849a957bd3633"
+    },
+    {
+      "path": "audio/telegraph.wav",
+      "bytes": 191442,
+      "sha256": "203538e3675eb01e4d77fbd1b0c0652aaa6df8bcfe3ddc0610d3b0270307c953"
+    },
+    {
+      "path": "audio/ui-click.wav",
+      "bytes": 79134,
+      "sha256": "669f287f45b92f7b3fdd23f824f0c8d24457195132e5328753b9a82eec31fc3a"
+    },
+    {
+      "path": "audio/wrong.wav",
+      "bytes": 169466,
+      "sha256": "e71e69429dd5dc7fe44a5926efad8071afe7a531a78d9851cfdde2a7b0f8a00e"
+    },
+    {
+      "path": "favicon.svg",
+      "bytes": 472,
+      "sha256": "13014a9dbd45ceb1492c058607d2dd53fb36da7b45369add9a5d0320d8b708e9"
+    },
+    {
+      "path": "icons.svg",
+      "bytes": 5031,
+      "sha256": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a"
+    },
+    {
+      "path": "models/bolt-mobile.glb",
+      "bytes": 643844,
+      "sha256": "ba0b0125356682e2d8bbd870a372722468860a6387d2921a2ea77752a8f88fb1"
+    },
+    {
+      "path": "models/bolt.glb",
+      "bytes": 1875944,
+      "sha256": "9f289c5144e81d32077ad4e4426786ab6318ccadcae6ec9969db5b39675d2424"
+    },
+    {
+      "path": "models/bridge-tower-desktop.glb",
+      "bytes": 2068672,
+      "sha256": "15448e6bcfdd06a3713e08018797e6164f076c765609a59ea6d4c87bc2ee6cfc"
+    },
+    {
+      "path": "models/bridge-tower-mobile.glb",
+      "bytes": 759872,
+      "sha256": "9059b5116238587b831c1c32134f99c7c49c2cb59325911cc8df7a4dc93f631a"
+    },
+    {
+      "path": "models/cave-entrance-desktop.glb",
+      "bytes": 1979800,
+      "sha256": "c4a7706121c2516c6848e5403a76f8bffcbac9b13a49813bd5fbf7720c08b6ab"
+    },
+    {
+      "path": "models/cave-entrance-mobile.glb",
+      "bytes": 831392,
+      "sha256": "d1cddb8365f33be8017778db3280e97636fe5b17253ee529775fad5e1c5a1562"
+    },
+    {
+      "path": "models/cliff-rock-desktop.glb",
+      "bytes": 765096,
+      "sha256": "85634b6b5cfe0a9c2f558bff044dbf4d84a2957079e9a41274a713ff520ba708"
+    },
+    {
+      "path": "models/cliff-rock-mobile.glb",
+      "bytes": 283664,
+      "sha256": "b3374aad01dea9de4993ce0d919d1a47c80cb27469630a1b833b0390b2c080d1"
+    },
+    {
+      "path": "models/comet-mobile.glb",
+      "bytes": 706988,
+      "sha256": "98d7dcba562f11bb917da7cee61139ec7b751f0f50733a494a432800b5ac2d5e"
+    },
+    {
+      "path": "models/comet.glb",
+      "bytes": 2001864,
+      "sha256": "d24fdf9f431e3f16ee4664b2f7cf9faa85cd7255daf20c6e07fdb4f55fb9c027"
+    },
+    {
+      "path": "models/environment-mobile.json",
+      "bytes": 382,
+      "sha256": "64dd6a1cbe62f8e009e14ec530717c7fdc768cce38aaec6a7b4361f0db9e12d4"
+    },
+    {
+      "path": "models/environment-palm.glb",
+      "bytes": 755584,
+      "sha256": "0da4e4b2ee34807d7b75315ce5f17b1126d5fb3f0a40569ed59dc35eedcdac9c"
+    },
+    {
+      "path": "models/environment.json",
+      "bytes": 386,
+      "sha256": "2d29eea4d230618705e65092e7fe18ebd70ec524c47b08867cee2655cda0c5f8"
+    },
+    {
+      "path": "models/fishing-boat-desktop.glb",
+      "bytes": 1800556,
+      "sha256": "033178ee01eac7453b7a2ca21a31e25fc0e6338411d23fbdaae501a13fc8e85d"
+    },
+    {
+      "path": "models/fishing-boat-mobile.glb",
+      "bytes": 691496,
+      "sha256": "f80a88137aa4db413580c96669ea6338f4f8f118f9e4308b2884912040358423"
+    },
+    {
+      "path": "models/harbor-hq-desktop.glb",
+      "bytes": 4767568,
+      "sha256": "4213ea4416ccb241bd53868089f464145b13cdc0fa0d24c4633f95a9eb10219d"
+    },
+    {
+      "path": "models/harbor-hq-mobile.glb",
+      "bytes": 1781456,
+      "sha256": "1898e7ebc0d3754a9d46502afd4b6292f388841d522570d1b1a3601f2932159e"
+    },
+    {
+      "path": "models/landmarks-mobile.json",
+      "bytes": 572,
+      "sha256": "45b55b7d43e3f82f2a8e78156b58a2aa429cafcf62b517bda529fcd943c07b87"
+    },
+    {
+      "path": "models/landmarks.json",
+      "bytes": 576,
+      "sha256": "31652817cca2d05146eef5581ad39c36ff9c23ef7bc38c4844d96f551e11dbf9"
+    },
+    {
+      "path": "models/lighthouse-desktop.glb",
+      "bytes": 3171596,
+      "sha256": "a6bdb5be05637f96b3142dcca39e7a971c0973977024a6efee0bc23252aff3ae"
+    },
+    {
+      "path": "models/lighthouse-mobile.glb",
+      "bytes": 1105592,
+      "sha256": "512f1c0a8c96cc81c112ce6dc67793f7310b9375057efcef5bdfffa606990782"
+    },
+    {
+      "path": "models/manifest.json",
+      "bytes": 947,
+      "sha256": "2b0612bd6ab57549a08942eaa339f224496fdd8f0be8d6077de4ae8526ee1c35"
+    },
+    {
+      "path": "models/mochi-mobile.glb",
+      "bytes": 709280,
+      "sha256": "4bffa7dc5eca27e9876944c904a548c519618ee6885e045ffd27e1e82a446ffd"
+    },
+    {
+      "path": "models/mochi.glb",
+      "bytes": 2067724,
+      "sha256": "44fd3642bf73face92cf0329e2794245aab09928c84d423f6c65fdc4e77629d7"
+    },
+    {
+      "path": "models/nova-mobile.glb",
+      "bytes": 681592,
+      "sha256": "917885b0ab27080962c6324f1763bbdddc92ed2f00fa39ab697377507c3df4ae"
+    },
+    {
+      "path": "models/nova.glb",
+      "bytes": 1974084,
+      "sha256": "ba336377171a7fa9e7ff6902fbbd3ed80d8cf870b269c29e5ef49109c0b04006"
+    },
+    {
+      "path": "models/palm-tree-desktop.glb",
+      "bytes": 755584,
+      "sha256": "0da4e4b2ee34807d7b75315ce5f17b1126d5fb3f0a40569ed59dc35eedcdac9c"
+    },
+    {
+      "path": "models/palm-tree-mobile.glb",
+      "bytes": 361220,
+      "sha256": "dbb046074654e3be0328c853a8cf087130964cb845edecc807b2ac0dcad31ee9"
+    },
+    {
+      "path": "models/reef-mobile.glb",
+      "bytes": 750576,
+      "sha256": "2804d08793f111d082891eaf59fb6b891345ec6688d0952addbccd08997eb0e7"
+    },
+    {
+      "path": "models/reef.glb",
+      "bytes": 2112496,
+      "sha256": "0be46e5d1a18b0580b82725171ac32c8562d07613cccaeea881c32d81d2534de"
+    },
+    {
+      "path": "models/sprout-mobile.glb",
+      "bytes": 647072,
+      "sha256": "f871d52a14be2e5800dbb5165365e8c1568909b69ba7de3db44377085a5c5bd1"
+    },
+    {
+      "path": "models/sprout.glb",
+      "bytes": 1859788,
+      "sha256": "541b60b3f9d23ef5277d9c815fb5f2028e78742115bebc76f5d92984f59b4a64"
+    },
+    {
+      "path": "models/thumbnails/bolt.png",
+      "bytes": 122292,
+      "sha256": "634fb54be01a413f6c041b3df719068c3c9673a9fa25e8b649beea2d1dff4593"
+    },
+    {
+      "path": "models/thumbnails/comet.png",
+      "bytes": 122746,
+      "sha256": "994b560b882be579b220a32eb524c1f30b5d8c69fec20259f415b00db5ec877c"
+    },
+    {
+      "path": "models/thumbnails/mochi.png",
+      "bytes": 110593,
+      "sha256": "b83b1cf7bf09c83b15fe782703c72259c9410bb2ba36ba80657e7868e89a9624"
+    },
+    {
+      "path": "models/thumbnails/nova.png",
+      "bytes": 122154,
+      "sha256": "5153b8e4077c4a4dd96b5e3ee0f266bf4a6d597cd4ca0c95a450dd8ca9d300f7"
+    },
+    {
+      "path": "models/thumbnails/reef.png",
+      "bytes": 105040,
+      "sha256": "624d750a3e82af6f85d56e301067985a6b1e8285364fd960ec8eb435b36bd5d5"
+    },
+    {
+      "path": "models/thumbnails/sprout.png",
+      "bytes": 104924,
+      "sha256": "1dd50c27443f4cc3d377de255e3582f9e91395240bc56cbd2514cf6f56339f72"
+    },
+    {
+      "path": "models/thumbnails/titan.png",
+      "bytes": 118368,
+      "sha256": "3e19525c412771eab0da650d927f35f6838b044f3c213055bbbc9ac73edb83dd"
+    },
+    {
+      "path": "models/titan-mobile.glb",
+      "bytes": 745444,
+      "sha256": "111f139f68fa4120f4852aa5020b55e1cd0d3e00397b8a9edf495b2f0dbb601b"
+    },
+    {
+      "path": "models/titan.glb",
+      "bytes": 2107220,
+      "sha256": "1a64497b68df59d5038a615fa4451707ef7f040d0854509d9cad91f32cfa289e"
+    },
+    {
+      "path": "models/toy-hill-desktop.glb",
+      "bytes": 210672,
+      "sha256": "b584e99fdf23f29bb0a8779adf76ee7d8b192ed17fa23ab0aef74922b92b2a60"
+    },
+    {
+      "path": "models/toy-hill-mobile.glb",
+      "bytes": 137692,
+      "sha256": "c49df87806c77bf4602ecce2df23b9fa5dc1a0dcf4e5353da7f8802e6c9923f8"
+    },
+    {
+      "path": "textures/asphalt-color.jpg",
+      "bytes": 341883,
+      "sha256": "505cb20e8e6d6bbd544ec6616242e7de5fb50e33db0c0502b8fa2506a3a165eb"
+    },
+    {
+      "path": "textures/asphalt-normal.jpg",
+      "bytes": 95227,
+      "sha256": "d9ac22b2077e2c1ad5b653d83b02fa95e412317ca96686d03f4f7eff3b8e460a"
+    },
+    {
+      "path": "textures/grass-color.jpg",
+      "bytes": 718607,
+      "sha256": "64004c453870c5cda52fffa33e31e30cdfbfa08fe478513df3d83fa34d0db58c"
+    },
+    {
+      "path": "textures/grass-normal.jpg",
+      "bytes": 200623,
+      "sha256": "86e9829f09488d04f0fae53aa5d0e4524b7cc26c09fb074bb06ccc7f68bc4d31"
+    },
+    {
+      "path": "textures/rock-color.jpg",
+      "bytes": 522072,
+      "sha256": "9987c1ff4bbacb6443e671ceb8501a6f992093a80475283f444d7533ecaa9dea"
+    },
+    {
+      "path": "textures/rock-normal.jpg",
+      "bytes": 287911,
+      "sha256": "50db098d762c46afd843591ad77aad10b760f545513c24fc5a49fdf895214035"
+    },
+    {
+      "path": "textures/sand-color.jpg",
+      "bytes": 505043,
+      "sha256": "1984c67c67c2387dd89c200c931d20fd3d266e6705b96484c5a1a0acd0b8dcaf"
+    },
+    {
+      "path": "textures/sand-normal.jpg",
+      "bytes": 125723,
+      "sha256": "4673a40c59faaf80ca2b565edce94ee40cd57187a5ff7f0be4569f79518d994a"
+    }
+  ]
+}
