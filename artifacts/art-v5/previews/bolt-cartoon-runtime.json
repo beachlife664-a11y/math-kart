@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/bolt-cartoon-runtime.glb",
+  "originalSize": [
+    1.3591492176055908,
+    0.887991338968277,
+    1.8996549844741821
+  ],
+  "normalizedSize": [
+    2.146414841716848,
+    1.4023462358572494,
+    3
+  ],
+  "meshes": 1,
+  "triangles": 30000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

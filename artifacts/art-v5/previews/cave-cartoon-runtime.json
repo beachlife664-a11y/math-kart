@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/cave-cartoon-desktop.glb",
+  "originalSize": [
+    1.897992491722107,
+    1.2971622943878174,
+    1.8211477994918823
+  ],
+  "normalizedSize": [
+    3,
+    2.0503173221895024,
+    2.878537940641955
+  ],
+  "meshes": 1,
+  "triangles": 25996,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

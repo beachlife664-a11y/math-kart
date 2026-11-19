@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/cliff-cartoon-source.glb",
+  "originalSize": [
+    1.8987083435058594,
+    1.4280710220336914,
+    1.8245904445648193
+  ],
+  "normalizedSize": [
+    3,
+    2.256382914603152,
+    2.882892126332285
+  ],
+  "meshes": 1,
+  "triangles": 45000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}

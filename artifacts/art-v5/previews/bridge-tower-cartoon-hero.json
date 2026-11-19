@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v5/models/bridge-tower-cartoon-source.glb",
+  "originalSize": [
+    1.1835588216781616,
+    1.9017772674560547,
+    0.6925657391548157
+  ],
+  "normalizedSize": [
+    1.8670306590551,
+    3,
+    1.0925029197786735
+  ],
+  "meshes": 1,
+  "triangles": 40000,
+  "materials": 1,
+  "textures": 3,
+  "calls": 1,
+  "errors": []
+}
