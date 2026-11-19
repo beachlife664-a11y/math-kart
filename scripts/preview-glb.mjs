@@ -1,0 +1,22 @@
+import { chromium } from '@playwright/test';
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+
+const [modelUrl, outputArg, view = 'hero'] = process.argv.slice(2);
+if (!modelUrl || !outputArg) throw new Error('Usage: node scripts/preview-glb.mjs <model-url> <output.png>');
+const output = path.resolve(outputArg);
+await mkdir(path.dirname(output), { recursive: true });
+const browser = await chromium.launch({ channel: 'chromium', headless: true, args: ['--enable-webgl', '--ignore-gpu-blocklist'] });
+const page = await browser.newPage({ viewport: { width: 1100, height: 850 }, deviceScaleFactor: 1 });
+const errors = [];
+page.on('pageerror', (error) => errors.push(error.message));
+page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+await page.goto(`http://127.0.0.1:28473/art-preview.html?model=${encodeURIComponent(modelUrl)}&view=${encodeURIComponent(view)}`, { waitUntil: 'networkidle' });
+await page.waitForFunction(() => window.__previewDone === true, null, { timeout: 90000 });
+const stats = await page.evaluate(() => window.__previewStats);
+stats.errors.push(...errors);
+await page.screenshot({ path: output, fullPage: true });
+await writeFile(output.replace(/\.png$/i, '.json'), JSON.stringify(stats, null, 2));
+console.log(JSON.stringify(stats, null, 2));
+await browser.close();
+if (stats.errors.length) process.exitCode = 1;
