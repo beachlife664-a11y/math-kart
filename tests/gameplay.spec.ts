@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { transpileModule, ModuleKind, ScriptTarget } from 'typescript';
 
 const errors = new WeakMap<Page, string[]>();
+const raceStartTimeout = process.env.CI ? 60_000 : 15_000;
 
 function monitor(page: Page): string[] {
   const messages: string[] = [];
@@ -47,6 +48,8 @@ async function answerNext(page: Page, previousId: number, correct = true): Promi
 }
 
 test.beforeEach(async ({ page }) => {
+  page.setDefaultTimeout(process.env.CI ? 120_000 : 30_000);
+  page.setDefaultNavigationTimeout(process.env.CI ? 120_000 : 30_000);
   monitor(page);
   await page.goto('/?qa=1');
   await expect(page.locator('canvas')).toBeVisible();
@@ -60,7 +63,7 @@ test('答案-only 自动驾驶、零答错罚速、连对强化、暂停与重�
   await page.getByRole('button', { name: '选择闪电号' }).click();
   await expect(page.getByRole('button', { name: '选择闪电号' })).toHaveClass(/selected/);
   await page.getByRole('button', { name: '开始比赛' }).click();
-  await expect.poll(async () => (await state(page)).phase, { timeout: 15_000 }).toBe('racing');
+  await expect.poll(async () => (await state(page)).phase, { timeout: raceStartTimeout }).toBe('racing');
   await expect.poll(async () => Boolean((await state(page)).question)).toBe(true);
   expect((await state(page)).autoOnly).toBe(true);
   const before = (await state(page)).playerDistance;

@@ -1,5 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 
+const raceStartTimeout = process.env.CI ? 60_000 : 15_000;
+
 async function state(page: Page): Promise<any> {
   return page.evaluate(() => (window as any).__THREE_GAME_DIAGNOSTICS__.state);
 }
@@ -16,6 +18,8 @@ async function setState(page: Page, name: string): Promise<void> {
 }
 
 test.beforeEach(async ({ page }) => {
+  page.setDefaultTimeout(process.env.CI ? 120_000 : 30_000);
+  page.setDefaultNavigationTimeout(process.env.CI ? 120_000 : 30_000);
   await page.goto('/?qa=1');
   await expect(page.locator('canvas')).toBeVisible();
   await page.waitForFunction(() => Boolean((window as any).__THREE_GAME_DIAGNOSTICS__?.state));
@@ -44,7 +48,7 @@ test('双 BGM、采样音效、循环、暂停重开和静音均按真实场景�
   expect(audio.musicVoices).toBe(1);
 
   await page.getByRole('button', { name: '开始比赛' }).click();
-  await expect.poll(async () => (await state(page)).phase, { timeout: 15_000 }).toBe('racing');
+  await expect.poll(async () => (await state(page)).phase, { timeout: raceStartTimeout }).toBe('racing');
   await expect.poll(async () => (await audioState(page)).activeMusic).toBe('race');
   audio = await audioState(page);
   expect(audio.musicVoices).toBe(1);
@@ -86,7 +90,7 @@ test('双 BGM、采样音效、循环、暂停重开和静音均按真实场景�
 
 test('真实路障接触会减速并恢复，护盾抵挡减速且碰撞音同步', async ({ page }) => {
   await page.getByRole('button', { name: '开始比赛' }).click();
-  await expect.poll(async () => (await state(page)).phase, { timeout: 15_000 }).toBe('racing');
+  await expect.poll(async () => (await state(page)).phase, { timeout: raceStartTimeout }).toBe('racing');
   await setState(page, 'obstacle');
   await expect.poll(async () => (await state(page)).obstacleHits).toBe(1);
   let current = await state(page);

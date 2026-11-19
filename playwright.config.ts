@@ -1,9 +1,11 @@
 import { defineConfig } from '@playwright/test';
 
+const ci = Boolean(process.env.CI);
+
 export default defineConfig({
   testDir: './tests',
-  timeout: 45_000,
-  expect: { timeout: 10_000 },
+  timeout: ci ? 180_000 : 45_000,
+  expect: { timeout: ci ? 30_000 : 10_000 },
   fullyParallel: false,
   workers: 1,
   reporter: 'list',

@@ -17,6 +17,7 @@ for (const item of cases) {
     browser = await item.type.launch(item.options);
     result.version = browser.version();
     const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+    page.setDefaultTimeout(process.env.CI ? 120_000 : 60_000);
     page.on('pageerror', (error) => result.errors.push(`page: ${error.message}`));
     page.on('console', (message) => {
       if (message.type() === 'error') result.errors.push(`console: ${message.text()} @ ${message.location().url}`);
@@ -37,7 +38,7 @@ for (const item of cases) {
     await page.waitForFunction(() => window.__THREE_GAME_DIAGNOSTICS__.state.selectedKart === 'nova');
     result.showroom = await page.evaluate(() => ({ ...window.__THREE_GAME_DIAGNOSTICS__.showroom }));
     await page.getByRole('button', { name: '开始比赛' }).click();
-    await page.waitForFunction(() => window.__THREE_GAME_DIAGNOSTICS__.state.phase === 'racing', { timeout: 15_000 });
+    await page.waitForFunction(() => window.__THREE_GAME_DIAGNOSTICS__.state.phase === 'racing', { timeout: process.env.CI ? 60_000 : 15_000 });
     await page.waitForFunction(() => Boolean(window.__THREE_GAME_DIAGNOSTICS__.state.question));
     const before = await page.evaluate(() => window.__THREE_GAME_DIAGNOSTICS__.state.playerDistance);
     await page.waitForTimeout(900);

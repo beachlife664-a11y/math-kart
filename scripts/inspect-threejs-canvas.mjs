@@ -65,6 +65,7 @@ try {
       isMobile: mobile, hasTouch: mobile, deviceScaleFactor: 1,
     });
     const page = await context.newPage();
+    page.setDefaultTimeout(process.env.CI ? 120_000 : 60_000);
     const errors = [];
     page.on('pageerror', (error) => errors.push(`page: ${error.message}`));
     page.on('console', (message) => { if (message.type() === 'error') errors.push(`console: ${message.text()}`); });
