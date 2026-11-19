@@ -1,0 +1,19 @@
+{
+  "modelUrl": "/artifacts/art-v6/models/titan-original.glb",
+  "originalSize": [
+    1.3646886348724365,
+    1.234452724456787,
+    1.8933238983154297
+  ],
+  "normalizedSize": [
+    2.1623695281404167,
+    1.9560087825782984,
+    3
+  ],
+  "meshes": 1,
+  "triangles": 120000,
+  "materials": 1,
+  "textures": 1,
+  "calls": 1,
+  "errors": []
+}
