@@ -1,0 +1,133 @@
+{
+  "results": [
+    {
+      "browser": "chromium",
+      "version": "159.0.8154.6",
+      "ok": true,
+      "errors": [],
+      "showroom": {
+        "yaw": 0.68,
+        "elevation": 0.34,
+        "radius": 4.5,
+        "dragging": false,
+        "selectedKart": "nova",
+        "stageVisible": true,
+        "visibleKarts": 1
+      },
+      "diagnostics": {
+        "phase": "racing",
+        "autoOnly": true,
+        "correctCount": 1,
+        "distance": 30.590753786833154,
+        "loadedModels": [
+          "comet",
+          "reef",
+          "bolt",
+          "sprout",
+          "nova",
+          "titan",
+          "mochi"
+        ],
+        "loadedLandmarks": [
+          "harbor",
+          "lighthouse",
+          "cave",
+          "bridge"
+        ],
+        "fps": 60.01125771705242,
+        "calls": 134,
+        "triangles": 624304,
+        "geometries": 261,
+        "textures": 46,
+        "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+      },
+      "distanceTravelled": 17.831080449682986
+    },
+    {
+      "browser": "firefox",
+      "version": "159.0",
+      "ok": true,
+      "errors": [],
+      "showroom": {
+        "yaw": 0.68,
+        "elevation": 0.34,
+        "radius": 4.5,
+        "dragging": false,
+        "selectedKart": "nova",
+        "stageVisible": true,
+        "visibleKarts": 1
+      },
+      "diagnostics": {
+        "phase": "racing",
+        "autoOnly": true,
+        "correctCount": 1,
+        "distance": 30.926271506419663,
+        "loadedModels": [
+          "comet",
+          "reef",
+          "bolt",
+          "sprout",
+          "nova",
+          "titan",
+          "mochi"
+        ],
+        "loadedLandmarks": [
+          "harbor",
+          "lighthouse",
+          "cave",
+          "bridge"
+        ],
+        "fps": 60.01108961188301,
+        "calls": 164,
+        "triangles": 624456,
+        "geometries": 265,
+        "textures": 46,
+        "gpu": "Apple M1, or similar"
+      },
+      "distanceTravelled": 18.166598169269495
+    },
+    {
+      "browser": "webkit",
+      "version": "27.2",
+      "ok": true,
+      "errors": [],
+      "showroom": {
+        "yaw": 0.68,
+        "elevation": 0.34,
+        "radius": 4.5,
+        "dragging": false,
+        "selectedKart": "nova",
+        "stageVisible": true,
+        "visibleKarts": 1
+      },
+      "diagnostics": {
+        "phase": "racing",
+        "autoOnly": true,
+        "correctCount": 1,
+        "distance": 30.926271506419663,
+        "loadedModels": [
+          "comet",
+          "reef",
+          "bolt",
+          "sprout",
+          "nova",
+          "titan",
+          "mochi"
+        ],
+        "loadedLandmarks": [
+          "harbor",
+          "lighthouse",
+          "cave",
+          "bridge"
+        ],
+        "fps": 83.45188519534791,
+        "calls": 164,
+        "triangles": 624456,
+        "geometries": 261,
+        "textures": 46,
+        "gpu": "Apple GPU"
+      },
+      "distanceTravelled": 18.166598169269495
+    }
+  ]
+}

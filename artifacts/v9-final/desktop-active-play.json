@@ -1,0 +1,814 @@
+{
+  "url": "http://127.0.0.1:28474/?qa=1",
+  "mode": "desktop",
+  "state": "active-play",
+  "requestedState": "active-play",
+  "appliedState": "active-play",
+  "runId": "v9-audio-collision-final",
+  "seed": 42,
+  "screenshotPath": "artifacts/v9-final/desktop-active-play.png",
+  "gpu": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "softwareRendered": false
+  },
+  "result": {
+    "ok": true,
+    "reason": "nonblank",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 720
+    },
+    "drawingBuffer": {
+      "width": 1280,
+      "height": 720
+    },
+    "alphaPixels": 4096,
+    "variance": 254,
+    "colorBuckets": 439,
+    "metrics": {
+      "colorBuckets": 649,
+      "colorEntropyBits": 6.75,
+      "edgeDensity": 0.429,
+      "luminance": {
+        "mean": 132.5,
+        "p5": 33.8,
+        "p95": 212.6,
+        "contrast": 178.9
+      },
+      "dominantColorShare": 0.08,
+      "nonBackgroundShare": 0.92
+    },
+    "renderBudget": {
+      "tier": "desktop",
+      "note": "starting-point budget; adjust per game and document overrides",
+      "rows": [
+        {
+          "metric": "calls",
+          "actual": null,
+          "limit": 300,
+          "ok": null
+        },
+        {
+          "metric": "triangles",
+          "actual": null,
+          "limit": 750000,
+          "ok": null
+        },
+        {
+          "metric": "geometries",
+          "actual": null,
+          "limit": 300,
+          "ok": null
+        },
+        {
+          "metric": "textures",
+          "actual": null,
+          "limit": 60,
+          "ok": null
+        }
+      ],
+      "withinBudget": true
+    },
+    "diagnostics": {
+      "renderer": {
+        "memory": {
+          "geometries": 226,
+          "textures": 33
+        },
+        "render": {
+          "frame": 69,
+          "calls": 123,
+          "triangles": 556934,
+          "points": 0,
+          "lines": 0
+        },
+        "programs": [
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 0,
+            "cacheKey": "physical,STANDARD,,highp,srgb-linear,false,false,,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,false,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,8388608,8523778,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 1,
+            "cacheKey": "physical,STANDARD,,highp,srgb-linear,false,false,,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,false,false,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,8388609,8519682,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshLambertMaterial",
+            "name": "",
+            "id": 2,
+            "cacheKey": "lambert,highp,srgb-linear,false,false,,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,false,false,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,8388608,8519682,srgb,onBeforeCompile(){}",
+            "usedTimes": 6,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 6,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388624,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 28,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 7,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388625,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 14,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 8,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8389712,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 9,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8389712,8519683,srgb,math-kart-v4-terrain-splat",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 10,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388688,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 11,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8389712,8521731,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 12,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388627,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "ShaderMaterial",
+            "name": "",
+            "id": 13,
+            "cacheKey": "4,5,highp,srgb,false,false,,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388608,8523777,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 14,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388625,8521731,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "ShaderMaterial",
+            "name": "",
+            "id": 15,
+            "cacheKey": "6,7,highp,srgb,false,false,,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388608,8519681,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 16,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8389649,8521731,srgb,math-kart-v4-grass-wind",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshPhysicalMaterial",
+            "name": "",
+            "id": 17,
+            "cacheKey": "physical,STANDARD,,PHYSICAL,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388752,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 2,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshBasicMaterial",
+            "name": "",
+            "id": 18,
+            "cacheKey": "basic,highp,srgb,false,false,,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,8388608,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshBasicMaterial",
+            "name": "",
+            "id": 19,
+            "cacheKey": "basic,highp,srgb,false,false,,,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388609,8388611,srgb,onBeforeCompile(){}",
+            "usedTimes": 2,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshPhysicalMaterial",
+            "name": "",
+            "id": 20,
+            "cacheKey": "physical,STANDARD,,PHYSICAL,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388752,8388611,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshBasicMaterial",
+            "name": "",
+            "id": 21,
+            "cacheKey": "basic,highp,srgb,false,false,,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,0,2,1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,8388608,8388611,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 22,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8389712,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 23,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8389712,8519683,srgb,math-kart-v4-terrain-splat",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 24,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388688,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 25,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388627,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 2,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 26,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388624,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 45,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 27,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388625,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 8,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 28,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388625,8521731,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 29,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388625,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshBasicMaterial",
+            "name": "",
+            "id": 30,
+            "cacheKey": "basic,highp,srgb,false,false,,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388608,8521731,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 31,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8389649,8521731,srgb,math-kart-v4-grass-wind",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 32,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388624,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "",
+            "id": 33,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388627,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshPhysicalMaterial",
+            "name": "",
+            "id": 34,
+            "cacheKey": "physical,STANDARD,,PHYSICAL,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388752,8519683,srgb,onBeforeCompile(){}",
+            "usedTimes": 5,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "model",
+            "id": 35,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388624,8521731,srgb,onBeforeCompile(){}",
+            "usedTimes": 5,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "model",
+            "id": 36,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,uv,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388689,8521731,srgb,onBeforeCompile(){}",
+            "usedTimes": 3,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshStandardMaterial",
+            "name": "model",
+            "id": 37,
+            "cacheKey": "physical,STANDARD,,highp,srgb,301,true,5,256,uv,false,false,false,false,uv,false,false,uv,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388688,8521731,srgb,onBeforeCompile(){}",
+            "usedTimes": 1,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshPhysicalMaterial",
+            "name": "",
+            "id": 38,
+            "cacheKey": "physical,STANDARD,,PHYSICAL,,highp,srgb,301,true,5,256,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,4,0,0,0,8388752,8388611,srgb,onBeforeCompile(){}",
+            "usedTimes": 5,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          },
+          {
+            "type": "MeshBasicMaterial",
+            "name": "",
+            "id": 39,
+            "cacheKey": "basic,highp,srgb,false,false,,,uv,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,0,,false,0,0,2,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,8388608,8388611,srgb,onBeforeCompile(){}",
+            "usedTimes": 4,
+            "program": {},
+            "vertexShader": {},
+            "fragmentShader": {}
+          }
+        ],
+        "autoReset": true
+      },
+      "physics": {
+        "engine": "custom-track-autopilot",
+        "timestep": 0.016666666666666666,
+        "bodies": 5,
+        "colliders": 5,
+        "sensors": 10,
+        "ccdBodies": 0
+      },
+      "audio": {
+        "scene": "menu",
+        "contextState": "locked",
+        "loadedMusic": [],
+        "loadedSfx": [],
+        "activeMusic": null,
+        "musicVoices": 0,
+        "muted": false,
+        "paused": false,
+        "loadErrors": [],
+        "sampleEvents": {},
+        "fallbackEvents": {},
+        "masterGain": 0
+      },
+      "state": {
+        "phase": "racing",
+        "selectedKart": "comet",
+        "racers": [
+          {
+            "id": "reef",
+            "name": "浪花号",
+            "color": "#16b8b0",
+            "lap": 1,
+            "totalLaps": 2,
+            "position": 1,
+            "speed": 20.3,
+            "trackProgress": 0.057968883278828265,
+            "lane": -2.1,
+            "finished": false,
+            "finishTime": null,
+            "isPlayer": false,
+            "boosting": false,
+            "drifting": 0,
+            "airHeight": 0,
+            "telegraph": 0
+          },
+          {
+            "id": "bolt",
+            "name": "闪电号",
+            "color": "#f4bd32",
+            "lap": 1,
+            "totalLaps": 2,
+            "position": 3,
+            "speed": 20.6,
+            "trackProgress": 0.054340248160260424,
+            "lane": 2.1,
+            "finished": false,
+            "finishTime": null,
+            "isPlayer": false,
+            "boosting": false,
+            "drifting": 0,
+            "airHeight": 0,
+            "telegraph": 0
+          },
+          {
+            "id": "comet",
+            "name": "彗星号",
+            "color": "#f2554d",
+            "lap": 1,
+            "totalLaps": 2,
+            "position": 2,
+            "speed": 22,
+            "trackProgress": 0.055000000000000014,
+            "lane": 0,
+            "finished": false,
+            "finishTime": null,
+            "isPlayer": true,
+            "boosting": false,
+            "drifting": 0,
+            "airHeight": 0,
+            "telegraph": 0
+          },
+          {
+            "id": "sprout",
+            "name": "嫩芽号",
+            "color": "#68b94e",
+            "lap": 1,
+            "totalLaps": 2,
+            "position": 4,
+            "speed": 20.9,
+            "trackProgress": 0.050711613041692395,
+            "lane": -2.1,
+            "finished": false,
+            "finishTime": null,
+            "isPlayer": false,
+            "boosting": false,
+            "drifting": 0,
+            "airHeight": 0,
+            "telegraph": 0
+          },
+          {
+            "id": "nova",
+            "name": "星辉号",
+            "color": "#7c6de0",
+            "lap": 1,
+            "totalLaps": 2,
+            "position": 5,
+            "speed": 21.2,
+            "trackProgress": 0.047082977923124554,
+            "lane": 2.1,
+            "finished": false,
+            "finishTime": null,
+            "isPlayer": false,
+            "boosting": false,
+            "drifting": 0,
+            "airHeight": 0,
+            "telegraph": 0
+          }
+        ],
+        "elapsed": 0,
+        "countdown": 0,
+        "question": {
+          "id": 1,
+          "text": "45 ÷ 5 = ?",
+          "options": [
+            9,
+            4,
+            10,
+            11
+          ],
+          "correctIndex": 0,
+          "selectedIndex": null,
+          "isCorrect": null,
+          "challenge": null,
+          "rewardLabel": null
+        },
+        "questionFeedback": null,
+        "correctCount": 0,
+        "streak": 0,
+        "bestStreak": 0,
+        "energy": 0,
+        "powerUp": null,
+        "inventory": null,
+        "boostRemaining": 0,
+        "shieldRemaining": 0,
+        "results": [],
+        "muted": false,
+        "loadedModels": [
+          "comet",
+          "reef",
+          "bolt",
+          "sprout",
+          "nova",
+          "titan",
+          "mochi"
+        ],
+        "loadedLandmarks": [
+          "harbor",
+          "lighthouse",
+          "cave",
+          "bridge"
+        ],
+        "eventLabel": "两圈 · 五段旅程",
+        "autoStatus": "自动驾驶待命",
+        "rivalAlert": "",
+        "overtakeCount": 0,
+        "obstacleHits": 0,
+        "collisionSlowRemaining": 0,
+        "sectionId": "seaside",
+        "sectionName": "海滨发车区",
+        "sectionProgress": 0.30555555555555564,
+        "landingBoostArmed": false,
+        "routeRewards": [],
+        "frame": 15,
+        "fps": 54.485959948285995,
+        "score": 0,
+        "complete": false,
+        "fail": false,
+        "playerPosition": {
+          "x": 33.20761801022288,
+          "y": -0.012061558542416265,
+          "z": 67.69504046603295
+        },
+        "playerDistance": 33.34587139413258,
+        "autoOnly": true,
+        "audio": {
+          "scene": "race",
+          "contextState": "locked",
+          "loadedMusic": [],
+          "loadedSfx": [],
+          "activeMusic": null,
+          "musicVoices": 0,
+          "muted": false,
+          "paused": false,
+          "loadErrors": [],
+          "sampleEvents": {},
+          "fallbackEvents": {},
+          "masterGain": 0
+        },
+        "dpr": 1,
+        "postPasses": 0,
+        "assets": {
+          "comet": {
+            "triangles": 40000,
+            "meshes": 1,
+            "size": {
+              "x": 1.6600000000000001,
+              "y": 1.08,
+              "z": 2.5
+            }
+          },
+          "reef": {
+            "triangles": 40000,
+            "meshes": 1,
+            "size": {
+              "x": 1.62,
+              "y": 1.48,
+              "z": 2.3
+            }
+          },
+          "bolt": {
+            "triangles": 40000,
+            "meshes": 1,
+            "size": {
+              "x": 1.76,
+              "y": 1,
+              "z": 2.45
+            }
+          },
+          "sprout": {
+            "triangles": 40000,
+            "meshes": 1,
+            "size": {
+              "x": 1.46,
+              "y": 1.4499999999999997,
+              "z": 2.08
+            }
+          },
+          "nova": {
+            "triangles": 40000,
+            "meshes": 1,
+            "size": {
+              "x": 1.58,
+              "y": 1.06,
+              "z": 2.55
+            }
+          },
+          "titan": {
+            "triangles": 39996,
+            "meshes": 1,
+            "size": {
+              "x": 1.88,
+              "y": 1.62,
+              "z": 2.36
+            }
+          },
+          "mochi": {
+            "triangles": 39988,
+            "meshes": 1,
+            "size": {
+              "x": 1.46,
+              "y": 1.4,
+              "z": 2.08
+            }
+          },
+          "landmark-harbor": {
+            "triangles": 46998,
+            "meshes": 1,
+            "size": {
+              "x": 15.455102222603823,
+              "y": 12,
+              "z": 13.141756034900663
+            }
+          },
+          "landmark-lighthouse": {
+            "triangles": 40000,
+            "meshes": 1,
+            "size": {
+              "x": 11.806932052568357,
+              "y": 14,
+              "z": 11.663907086678222
+            }
+          },
+          "landmark-cave": {
+            "triangles": 25996,
+            "meshes": 1,
+            "size": {
+              "x": 27.654255946809013,
+              "y": 14,
+              "z": 10.810395982649844
+            }
+          },
+          "landmark-bridge": {
+            "triangles": 21998,
+            "meshes": 1,
+            "size": {
+              "x": 20.911620310051674,
+              "y": 24,
+              "z": 8.740389886414654
+            }
+          },
+          "environment-boat": {
+            "triangles": 17994,
+            "meshes": 1,
+            "size": {
+              "x": 4.643523372134185,
+              "y": 7,
+              "z": 8.521485249105108
+            }
+          },
+          "environment-palm": {
+            "triangles": 5000,
+            "meshes": 1,
+            "size": {
+              "x": 7.41410609267581,
+              "y": 9,
+              "z": 6.427794655588922
+            }
+          },
+          "environment-cliff": {
+            "triangles": 12000,
+            "meshes": 1,
+            "size": {
+              "x": 15.804453692117464,
+              "y": 8.509372144947305,
+              "z": 17
+            }
+          },
+          "environment-hill": {
+            "triangles": 1800,
+            "meshes": 1,
+            "size": {
+              "x": 15.787530958406467,
+              "y": 8.493578881966265,
+              "z": 17
+            }
+          }
+        }
+      },
+      "showroom": {
+        "yaw": 0.68,
+        "elevation": 0.34,
+        "radius": 4.5,
+        "dragging": false,
+        "selectedKart": "comet",
+        "stageVisible": false,
+        "visibleKarts": 5
+      }
+    }
+  },
+  "consoleErrors": [],
+  "pageErrors": [],
+  "consoleErrorCount": 0,
+  "pageErrorCount": 0
+}
