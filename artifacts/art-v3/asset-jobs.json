@@ -1,0 +1,83 @@
+{
+  "pipeline": "image reference -> Hyper3D image-to-3D -> independent model inspection -> UV/normal-aware game optimization -> in-game visual QA",
+  "assets": [
+    {
+      "id": "harbor-hq",
+      "reference": "artifacts/art-v3/references/harbor-hq.png",
+      "taskId": "bfeec9a4-35d2-4146-b440-d1822bb463a2",
+      "uploadId": "Z_ye3dGaD0nfj18_hwngvg",
+      "source": "artifacts/art-v3/models/harbor-hq-source.glb",
+      "desktop": "public/models/harbor-hq-desktop.glb",
+      "mobile": "public/models/harbor-hq-mobile.glb",
+      "desktopTriangles": 46998,
+      "mobileTriangles": 19928
+    },
+    {
+      "id": "fishing-boat",
+      "reference": "artifacts/art-v3/references/fishing-boat.png",
+      "taskId": "90cbc42b-7ad1-4940-9369-ddcf7e001acc",
+      "uploadId": "phwn6ubTeKzu6N1DrTKdOA",
+      "source": "artifacts/art-v3/models/fishing-boat-source.glb",
+      "desktop": "public/models/fishing-boat-desktop.glb",
+      "mobile": "public/models/fishing-boat-mobile.glb",
+      "desktopTriangles": 39996,
+      "mobileTriangles": 14000
+    },
+    {
+      "id": "cliff-rock",
+      "reference": "artifacts/art-v3/references/cliff-rock.png",
+      "taskId": "1ed5d2d2-67f1-41c2-96ba-1b09cf8c7973",
+      "uploadId": "BxNDc-nhUw2HWtoGmTx0Mg",
+      "source": "artifacts/art-v3/models/cliff-rock-source.glb",
+      "desktop": "public/models/cliff-rock-desktop.glb",
+      "mobile": "public/models/cliff-rock-mobile.glb",
+      "desktopTriangles": 44998,
+      "mobileTriangles": 15998
+    },
+    {
+      "id": "cave-entrance",
+      "reference": "artifacts/art-v3/references/cave-entrance-v2.png",
+      "taskId": "f608a3a0-791d-4db2-a47e-61926b8bc684",
+      "uploadId": "ZjAPuOvcnAx1hpHMezhLzA",
+      "source": "artifacts/art-v3/models/cave-entrance-v2-source.glb",
+      "desktop": "public/models/cave-entrance-desktop.glb",
+      "mobile": "public/models/cave-entrance-mobile.glb",
+      "desktopTriangles": 45000,
+      "mobileTriangles": 15990,
+      "note": "The first deep-tunnel result was rejected. The accepted V2 uses a complete freestanding portal reference and preserves an open passage."
+    },
+    {
+      "id": "palm-tree",
+      "reference": "artifacts/art-v3/references/palm-tree.png",
+      "taskId": "c22a0c81-b138-4357-ade8-935ca191c87d",
+      "uploadId": "QHT6fd53pAptsBgIjN0WxA",
+      "source": "artifacts/art-v3/models/palm-tree-source.glb",
+      "desktop": "public/models/palm-tree-desktop.glb",
+      "mobile": "public/models/palm-tree-mobile.glb",
+      "desktopTriangles": 17984,
+      "mobileTriangles": 7000
+    },
+    {
+      "id": "bridge-tower",
+      "reference": "artifacts/art-v3/references/bridge-tower.png",
+      "taskId": "ade7a461-bd0e-40fd-ba5a-6bef9ea75fe4",
+      "uploadId": "tdod7BoFlP-umqaGodlcIA",
+      "source": "artifacts/art-v3/models/bridge-tower-source.glb",
+      "desktop": "public/models/bridge-tower-desktop.glb",
+      "mobile": "public/models/bridge-tower-mobile.glb",
+      "desktopTriangles": 39998,
+      "mobileTriangles": 13988
+    },
+    {
+      "id": "lighthouse",
+      "reference": "artifacts/art-v3/references/lighthouse.png",
+      "taskId": "b6b365b4-1c17-4e0c-97ba-69e6d563f4aa",
+      "uploadId": "mfqCyuS7zcyp9IBD1gbkNQ",
+      "source": "artifacts/art-v3/models/lighthouse-source.glb",
+      "desktop": "public/models/lighthouse-desktop.glb",
+      "mobile": "public/models/lighthouse-mobile.glb",
+      "desktopTriangles": 39988,
+      "mobileTriangles": 13962
+    }
+  ]
+}
