@@ -1,7 +1,12 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import type { KartId } from './types';
 import { KART_SPECS } from './config';
+
+function createGLTFLoader(): GLTFLoader {
+  return new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+}
 
 interface KartModelConfig {
   url: string;
@@ -27,7 +32,7 @@ export async function loadHyperKarts(base: string, mobile = false): Promise<Load
   const response = await fetch(`${base}models/manifest.json`);
   if (!response.ok) return [];
   const manifest = await response.json() as ModelManifest;
-  const loader = new GLTFLoader();
+  const loader = createGLTFLoader();
   const entries = Object.entries(manifest.models) as [KartId, KartModelConfig][];
   const jobs = entries.map(async ([id, config]) => {
     const url = mobile ? config.mobileUrl ?? config.url : config.url;
@@ -97,7 +102,7 @@ export async function loadHyperLandmarks(base: string, mobile = false): Promise<
   const response = await fetch(`${base}models/landmarks${mobile ? '-mobile' : ''}.json`);
   if (!response.ok) return [];
   const manifest = await response.json() as LandmarkManifest;
-  const loader = new GLTFLoader();
+  const loader = createGLTFLoader();
   const entries = Object.entries(manifest.models) as [LandmarkId, { url: string; targetHeight: number; maxWidth?: number; rotationY?: number; widthScale?: number; depthScale?: number }][];
   const jobs = entries.map(async ([id, config]) => {
     const gltf = await loader.loadAsync(`${base}${config.url.replace(/^\//, '')}`);
@@ -152,7 +157,7 @@ export async function loadHyperEnvironment(base: string, mobile = false): Promis
   const response = await fetch(`${base}models/environment${mobile ? '-mobile' : ''}.json`);
   if (!response.ok) return [];
   const manifest = await response.json() as EnvironmentManifest;
-  const loader = new GLTFLoader();
+  const loader = createGLTFLoader();
   const entries = Object.entries(manifest.models) as [EnvironmentAssetId, { url: string; targetHeight: number; maxWidth?: number; rotationY?: number }][];
   const jobs = entries.map(async ([id, config]) => {
     const gltf = await loader.loadAsync(`${base}${config.url.replace(/^\//, '')}`);

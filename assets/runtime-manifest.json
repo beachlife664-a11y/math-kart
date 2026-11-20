@@ -75,53 +75,53 @@
     },
     {
       "path": "models/bolt-mobile.glb",
-      "bytes": 643844,
-      "sha256": "ba0b0125356682e2d8bbd870a372722468860a6387d2921a2ea77752a8f88fb1"
+      "bytes": 196308,
+      "sha256": "079bd346b2489d245550ca07318f2ed54c89ca61511529c5ed0e5625b7a35338"
     },
     {
       "path": "models/bolt.glb",
-      "bytes": 1875944,
-      "sha256": "9f289c5144e81d32077ad4e4426786ab6318ccadcae6ec9969db5b39675d2424"
+      "bytes": 524284,
+      "sha256": "c8f8c157f1900c784153340df08d85ec80ea75dea98958e7ab3d4400a01e4e21"
     },
     {
       "path": "models/bridge-tower-desktop.glb",
-      "bytes": 2068672,
-      "sha256": "15448e6bcfdd06a3713e08018797e6164f076c765609a59ea6d4c87bc2ee6cfc"
+      "bytes": 1154212,
+      "sha256": "e54a96c7296319f47bef7f411714d0e5974b86228f1df7b0d033d5a86108724a"
     },
     {
       "path": "models/bridge-tower-mobile.glb",
-      "bytes": 759872,
-      "sha256": "9059b5116238587b831c1c32134f99c7c49c2cb59325911cc8df7a4dc93f631a"
+      "bytes": 391628,
+      "sha256": "e0ae5970f0c8f34dbea52f2af9a13c7524c2ad4b1ec2d0eba2fff1321034319f"
     },
     {
       "path": "models/cave-entrance-desktop.glb",
-      "bytes": 1979800,
-      "sha256": "c4a7706121c2516c6848e5403a76f8bffcbac9b13a49813bd5fbf7720c08b6ab"
+      "bytes": 1032408,
+      "sha256": "027aee923842e78aa4ed98ba4067642999171699dee49a0fc7293144d57549fb"
     },
     {
       "path": "models/cave-entrance-mobile.glb",
-      "bytes": 831392,
-      "sha256": "d1cddb8365f33be8017778db3280e97636fe5b17253ee529775fad5e1c5a1562"
+      "bytes": 375316,
+      "sha256": "d6b91b00ea67943eaa7adfe738d315f1d43955935a86e3dbc50d68d8a692c8c3"
     },
     {
       "path": "models/cliff-rock-desktop.glb",
-      "bytes": 765096,
-      "sha256": "85634b6b5cfe0a9c2f558bff044dbf4d84a2957079e9a41274a713ff520ba708"
+      "bytes": 454252,
+      "sha256": "ec2cb6af0cce20ff8bf6d1c3e57c2858e45eaab76313aef71de2ee877f19b71b"
     },
     {
       "path": "models/cliff-rock-mobile.glb",
-      "bytes": 283664,
-      "sha256": "b3374aad01dea9de4993ce0d919d1a47c80cb27469630a1b833b0390b2c080d1"
+      "bytes": 181644,
+      "sha256": "3a7ed95592ab200d976e9736168794c5e7d84c5c5229a45843f10782f02923f4"
     },
     {
       "path": "models/comet-mobile.glb",
-      "bytes": 706988,
-      "sha256": "98d7dcba562f11bb917da7cee61139ec7b751f0f50733a494a432800b5ac2d5e"
+      "bytes": 229368,
+      "sha256": "eb3c5fa527f41da9f6b5c5a57a8c4989160c12fd5939a4131095895039cd6b73"
     },
     {
       "path": "models/comet.glb",
-      "bytes": 2001864,
-      "sha256": "d24fdf9f431e3f16ee4664b2f7cf9faa85cd7255daf20c6e07fdb4f55fb9c027"
+      "bytes": 590648,
+      "sha256": "40fda2a7b86fa4b5adb6aae8c29f7c49729d83a55d27f72a7c343e651e3ccb82"
     },
     {
       "path": "models/environment-mobile.json",
@@ -130,8 +130,8 @@
     },
     {
       "path": "models/environment-palm.glb",
-      "bytes": 755584,
-      "sha256": "0da4e4b2ee34807d7b75315ce5f17b1126d5fb3f0a40569ed59dc35eedcdac9c"
+      "bytes": 602800,
+      "sha256": "866734842a67b602fabaef0e311d323d6970d8f3df411afbabd5ced6d8f5fcdf"
     },
     {
       "path": "models/environment.json",
@@ -140,23 +140,23 @@
     },
     {
       "path": "models/fishing-boat-desktop.glb",
-      "bytes": 1800556,
-      "sha256": "033178ee01eac7453b7a2ca21a31e25fc0e6338411d23fbdaae501a13fc8e85d"
+      "bytes": 1027120,
+      "sha256": "7682ca8771f298cfbe67f2392d4cb5db88b27019bb07d78923617bf5b003bffe"
     },
     {
       "path": "models/fishing-boat-mobile.glb",
-      "bytes": 691496,
-      "sha256": "f80a88137aa4db413580c96669ea6338f4f8f118f9e4308b2884912040358423"
+      "bytes": 362388,
+      "sha256": "0c475c51f968dc19fac17e965c75d10b1fb84cdb2c8f6618f0c5e324d23096f4"
     },
     {
       "path": "models/harbor-hq-desktop.glb",
-      "bytes": 4767568,
-      "sha256": "4213ea4416ccb241bd53868089f464145b13cdc0fa0d24c4633f95a9eb10219d"
+      "bytes": 2173816,
+      "sha256": "18fb8e1b595e374ddb46dcdc02aae99f287a839bfa918b1202937c52b0252971"
     },
     {
       "path": "models/harbor-hq-mobile.glb",
-      "bytes": 1781456,
-      "sha256": "1898e7ebc0d3754a9d46502afd4b6292f388841d522570d1b1a3601f2932159e"
+      "bytes": 779408,
+      "sha256": "64847cfc680e6aae0bc8d9db5efb35cd1de56b95ddae7713cab7ed1786a133f9"
     },
     {
       "path": "models/landmarks-mobile.json",
@@ -170,13 +170,13 @@
     },
     {
       "path": "models/lighthouse-desktop.glb",
-      "bytes": 3171596,
-      "sha256": "a6bdb5be05637f96b3142dcca39e7a971c0973977024a6efee0bc23252aff3ae"
+      "bytes": 1513896,
+      "sha256": "220b1a2510af821ea6b2299a9b483fd78cd50dbdf0b1f4e797d1b9452e5da9bd"
     },
     {
       "path": "models/lighthouse-mobile.glb",
-      "bytes": 1105592,
-      "sha256": "512f1c0a8c96cc81c112ce6dc67793f7310b9375057efcef5bdfffa606990782"
+      "bytes": 510476,
+      "sha256": "ac0201bf42227eb82c60ba33d73b10cf08d0cbb0b2d2ebf25455c5c6599f669c"
     },
     {
       "path": "models/manifest.json",
@@ -185,53 +185,53 @@
     },
     {
       "path": "models/mochi-mobile.glb",
-      "bytes": 709280,
-      "sha256": "4bffa7dc5eca27e9876944c904a548c519618ee6885e045ffd27e1e82a446ffd"
+      "bytes": 225392,
+      "sha256": "9f7f41cad405d027286f625844a75be65cb59e79fbb50f9ef71a4fa9c241f4a4"
     },
     {
       "path": "models/mochi.glb",
-      "bytes": 2067724,
-      "sha256": "44fd3642bf73face92cf0329e2794245aab09928c84d423f6c65fdc4e77629d7"
+      "bytes": 602460,
+      "sha256": "947b7f91b7619b3904456d7ac8195964e28f788c3c19fb2bf9c52897b49d6636"
     },
     {
       "path": "models/nova-mobile.glb",
-      "bytes": 681592,
-      "sha256": "917885b0ab27080962c6324f1763bbdddc92ed2f00fa39ab697377507c3df4ae"
+      "bytes": 212900,
+      "sha256": "41bc53a2b504a07429a5c62411f418ed428b3fdd00639110a35485d10bfae2a7"
     },
     {
       "path": "models/nova.glb",
-      "bytes": 1974084,
-      "sha256": "ba336377171a7fa9e7ff6902fbbd3ed80d8cf870b269c29e5ef49109c0b04006"
+      "bytes": 568560,
+      "sha256": "a9ebdb839aea32ee4352461024897660d99f186f94a042e9b1fae8cb5ed0d4dc"
     },
     {
       "path": "models/palm-tree-desktop.glb",
-      "bytes": 755584,
-      "sha256": "0da4e4b2ee34807d7b75315ce5f17b1126d5fb3f0a40569ed59dc35eedcdac9c"
+      "bytes": 602800,
+      "sha256": "866734842a67b602fabaef0e311d323d6970d8f3df411afbabd5ced6d8f5fcdf"
     },
     {
       "path": "models/palm-tree-mobile.glb",
-      "bytes": 361220,
-      "sha256": "dbb046074654e3be0328c853a8cf087130964cb845edecc807b2ac0dcad31ee9"
+      "bytes": 207964,
+      "sha256": "4caa658298d0347f36f0d011bfb94b2218a72e44a8e5e2c5a3e56915ec160d75"
     },
     {
       "path": "models/reef-mobile.glb",
-      "bytes": 750576,
-      "sha256": "2804d08793f111d082891eaf59fb6b891345ec6688d0952addbccd08997eb0e7"
+      "bytes": 254788,
+      "sha256": "a15f8516f764041f87fe46c75bc215f108d9d35a59ff384cc4fa6638fe755a07"
     },
     {
       "path": "models/reef.glb",
-      "bytes": 2112496,
-      "sha256": "0be46e5d1a18b0580b82725171ac32c8562d07613cccaeea881c32d81d2534de"
+      "bytes": 652236,
+      "sha256": "3e5b0302b9ac5930dad848025f7de2807e4bd53ef566d982eb65ed474bec2a68"
     },
     {
       "path": "models/sprout-mobile.glb",
-      "bytes": 647072,
-      "sha256": "f871d52a14be2e5800dbb5165365e8c1568909b69ba7de3db44377085a5c5bd1"
+      "bytes": 199480,
+      "sha256": "baa46e617169f0fe2dfb851d51a4cc9d9b6584d859416d6f4c0b1fd3b230356a"
     },
     {
       "path": "models/sprout.glb",
-      "bytes": 1859788,
-      "sha256": "541b60b3f9d23ef5277d9c815fb5f2028e78742115bebc76f5d92984f59b4a64"
+      "bytes": 524116,
+      "sha256": "7fb7b6485682f26173624b1f149f75aadc13593c89c053f767ff95ba39f5f9c6"
     },
     {
       "path": "models/thumbnails/bolt.png",
@@ -270,23 +270,23 @@
     },
     {
       "path": "models/titan-mobile.glb",
-      "bytes": 745444,
-      "sha256": "111f139f68fa4120f4852aa5020b55e1cd0d3e00397b8a9edf495b2f0dbb601b"
+      "bytes": 248524,
+      "sha256": "e2b3cdd2b6767c4415bb3152ee8a6706c9f19ca8e4fee22570cbba94bde9498a"
     },
     {
       "path": "models/titan.glb",
-      "bytes": 2107220,
-      "sha256": "1a64497b68df59d5038a615fa4451707ef7f040d0854509d9cad91f32cfa289e"
+      "bytes": 646868,
+      "sha256": "79a4918efbaa773c56f7f75f6a959ba8a3721a0684b74a79e316df9d6b594ab3"
     },
     {
       "path": "models/toy-hill-desktop.glb",
-      "bytes": 210672,
-      "sha256": "b584e99fdf23f29bb0a8779adf76ee7d8b192ed17fa23ab0aef74922b92b2a60"
+      "bytes": 164536,
+      "sha256": "50c28e73c75cc1e7fdd957c92fb6706516c575e1015f47ddd73ecda4136cbf50"
     },
     {
       "path": "models/toy-hill-mobile.glb",
-      "bytes": 137692,
-      "sha256": "c49df87806c77bf4602ecce2df23b9fa5dc1a0dcf4e5353da7f8802e6c9923f8"
+      "bytes": 99216,
+      "sha256": "f0bfe0f4f38287f9bc3a1c5cfcfd782f7e1d7de46299ce5e9e0c432508bcb621"
     },
     {
       "path": "textures/asphalt-color.jpg",
