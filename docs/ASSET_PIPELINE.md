@@ -2,9 +2,9 @@
 
 ## 1. 精确复刻与再生成
 
-当前正式游戏直接加载 `public/` 中已经验收的 GLB、纹理和缩略图。**复刻不需要重新生成模型。** 原始模型、参考图、任务 ID 与优化版本随仓库保留，便于检查和二次创作。
+当前正式游戏直接加载 `public/` 中已经验收的 GLB、纹理和缩略图。**复刻不需要重新生成模型。** 原始模型、参考图、任务 ID 与 LOD 中间版本保留在制作者本机，不再随 GitHub 源码包分发；正式资源、生成日志和优化脚本仍随仓库保留。
 
-真实生成提示词与参数位于 `assets/generation-log.json`：包含 32 条图像请求、49 次 Hyper3D 生成请求和 22 次音频请求，保留采纳、重试与被否决的迭代；不包含签名 URL、密钥或本机路径。最终采用状态以各 `asset-jobs.json` 和 `public/` 为准。
+真实生成提示词与参数位于 `assets/generation-log.json`：包含 32 条图像请求、49 次 Hyper3D 生成请求和 22 次音频请求，保留采纳、重试与被否决的迭代；不包含签名 URL、密钥或本机路径。最终采用状态以本机各 `asset-jobs.json` 和仓库 `public/` 为准。
 
 ## 2. 统一美术方向
 
@@ -29,7 +29,7 @@
 
 桌面贴图 1024，手机 512。七车不是简单换色。正式加载 Hyper3D 车模后禁用重复程序轮胎；单 mesh 烘焙轮胎不参与程序轮转。驾驶员坐姿、手臂与方向盘锚点按车型在 `src/game/config.ts` 校准。
 
-原始资料：`artifacts/art-v6/references/`、`models/*-original.glb`、`asset-jobs.json` 和逐车预览。
+原始资料位于制作者本机 `artifacts/art-v6/references/`、`models/*-original.glb`、`asset-jobs.json` 和逐车预览；这些大型中间稿不随 GitHub 分发。
 
 ## 4. 地标与环境
 
@@ -43,7 +43,7 @@
 | 桥塔 | `bridge-tower-*.glb` | v5；程序补充主缆、吊索和支撑 |
 | 主岩/近山/远山 | `cliff-rock-*.glb`、`toy-hill-*.glb` | 已确认玩具海岸坡崖实模的 LOD 变体 |
 
-山体相关原始资料在 `assets/concepts/` 和 `assets/models/`。当前近山、远山和岩丘共用同一坡崖模型的旋转/缩放变体，不宣称使用三款独立山体。
+表中 `artifacts/art-v*/` 来源目录以及山体相关的 `assets/concepts/`、`assets/models/` 均为本机原始资料，不是运行依赖。当前近山、远山和岩丘共用同一坡崖模型的旋转/缩放变体，不宣称使用三款独立山体。
 
 ## 5. 原模检查清单
 
@@ -62,7 +62,11 @@
 node scripts/decimate-glb.mjs input.glb output.glb 40000
 python3 scripts/compress-glb-textures.py input.glb output.glb 1024
 node scripts/preview-glb.mjs input.glb preview.png
+npx --yes @gltf-transform/cli meshopt input.glb output.glb --level high
 ```
+
+- 正式 `public/models/*.glb` 使用高等级 Meshopt 几何压缩，不降低三角形数量，不替换既有 WebP 贴图；`src/game/assets.ts` 为全部 GLTFLoader 配置 Meshopt decoder。
+- Meshopt 后必须核对节点、网格、材质、贴图和三角形数量，并重新生成 `assets/runtime-manifest.json`、执行生产预览和桌面/手机画面回归。
 
 - `decimate-glb.mjs` 使用 meshoptimizer，保留 UV/法线感知误差；不能用目标数字掩盖轮廓破坏。
 - `compress-glb-textures.py` 需要 Python 3 + Pillow；颜色贴图使用有损 WebP，法线使用无损 WebP。

@@ -49,7 +49,7 @@ npm run inspect:canvas      # 声明的桌面/手机状态和预算
 - 五车完赛，0 软锁、0 浏览器错误、0 音频加载错误。
 - 峰值 209 draw calls / 701,502 triangles，均低于桌面预算。
 
-报告、桌面/手机截图和完整录像见 `artifacts/reproduction/`。
+报告、桌面/手机截图和完整录像由脚本生成到本机 `artifacts/reproduction/`；该目录已被 `.gitignore` 排除，不再是新克隆仓库中的预置文件。
 
 ## 5. 原 v9 完整比赛基线
 
@@ -80,11 +80,7 @@ npm run inspect:canvas      # 声明的桌面/手机状态和预算
 
 ## 7. 岩石专项证据
 
-- `artifacts/v9-final/rock-audit/current-29-8.png` / `current-33-8.png`：修复前真实故障。
-- `camera-hits.json`：hill 2、4 的射线、距离和实例矩阵。
-- `removed-road-blockers.json`：实际包围盒道路净空过滤清单。
-- `fixed-29-8.png` / `fixed-33-8.png`：原故障时间点修复后画面。
-- `fixed-report.json`：两次中心首命中均为道路。
+历史证据保留在制作者本机 `artifacts/v9-final/rock-audit/`，不随 GitHub 源码包分发，包括修复前/后画面、射线命中、道路净空过滤清单和复验报告。需要重新验收时，应基于当前代码生成新 Run ID 和真实比赛证据，不依赖历史截图。
 
 ## 8. 证据规则
 

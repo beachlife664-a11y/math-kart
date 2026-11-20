@@ -4,7 +4,7 @@
 
 一款可离线运行的 Three.js 数学自动卡丁车游戏。支持 1–2 名真实玩家同屏竞速，没有 AI 赛车；每位玩家独立回答小学数学题，用正确答案换取喷射、连对强化、自动道具和路段奖励。
 
-**本仓库是完整复刻版：源码、正式 GLB、原始建模包、参考图、贴图、音频母带、真实生成提示词、制作记录、测试脚本和最终验收证据均已包含。**
+**本仓库保留完整运行复刻所需的源码、正式 GLB、贴图、音频、生成日志、制作文档、测试脚本和验收说明。大型原始建模中间稿、历史截图与测试录像仅保留在制作者本机，不再随 GitHub 源码包分发。**
 
 ## 一键复刻
 
@@ -71,15 +71,14 @@ npm run verify:local -- --full-race
 ```text
 src/                       React + TypeScript + Three.js 完整源码
 public/                    正式运行模型、贴图、音频、缩略图和清单
-assets/                    山体参考/原模、Seed Audio 母带、真实生成日志
-artifacts/art-v6/          七车参考图、Hyper3D 原模、桌面/手机 LOD、任务记录
-artifacts/art-v5/          卡通赛车与环境生成迭代、原模、优化版与预览
-artifacts/art-v3/          港口原始模型及首轮地标参考资料
-artifacts/v9-final/        当前完整比赛、截图、射线定位与验收报告
+assets/                    音频母带、真实生成日志和运行资源哈希
+artifacts/                 精简设计/过程/验收文档；大型证据仅本机保留
 scripts/                   安装、预览、验证、模型优化、捕获和 QA 脚本
 tests/                     真实输入玩法与音频/碰撞 Playwright 测试
 docs/                      架构、编码规则、资产/音频管线、过程与发布指南
 ```
+
+大型原始建模包、历史截图和测试录像不纳入 Git，详见 [`docs/REPOSITORY_CONTENTS.md`](docs/REPOSITORY_CONTENTS.md)。模型采用 Meshopt 压缩且不减三角形；加载器已内置解码支持。
 
 完整目录说明见 [`docs/REPOSITORY_CONTENTS.md`](docs/REPOSITORY_CONTENTS.md)。
 
@@ -95,6 +94,7 @@ docs/                      架构、编码规则、资产/音频管线、过程�
 | 文档 | 内容 |
 |---|---|
 | [`docs/REPRODUCE.md`](docs/REPRODUCE.md) | 全新安装、验证、静态部署和故障排查 |
+| [`docs/LIGHTWEIGHT.md`](docs/LIGHTWEIGHT.md) | 仓库与运行资源轻量化数据、质量门槛和验证记录 |
 | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | 游戏循环、自动竞速、渲染、音频和资源架构 |
 | [`docs/CODING_STANDARDS.md`](docs/CODING_STANDARDS.md) | 代码编写、性能、安全、碰撞、镜头和提交规则 |
 | [`docs/ASSET_PIPELINE.md`](docs/ASSET_PIPELINE.md) | 参考图 → Hyper3D → 原模检查 → LOD → 游戏校准 |
@@ -112,7 +112,7 @@ docs/                      架构、编码规则、资产/音频管线、过程�
 - 双人完整比赛实测峰值 **212 draw calls / 556,428 triangles**。
 - 两块挡路岩石已通过真实比赛射线定位，并以道路净空过滤修复。
 
-详见 [`artifacts/final-evidence.md`](artifacts/final-evidence.md)、[`artifacts/reproduction/README.md`](artifacts/reproduction/README.md) 与 [`docs/QA.md`](docs/QA.md)。
+详见 [`artifacts/final-evidence.md`](artifacts/final-evidence.md) 与 [`docs/QA.md`](docs/QA.md)。新的复刻证据由验证脚本在本机 `artifacts/reproduction/` 生成，不随源码包分发。
 
 ## 已知边界
 

@@ -17,6 +17,14 @@ build/
 test-results/
 playwright-report/
 
+# Local QA evidence and raw authoring inputs (not needed to run or build)
+# Keep small design/process notes under artifacts/ and assets/ in Git.
+artifacts/art-v*/
+artifacts/v*/
+artifacts/reproduction/
+assets/models/
+assets/concepts/
+
 # Delivery archives
 *.zip
 *.zip.tmp
