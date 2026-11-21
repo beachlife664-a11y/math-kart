@@ -6,17 +6,29 @@ import { TRACK_OBSTACLES } from './track';
 import { createProceduralKart, type KartVisual } from './proceduralKarts';
 import { RaceSimulation, type RaceEvent } from './raceSimulation';
 import { createSeededRandom } from './random';
-import type { GameSnapshot, KartId } from './types';
+import type { GameSnapshot, KartId, PlayerIndex } from './types';
 import { VfxSystem } from './vfx';
 import { World } from './world';
 import { createShowroomStage, SHOWROOM_ORIGIN } from './showroom';
 
 const BASE = `${(import.meta.env.MIAODA_CLIENT_BASE_PATH || '').replace(/\/$/, '')}/`;
 
+interface CameraFocus {
+  distance: number;
+  lane: number;
+  airHeight: number;
+  boost: number;
+  overdrive: number;
+}
+
 export class GameEngine {
   readonly simulation: RaceSimulation;
   private readonly renderer: THREE.WebGLRenderer;
   private readonly camera: THREE.PerspectiveCamera;
+  private readonly secondaryCamera: THREE.PerspectiveCamera;
+  private splitView = false;
+  private cameraModeTimer = 0;
+  private cameraSeparation = 0;
   private readonly world: World;
   private readonly audio = new GameAudio();
   private readonly vfx: VfxSystem;
@@ -65,9 +77,10 @@ export class GameEngine {
     this.renderer.domElement.setAttribute('aria-label', '算力狂飙三维自动竞速画面');
     container.appendChild(this.renderer.domElement);
     this.camera = new THREE.PerspectiveCamera(this.mobile ? 62 : 58, container.clientWidth / container.clientHeight, 0.1, 320);
+    this.secondaryCamera = this.camera.clone();
     this.world = new World(this.renderer, this.mobile, createSeededRandom(84));
     this.world.scene.add(this.showroomStage);
-    this.simulation = new RaceSimulation(this.world.track, this.random, (event) => this.handleEvent(event));
+    this.simulation = new RaceSimulation(this.world.track, this.random, (event, playerIndex) => this.handleEvent(event, playerIndex));
     this.vfx = new VfxSystem(this.world.scene, createSeededRandom(126), this.mobile);
     for (const spec of KART_SPECS) {
       const visual = createProceduralKart(spec, this.mobile);
@@ -127,13 +140,27 @@ export class GameEngine {
     this.audio.play('click');
     this.audio.setScene('race');
     await this.audio.setPaused(false);
+    this.splitView = false;
+    this.cameraModeTimer = 0;
+    this.cameraSeparation = 0;
     this.simulation.restart();
     this.emitSnapshot();
   }
 
-  selectKart(id: KartId): void {
+  selectKart(id: KartId, playerIndex: PlayerIndex = 0): void {
     void this.audio.unlock().then(() => this.audio.play('click'));
-    this.simulation.selectKart(id);
+    this.simulation.selectKart(id, playerIndex);
+    this.resetShowroom(false);
+    this.updateTransforms(0);
+    this.emitSnapshot();
+  }
+
+  setPlayerCount(count: 1 | 2): void {
+    void this.audio.unlock().then(() => this.audio.play('click'));
+    this.splitView = false;
+    this.cameraModeTimer = 0;
+    this.cameraSeparation = 0;
+    this.simulation.setPlayerCount(count);
     this.resetShowroom(false);
     this.updateTransforms(0);
     this.emitSnapshot();
@@ -141,6 +168,9 @@ export class GameEngine {
 
   resetShowroom(withSound = true): void {
     if (withSound) void this.audio.unlock().then(() => this.audio.play('click'));
+    this.splitView = false;
+    this.cameraModeTimer = 0;
+    this.cameraSeparation = 0;
     this.showroomYaw = 0.68;
     this.showroomElevation = 0.34;
     this.showroomRadius = this.mobile ? 6.4 : 4.5;
@@ -162,9 +192,31 @@ export class GameEngine {
     this.emitSnapshot();
   }
 
-  answer(index: number): void {
+  inputDigit(playerIndex: PlayerIndex, digit: number): void {
     void this.audio.unlock();
-    this.simulation.answer(index);
+    this.simulation.inputDigit(playerIndex, digit);
+    this.emitSnapshot();
+  }
+
+  backspace(playerIndex: PlayerIndex): void {
+    this.simulation.backspace(playerIndex);
+    this.emitSnapshot();
+  }
+
+  clearInput(playerIndex: PlayerIndex): void {
+    this.simulation.clearInput(playerIndex);
+    this.emitSnapshot();
+  }
+
+  submitAnswer(playerIndex: PlayerIndex = 0): void {
+    void this.audio.unlock();
+    this.simulation.submitAnswer(playerIndex);
+    this.emitSnapshot();
+  }
+
+  answer(value: number, playerIndex: PlayerIndex = 0): void {
+    void this.audio.unlock();
+    this.simulation.answer(value, playerIndex);
     this.emitSnapshot();
   }
 
@@ -178,13 +230,17 @@ export class GameEngine {
   }
 
   getSnapshot(): GameSnapshot {
-    return this.simulation.getSnapshot();
+    return {
+      ...this.simulation.getSnapshot(),
+      cameraMode: this.splitView ? 'split' : 'shared',
+      cameraSeparation: this.cameraSeparation,
+    };
   }
 
-  private handleEvent(event: RaceEvent): void {
+  private handleEvent(event: RaceEvent, playerIndex: PlayerIndex = 0): void {
     this.audio.play(event);
     if (event === 'correct' || event === 'boost' || event === 'impact' || event === 'finish' || event === 'land') {
-      const player = this.simulation.player;
+      const player = this.simulation.getPlayerRacer(playerIndex);
       const frame = this.world.track.getFrame(player.distance, player.lane);
       frame.position.y += player.airHeight;
       const color = event === 'impact' ? '#f2554d' : event === 'finish' ? '#f4bd32' : '#7df9e5';
@@ -213,7 +269,7 @@ export class GameEngine {
     const player = this.simulation.player;
     this.audio.setScene(this.simulation.phase === 'menu' ? 'menu' : 'race');
     this.audio.setEngine(player.speed, player.boost > 0 || player.overdrive > 0);
-    this.renderer.render(this.world.scene, this.camera);
+    this.renderFrame(delta);
     this.snapshotTimer += delta;
     if (this.snapshotTimer >= 0.1) {
       this.snapshotTimer = 0;
@@ -238,10 +294,14 @@ export class GameEngine {
         continue;
       }
       const racer = this.simulation.getRacer(spec.id);
-      visual.root.visible = !menu || spec.id === this.simulation.selectedKart;
+      visual.root.visible = !menu || this.simulation.selectedKarts.slice(0, this.simulation.playerCount).includes(spec.id);
       if (!visual.root.visible) continue;
       const frame = this.world.track.getFrame(racer.distance, racer.lane);
-      visual.root.position.copy(menu ? SHOWROOM_ORIGIN : frame.position);
+      visual.root.position.copy(frame.position);
+      if (menu) {
+        visual.root.position.copy(SHOWROOM_ORIGIN);
+        if (this.simulation.playerCount === 2) visual.root.position.x += racer.playerIndex === 0 ? -1.55 : 1.55;
+      }
       visual.root.position.y += menu ? 0.14 : racer.airHeight + 0.04;
       const yaw = menu ? 0 : Math.atan2(frame.tangent.x, frame.tangent.z);
       visual.root.rotation.y = yaw - racer.lateralSpeed * 0.026 + racer.driftDirection * racer.drift * 0.17;
@@ -310,55 +370,132 @@ export class GameEngine {
 
   private updateCamera(delta: number): void {
     const player = this.simulation.player;
+    const secondary = this.simulation.playerCount === 2 ? this.simulation.getPlayerRacer(1) : null;
+    const separation = secondary ? Math.abs(player.distance - secondary.distance) : 0;
+    this.cameraSeparation = separation;
+    this.cameraModeTimer += delta;
     this.renderer.domElement.style.cursor = this.simulation.phase === 'menu' ? (this.showroomPointerId === null ? 'grab' : 'grabbing') : 'default';
-    const frame = this.world.track.getFrame(player.distance, player.lane);
-    const cameraFrame = this.world.track.getFrame(player.distance, player.lane * (this.mobile ? 0.25 : 0.35));
-    frame.position.y += player.airHeight;
-    cameraFrame.position.y += player.airHeight;
     const smoothing = 1 - Math.exp(-delta * 6);
     if (this.simulation.phase === 'menu') {
+      this.splitView = false;
+      this.cameraModeTimer = 0;
       if (this.elapsedVisual - this.showroomLastInteraction > 3.5 && !this.reducedMotion) this.showroomYaw += delta * 0.16;
       const angle = this.showroomYaw;
       const backdrop = this.showroomStage.getObjectByName('showroom-backdrop');
       if (backdrop) backdrop.rotation.y = angle;
       const target = SHOWROOM_ORIGIN.clone();
       target.y += 0.84;
-      const horizontalRadius = Math.cos(this.showroomElevation) * this.showroomRadius;
+      const effectiveRadius = this.showroomRadius + (this.simulation.playerCount === 2 ? 1.25 : 0);
+      const horizontalRadius = Math.cos(this.showroomElevation) * effectiveRadius;
       const desired = target.clone().add(new THREE.Vector3(
         Math.sin(angle) * horizontalRadius,
-        Math.sin(this.showroomElevation) * this.showroomRadius,
+        Math.sin(this.showroomElevation) * effectiveRadius,
         Math.cos(angle) * horizontalRadius,
       ));
       this.camera.position.lerp(desired, smoothing);
       this.camera.lookAt(target);
       const width = Math.max(1, this.container.clientWidth);
       const height = Math.max(1, this.container.clientHeight);
+      this.camera.aspect = width / height;
       this.camera.setViewOffset(width, height, this.mobile ? 0 : -width * 0.18, this.mobile ? height * 0.18 : 0, width, height);
-    } else {
-      this.camera.clearViewOffset();
-      const desired = cameraFrame.position.clone().addScaledVector(cameraFrame.tangent, this.mobile ? -10 : -8.8);
-      desired.y += this.mobile ? 5.6 : 4.9;
-      desired.y = Math.max(desired.y, frame.position.y + 3.2);
-      const look = frame.position.clone().addScaledVector(frame.tangent, this.mobile ? -0.5 : 6);
-      look.y += this.mobile ? 0.75 : 0.95;
-      const cameraTarget = frame.position.clone();
-      cameraTarget.y += 1.1;
-      this.world.constrainCamera(cameraTarget, desired);
-      this.camera.position.lerp(desired, smoothing);
-      this.world.constrainCamera(cameraTarget, this.camera.position);
-      this.camera.lookAt(look);
+      this.camera.fov += ((this.mobile ? 62 : 58) - this.camera.fov) * Math.min(1, delta * 5);
+      this.camera.updateProjectionMatrix();
+      return;
     }
-    this.world.updateCameraFade(this.camera.position, delta);
-    const targetFov = (this.mobile ? 62 : 58) + ((player.boost > 0 || player.overdrive > 0) && !this.reducedMotion && !this.mobile ? 7 : 0);
-    this.camera.fov += (targetFov - this.camera.fov) * Math.min(1, delta * 5);
-    this.camera.updateProjectionMatrix();
+
+    const canSplit = Boolean(secondary) && (this.simulation.phase === 'racing' || this.simulation.phase === 'countdown');
+    const previousSplit = this.splitView;
+    if (this.splitView && (!canSplit || (separation < 18 && this.cameraModeTimer >= 1.2))) {
+      this.splitView = false;
+    } else if (!this.splitView && canSplit && separation > 32 && this.cameraModeTimer >= 1) {
+      this.splitView = true;
+    }
+    const modeChanged = previousSplit !== this.splitView;
+    if (modeChanged) this.cameraModeTimer = 0;
+
+    if (this.splitView && secondary) {
+      this.updateRaceCamera(this.camera, player, delta, true, modeChanged, 0, -0.1);
+      this.updateRaceCamera(this.secondaryCamera, secondary, delta, true, modeChanged, 0, 0.1);
+    } else {
+      const focus: CameraFocus = secondary ? {
+        distance: (player.distance + secondary.distance) / 2,
+        lane: (player.lane + secondary.lane) / 2,
+        airHeight: (player.airHeight + secondary.airHeight) / 2,
+        boost: Math.max(player.boost, secondary.boost),
+        overdrive: Math.max(player.overdrive, secondary.overdrive),
+      } : player;
+      this.updateRaceCamera(this.camera, focus, delta, false, modeChanged, separation);
+    }
+  }
+
+  private updateRaceCamera(camera: THREE.PerspectiveCamera, focus: CameraFocus, delta: number, split: boolean, snap: boolean, separation = 0, innerViewOffset = 0): void {
+    const frame = this.world.track.getFrame(focus.distance, focus.lane);
+    const cameraFrame = this.world.track.getFrame(focus.distance, focus.lane * (this.mobile ? 0.25 : 0.35));
+    frame.position.y += focus.airHeight;
+    cameraFrame.position.y += focus.airHeight;
+    camera.clearViewOffset();
+    const width = Math.max(1, this.container.clientWidth);
+    const height = Math.max(1, this.container.clientHeight);
+    camera.aspect = width / (split ? 2 : 1) / height;
+    if (split && innerViewOffset !== 0) {
+      const viewWidth = width / 2;
+      camera.setViewOffset(viewWidth, height, viewWidth * innerViewOffset, 0, viewWidth, height);
+    }
+    const sharedExtra = split ? 0 : Math.min(18, separation * 0.65);
+    const desired = cameraFrame.position.clone().addScaledVector(cameraFrame.tangent, (this.mobile ? -10 : -8.8) - sharedExtra);
+    desired.y += (this.mobile ? 5.6 : 4.9) + (split ? 0 : Math.min(4, separation * 0.14));
+    desired.y = Math.max(desired.y, frame.position.y + 3.2);
+    const pitchBlend = this.mobile ? 0 : THREE.MathUtils.smoothstep(this.simulation.elapsed, 0.35, 2.2);
+    const lookAhead = this.mobile ? 0.5 : THREE.MathUtils.lerp(6, 4.8, pitchBlend);
+    const lookHeight = this.mobile ? 0.75 : THREE.MathUtils.lerp(0.95, -0.65, pitchBlend);
+    const look = frame.position.clone().addScaledVector(frame.tangent, lookAhead);
+    look.y += lookHeight;
+    const cameraTarget = frame.position.clone();
+    cameraTarget.y += 1.1;
+    this.world.constrainCamera(cameraTarget, desired);
+    if (snap) camera.position.copy(desired);
+    else camera.position.lerp(desired, 1 - Math.exp(-delta * 6));
+    this.world.constrainCamera(cameraTarget, camera.position);
+    camera.lookAt(look);
+    const boosting = focus.boost > 0 || focus.overdrive > 0;
+    const targetFov = (this.mobile ? 62 : 58) + (split ? 2 : Math.min(4, separation * 0.1)) + (boosting && !this.reducedMotion && !this.mobile ? 5 : 0);
+    camera.fov = snap ? targetFov : camera.fov + (targetFov - camera.fov) * Math.min(1, delta * 5);
+    camera.updateProjectionMatrix();
+  }
+
+  private renderFrame(delta: number): void {
+    const width = Math.max(1, this.container.clientWidth);
+    const height = Math.max(1, this.container.clientHeight);
+    if (this.splitView) {
+      const leftWidth = Math.floor(width / 2);
+      const rightWidth = width - leftWidth;
+      this.renderer.setScissorTest(true);
+      this.renderer.setViewport(0, 0, leftWidth, height);
+      this.renderer.setScissor(0, 0, leftWidth, height);
+      this.world.updateCameraFade(this.camera.position, delta);
+      this.renderer.render(this.world.scene, this.camera);
+      this.renderer.setViewport(leftWidth, 0, rightWidth, height);
+      this.renderer.setScissor(leftWidth, 0, rightWidth, height);
+      this.world.updateCameraFade(this.secondaryCamera.position, delta);
+      this.renderer.render(this.world.scene, this.secondaryCamera);
+      this.renderer.setScissorTest(false);
+      this.renderer.setViewport(0, 0, width, height);
+      this.renderer.setScissor(0, 0, width, height);
+    } else {
+      this.renderer.setScissorTest(false);
+      this.renderer.setViewport(0, 0, width, height);
+      this.world.updateCameraFade(this.camera.position, delta);
+      this.renderer.render(this.world.scene, this.camera);
+    }
   }
 
   private resize(): void {
     const width = Math.max(1, this.container.clientWidth);
     const height = Math.max(1, this.container.clientHeight);
-    this.camera.aspect = width / height;
+    this.camera.aspect = width / (this.splitView ? 2 : 1) / height;
+    this.secondaryCamera.aspect = width / 2 / height;
     this.camera.updateProjectionMatrix();
+    this.secondaryCamera.updateProjectionMatrix();
     this.renderer.setSize(width, height);
   }
 
@@ -404,11 +541,34 @@ export class GameEngine {
   };
 
   private onKeyDown = (event: KeyboardEvent): void => {
-    if (event.repeat && /^[1-4]$/.test(event.key)) return;
     if (event.code === 'Space') event.preventDefault();
-    if (/^[1-4]$/.test(event.key)) this.answer(Number(event.key) - 1);
     if (event.code === 'Escape' || event.code === 'KeyP') this.togglePause();
     if (event.code === 'KeyM') this.toggleMute();
+    if (this.simulation.phase !== 'racing') return;
+
+    const digitMatch = /^(Digit|Numpad)([0-9])$/.exec(event.code);
+    if (digitMatch) {
+      const playerIndex: PlayerIndex = digitMatch[1] === 'Numpad' && this.simulation.playerCount === 2 ? 1 : 0;
+      this.inputDigit(playerIndex, Number(digitMatch[2]));
+      event.preventDefault();
+      return;
+    }
+    if ((event.code === 'Enter' || event.code === 'NumpadEnter') && !event.repeat) {
+      const playerIndex: PlayerIndex = event.code === 'NumpadEnter' && this.simulation.playerCount === 2 ? 1 : 0;
+      this.submitAnswer(playerIndex);
+      event.preventDefault();
+      return;
+    }
+    if (event.code === 'Backspace' || event.code === 'Delete') {
+      const playerIndex: PlayerIndex = event.code === 'Delete' && this.simulation.playerCount === 2 ? 1 : 0;
+      this.backspace(playerIndex);
+      event.preventDefault();
+      return;
+    }
+    if (event.code === 'NumpadDecimal') {
+      this.clearInput(this.simulation.playerCount === 2 ? 1 : 0);
+      event.preventDefault();
+    }
   };
 
   private onBlur = (): void => {
@@ -424,13 +584,13 @@ export class GameEngine {
     const target = window as unknown as Record<string, unknown>;
     const diagnostics: Record<string, unknown> = {
       renderer: this.renderer.info,
-      physics: { engine: 'custom-track-autopilot', timestep: FIXED_DT, bodies: 5, colliders: 5, sensors: 10, ccdBodies: 0 },
+      physics: { engine: 'custom-track-autopilot', timestep: FIXED_DT, bodies: this.simulation.playerCount, colliders: this.simulation.playerCount, sensors: this.simulation.playerCount * 2, ccdBodies: 0 },
       audio: this.audio.getDiagnostics(),
     };
     Object.defineProperty(diagnostics, 'state', {
       enumerable: true,
       get: () => {
-        const snapshot = this.simulation.getSnapshot();
+        const snapshot = this.getSnapshot();
         const player = this.simulation.player;
         const position = this.world.track.getFrame(player.distance, player.lane).position;
         return {
@@ -447,6 +607,36 @@ export class GameEngine {
           dpr: this.renderer.getPixelRatio(),
           postPasses: 0,
           assets: this.assetDiagnostics,
+        };
+      },
+    });
+    Object.defineProperty(diagnostics, 'cameraRig', {
+      enumerable: true,
+      get: () => {
+        const width = Math.max(1, this.container.clientWidth);
+        const height = Math.max(1, this.container.clientHeight);
+        const viewWidth = this.splitView ? width / 2 : width;
+        const racers = [this.simulation.getPlayerRacer(0)];
+        if (this.simulation.playerCount === 2) racers.push(this.simulation.getPlayerRacer(1));
+        const vehicles = racers.map((racer) => {
+          const camera = this.splitView && racer.playerIndex === 1 ? this.secondaryCamera : this.camera;
+          const position = this.world.track.getFrame(racer.distance, racer.lane).position;
+          position.y += racer.airHeight + 0.8;
+          const projected = position.project(camera);
+          return {
+            playerIndex: racer.playerIndex,
+            x: (this.splitView && racer.playerIndex === 1 ? viewWidth : 0) + (projected.x + 1) * 0.5 * viewWidth,
+            y: (1 - projected.y) * 0.5 * height,
+            ndcX: projected.x,
+            ndcY: projected.y,
+          };
+        });
+        return {
+          mode: this.splitView ? 'split' : 'shared',
+          separation: this.cameraSeparation,
+          primary: { aspect: this.camera.aspect, fov: this.camera.fov, position: this.camera.position.toArray() },
+          secondary: { aspect: this.secondaryCamera.aspect, fov: this.secondaryCamera.fov, position: this.secondaryCamera.position.toArray() },
+          vehicles,
         };
       },
     });
@@ -558,9 +748,26 @@ export class GameEngine {
             }),
         };
       },
-      answerCorrect: () => {
-        const question = this.simulation.question;
-        if (question) this.answer(question.correctIndex);
+      setPlayerCount: (count: 1 | 2) => {
+        this.simulation.setPlayerCount(count);
+        this.updateTransforms(0);
+        this.updateCamera(1);
+        this.emitSnapshot();
+      },
+      setCameraGap: (gap: number) => {
+        if (this.simulation.playerCount !== 2) return;
+        const primary = this.simulation.getPlayerRacer(0);
+        const secondary = this.simulation.getPlayerRacer(1);
+        secondary.distance = Math.max(0, primary.distance - Math.max(0, gap));
+        secondary.speed = primary.speed;
+        secondary.lastProgress = ((secondary.distance % this.world.track.length) + this.world.track.length) % this.world.track.length / this.world.track.length;
+        this.updateTransforms(0);
+        this.updateCamera(0);
+        this.emitSnapshot();
+      },
+      answerCorrect: (playerIndex: PlayerIndex = 0) => {
+        const question = this.simulation.getSnapshot().players[playerIndex]?.question;
+        if (question) this.answer(question.answer, playerIndex);
       },
     };
   }

@@ -42,7 +42,6 @@ export const TOTAL_LAPS = 2;
 export const ROAD_WIDTH = 12;
 export const FIXED_DT = 1 / 60;
 export const MAX_SPEED = 21;
-export const AI_BASE_SPEED = 24;
 export const QUESTION_INTERVAL = 9.5;
 export const LANE_CANDIDATES = [-3.6, -1.8, 0, 1.8, 3.6];
 export const SECTION_NAMES: Record<TrackSectionId, string> = {

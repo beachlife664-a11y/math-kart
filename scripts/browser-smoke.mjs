@@ -34,7 +34,7 @@ for (const item of cases) {
     await page.mouse.move(canvasBox.x + canvasBox.width * 0.86, canvasBox.y + canvasBox.height * 0.57, { steps: 6 });
     await page.mouse.up();
     await page.waitForFunction((yaw) => window.__THREE_GAME_DIAGNOSTICS__.showroom.yaw !== yaw, showroomBefore);
-    await page.getByRole('button', { name: '选择星辉号' }).click();
+    await page.getByRole('button', { name: 'P1 选择星辉号' }).click();
     await page.waitForFunction(() => window.__THREE_GAME_DIAGNOSTICS__.state.selectedKart === 'nova');
     result.showroom = await page.evaluate(() => ({ ...window.__THREE_GAME_DIAGNOSTICS__.showroom }));
     await page.getByRole('button', { name: '开始比赛' }).click();
@@ -42,9 +42,11 @@ for (const item of cases) {
     await page.waitForFunction(() => Boolean(window.__THREE_GAME_DIAGNOSTICS__.state.question));
     const before = await page.evaluate(() => window.__THREE_GAME_DIAGNOSTICS__.state.playerDistance);
     await page.waitForTimeout(900);
-    const correctIndex = await page.evaluate(() => window.__THREE_GAME_DIAGNOSTICS__.state.question.correctIndex);
-    await page.locator('.answer-button').nth(correctIndex).click();
-    await page.waitForFunction(() => window.__THREE_GAME_DIAGNOSTICS__.state.correctCount === 1);
+    const answer = await page.evaluate(() => window.__THREE_GAME_DIAGNOSTICS__.state.players[0].question.answer);
+    const panel = page.locator('.math-panel[data-player-index="0"]');
+    for (const digit of String(answer)) await panel.locator(`[data-digit="${digit}"]`).click();
+    await page.getByRole('button', { name: 'P1 确认答案' }).click();
+    await page.waitForFunction(() => window.__THREE_GAME_DIAGNOSTICS__.state.players[0].correctCount === 1);
     result.diagnostics = await page.evaluate(() => {
       const diagnostics = window.__THREE_GAME_DIAGNOSTICS__;
       const canvas = document.querySelector('canvas');

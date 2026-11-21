@@ -1,13 +1,14 @@
-import { AI_BASE_SPEED, KART_SPECS, LANE_CANDIDATES, MAX_SPEED, POWER_UP_LABELS, QUESTION_INTERVAL, TOTAL_LAPS } from './config';
+import { KART_SPECS, LANE_CANDIDATES, MAX_SPEED, POWER_UP_LABELS, QUESTION_INTERVAL, TOTAL_LAPS } from './config';
 import { createMathQuestion } from './math';
 import { SECTION_CHALLENGES, TRACK_OBSTACLES, type SectionChallenge, type Track } from './track';
-import type { GamePhase, GameSnapshot, IMathQuestion, KartId, PowerUpKind, TrackSectionId } from './types';
+import type { GamePhase, GameSnapshot, IMathQuestion, IPlayerSnapshot, KartId, PlayerIndex, PowerUpKind, TrackSectionId } from './types';
 
 export type RaceEvent = 'correct' | 'wrong' | 'boost' | 'impact' | 'finish' | 'countdown' | 'land' | 'telegraph' | 'drift';
 type StoredPowerUp = Exclude<PowerUpKind, null>;
 
 export interface RacerState {
   id: KartId;
+  playerIndex: PlayerIndex;
   distance: number;
   lane: number;
   speed: number;
@@ -37,40 +38,69 @@ export interface RacerState {
   finishTime: number | null;
 }
 
+interface PlayerState {
+  playerIndex: PlayerIndex;
+  kartId: KartId;
+  question: IMathQuestion | null;
+  answerInput: string;
+  questionFeedback: 'correct' | 'wrong' | null;
+  correctCount: number;
+  streak: number;
+  bestStreak: number;
+  energy: number;
+  overtakeCount: number;
+  obstacleHits: number;
+  previousPosition: number;
+  nextQuestionIn: number;
+  questionVisibleFor: number;
+  eventLabel: string;
+  routeRewards: TrackSectionId[];
+}
+
+function createPlayerState(playerIndex: PlayerIndex, kartId: KartId): PlayerState {
+  return {
+    playerIndex,
+    kartId,
+    question: null,
+    answerInput: '',
+    questionFeedback: null,
+    correctCount: 0,
+    streak: 0,
+    bestStreak: 0,
+    energy: 0,
+    overtakeCount: 0,
+    obstacleHits: 0,
+    previousPosition: playerIndex + 1,
+    nextQuestionIn: 0,
+    questionVisibleFor: 0,
+    eventLabel: '等待出发',
+    routeRewards: [],
+  };
+}
+
 export class RaceSimulation {
   phase: GamePhase = 'menu';
-  selectedKart: KartId = 'comet';
+  playerCount: 1 | 2 = 1;
+  selectedKarts: KartId[] = ['comet', 'reef'];
   elapsed = 0;
   countdown = 3;
-  correctCount = 0;
-  streak = 0;
-  bestStreak = 0;
-  energy = 0;
-  overtakeCount = 0;
-  obstacleHits = 0;
-  question: IMathQuestion | null = null;
-  questionFeedback: 'correct' | 'wrong' | null = null;
   eventLabel = '';
   rivalAlert = '';
   loadedModels: KartId[] = [];
   loadedLandmarks: string[] = [];
-  routeRewards: TrackSectionId[] = [];
   muted = false;
   private racers: RacerState[] = [];
-  private nextQuestionIn = 1.2;
-  private questionVisibleFor = 0;
+  private playerStates: PlayerState[] = [];
   private questionId = 0;
   private countdownMark = 4;
   private driftSoundCooldown = 0;
-  private rivalAlertTimer = 0;
-  private previousPlayerPosition = 3;
   private readonly challenged = new Set<string>();
   private random: () => number;
 
   constructor(
     private readonly track: Track,
     random: () => number,
-    private readonly emit: (event: RaceEvent) => void,
+    private readonly emit: (event: RaceEvent, playerIndex?: PlayerIndex) => void,
   ) {
     this.random = random;
     this.resetGrid();
@@ -80,22 +110,32 @@ export class RaceSimulation {
     this.random = random;
   }
 
-  selectKart(id: KartId): void {
+  setPlayerCount(count: 1 | 2): void {
     if (this.phase !== 'menu') return;
-    this.selectedKart = id;
+    this.playerCount = count;
+    if (count === 2 && this.selectedKarts[1] === this.selectedKarts[0]) {
+      this.selectedKarts[1] = KART_SPECS.find((spec) => spec.id !== this.selectedKarts[0])!.id;
+    }
+    this.resetGrid();
+  }
+
+  selectKart(id: KartId, playerIndex: PlayerIndex = 0): void {
+    if (this.phase !== 'menu' || playerIndex >= this.playerCount) return;
+    if (this.selectedKarts.some((kartId, index) => index < this.playerCount && index !== playerIndex && kartId === id)) return;
+    this.selectedKarts[playerIndex] = id;
     this.resetGrid();
   }
 
   resetGrid(): void {
-    const others = KART_SPECS.filter((spec) => spec.id !== this.selectedKart).slice(0, 4);
-    const ordered = [...others.slice(0, 2), KART_SPECS.find((spec) => spec.id === this.selectedKart)!, ...others.slice(2)];
-    this.racers = ordered.map((spec, index) => ({
-      id: spec.id,
-      distance: index < 2 ? 0 : index === 2 ? -3 : -6,
-      lane: [-2.1, 2.1, 0, -2.1, 2.1][index],
+    const activeKarts = this.selectedKarts.slice(0, this.playerCount);
+    this.racers = activeKarts.map((id, index) => ({
+      id,
+      playerIndex: index as PlayerIndex,
+      distance: 0,
+      lane: this.playerCount === 1 ? 0 : index === 0 ? -2.1 : 2.1,
       speed: 0,
       lateralSpeed: 0,
-      targetLane: [-2.1, 2.1, 0, -2.1, 2.1][index],
+      targetLane: this.playerCount === 1 ? 0 : index === 0 ? -2.1 : 2.1,
       boost: 0,
       shield: 0,
       overdrive: 0,
@@ -115,11 +155,11 @@ export class RaceSimulation {
       autoStatus: '自动驾驶待命',
       telegraph: 0,
       telegraphKind: null,
-      nextBoostAt: 8 + index * 1.8,
+      nextBoostAt: Infinity,
       finished: false,
       finishTime: null,
     }));
-    this.previousPlayerPosition = 3;
+    this.playerStates = activeKarts.map((id, index) => createPlayerState(index as PlayerIndex, id));
   }
 
   restart(): void {
@@ -128,29 +168,19 @@ export class RaceSimulation {
     this.countdown = 3;
     this.countdownMark = 4;
     this.driftSoundCooldown = 0;
-    this.correctCount = 0;
-    this.streak = 0;
-    this.bestStreak = 0;
-    this.energy = 0;
-    this.overtakeCount = 0;
-    this.obstacleHits = 0;
-    this.routeRewards = [];
-    this.question = null;
-    this.questionFeedback = null;
-    this.nextQuestionIn = 1.2;
-    this.questionVisibleFor = 0;
-    this.eventLabel = '两圈 · 五段旅程';
-    this.rivalAlert = '';
-    this.rivalAlertTimer = 0;
+    this.questionId = 0;
     this.challenged.clear();
+    this.rivalAlert = '';
     this.resetGrid();
+    this.eventLabel = this.playerCount === 2 ? '双人对决 · 两圈五段旅程' : '单人挑战 · 两圈五段旅程';
+    for (const player of this.playerStates) player.eventLabel = '自动驾驶待命';
   }
 
   startNow(): void {
     this.restart();
     this.phase = 'racing';
     this.countdown = 0;
-    this.createQuestion();
+    for (const player of this.playerStates) this.createQuestion(player);
   }
 
   togglePause(): void {
@@ -158,40 +188,73 @@ export class RaceSimulation {
     else if (this.phase === 'paused') this.phase = 'racing';
   }
 
-  answer(optionIndex: number): void {
-    const player = this.player;
-    if (this.phase !== 'racing' || !this.question || this.question.selectedIndex !== null || player.finished) return;
-    const question = this.question;
-    const correct = optionIndex === question.correctIndex;
-    question.selectedIndex = optionIndex;
+  inputDigit(playerIndex: PlayerIndex, digit: number): void {
+    const player = this.playerStates[playerIndex];
+    if (!player || this.phase !== 'racing' || !player.question || player.question.submittedAnswer !== null) return;
+    if (!Number.isInteger(digit) || digit < 0 || digit > 9 || player.answerInput.length >= 3) return;
+    player.answerInput = `${player.answerInput}${digit}`.slice(0, 3);
+  }
+
+  backspace(playerIndex: PlayerIndex): void {
+    const player = this.playerStates[playerIndex];
+    if (!player || this.phase !== 'racing' || player.question?.submittedAnswer !== null) return;
+    player.answerInput = player.answerInput.slice(0, -1);
+  }
+
+  clearInput(playerIndex: PlayerIndex): void {
+    const player = this.playerStates[playerIndex];
+    if (!player || this.phase !== 'racing' || player.question?.submittedAnswer !== null) return;
+    player.answerInput = '';
+  }
+
+  submitAnswer(playerIndex: PlayerIndex = 0): void {
+    const player = this.playerStates[playerIndex];
+    if (!player || player.answerInput === '') return;
+    this.answer(Number(player.answerInput), playerIndex);
+  }
+
+  answer(value: number, playerIndex: PlayerIndex = 0): void {
+    const player = this.playerStates[playerIndex];
+    if (!player || this.phase !== 'racing' || !player.question || player.question.submittedAnswer !== null) return;
+    const racer = this.getPlayerRacer(playerIndex);
+    if (racer.finished) return;
+    const question = player.question;
+    const correct = value === question.answer;
+    player.answerInput = String(value);
+    question.submittedAnswer = value;
     question.isCorrect = correct;
-    this.questionFeedback = correct ? 'correct' : 'wrong';
-    this.questionVisibleFor = 0;
-    this.nextQuestionIn = correct ? 2 : 2.6;
+    player.questionFeedback = correct ? 'correct' : 'wrong';
+    player.questionVisibleFor = 0;
+    player.nextQuestionIn = correct ? 2 : 2.6;
     if (correct) {
-      this.correctCount += 1;
-      this.streak += 1;
-      this.bestStreak = Math.max(this.bestStreak, this.streak);
-      player.boost = Math.max(player.boost, 2.25);
-      player.speed = Math.min(player.speed + 3.4, 31);
-      this.energy = Math.min(100, this.energy + 26);
-      this.eventLabel = '答对了 · 即时喷射';
-      if (this.energy >= 100) {
-        this.energy -= 100;
-        this.grantItem(player, 'overdrive');
-        this.eventLabel = '连对满能 · 超级涡轮已装填';
-      } else if (this.streak % 3 === 0 && !player.item) {
-        this.grantItem(player, this.hasCloseTraffic(player) ? 'shield' : 'nitro');
-        this.eventLabel = `连对 ${this.streak} · 自动道具已装填`;
+      player.correctCount += 1;
+      player.streak += 1;
+      player.bestStreak = Math.max(player.bestStreak, player.streak);
+      racer.boost = Math.max(racer.boost, 2.25);
+      racer.speed = Math.min(racer.speed + 3.4, 31);
+      player.energy = Math.min(100, player.energy + 26);
+      this.setPlayerEvent(player, '答对了 · 即时喷射');
+      if (player.energy >= 100) {
+        player.energy -= 100;
+        this.grantItem(racer, 'overdrive');
+        this.setPlayerEvent(player, '连对满能 · 超级涡轮已装填');
+      } else if (player.streak % 3 === 0 && !racer.item) {
+        this.grantItem(racer, this.hasCloseTraffic(racer) ? 'shield' : 'nitro');
+        this.setPlayerEvent(player, `连对 ${player.streak} · 自动道具已装填`);
       }
-      if (question.challenge) this.applyChallengeReward(question.challenge);
-      this.emit('correct');
-      this.emit('boost');
+      if (question.challenge) this.applyChallengeReward(player, question.challenge);
+      this.emit('correct', playerIndex);
+      this.emit('boost', playerIndex);
     } else {
-      this.streak = 0;
-      this.eventLabel = `正确答案 ${question.options[question.correctIndex]} · 本次无加速`;
-      this.emit('wrong');
+      player.streak = 0;
+      this.setPlayerEvent(player, `正确答案 ${question.answer} · 本次无加速`);
+      this.emit('wrong', playerIndex);
     }
+  }
+
+  private setPlayerEvent(player: PlayerState, label: string): void {
+    player.eventLabel = label;
+    this.eventLabel = `P${player.playerIndex + 1} · ${label}`;
   }
 
   private grantItem(racer: RacerState, item: StoredPowerUp): void {
@@ -199,39 +262,42 @@ export class RaceSimulation {
     racer.itemTimer = 0;
   }
 
-  private applyChallengeReward(section: TrackSectionId): void {
-    const player = this.player;
-    if (!this.routeRewards.includes(section)) this.routeRewards.push(section);
+  private applyChallengeReward(player: PlayerState, section: TrackSectionId): void {
+    const racer = this.getPlayerRacer(player.playerIndex);
+    if (!player.routeRewards.includes(section)) player.routeRewards.push(section);
     if (section === 'harbor') {
-      player.routeBoost = Math.max(player.routeBoost, 5.5);
-      player.shortcut = Math.max(player.shortcut, 5.5);
-      this.eventLabel = '港口加速线开启 · 自动切线';
+      racer.routeBoost = Math.max(racer.routeBoost, 5.5);
+      racer.shortcut = Math.max(racer.shortcut, 5.5);
+      this.setPlayerEvent(player, '港口加速线开启 · 自动切线');
     } else if (section === 'cliff') {
-      player.routeBoost = Math.max(player.routeBoost, 5.5);
-      player.shortcut = Math.max(player.shortcut, 6.5);
-      this.eventLabel = '内侧捷径解锁 · 漂移超车';
+      racer.routeBoost = Math.max(racer.routeBoost, 5.5);
+      racer.shortcut = Math.max(racer.shortcut, 6.5);
+      this.setPlayerEvent(player, '内侧捷径解锁 · 漂移超车');
     } else if (section === 'cave') {
-      player.routeBoost = Math.max(player.routeBoost, 6.5);
-      player.shortcut = Math.max(player.shortcut, 6.5);
-      player.shield = Math.max(player.shield, 5);
-      this.eventLabel = '水晶高速线开启 · 护盾同步';
+      racer.routeBoost = Math.max(racer.routeBoost, 6.5);
+      racer.shortcut = Math.max(racer.shortcut, 6.5);
+      racer.shield = Math.max(racer.shield, 5);
+      this.setPlayerEvent(player, '水晶高速线开启 · 护盾同步');
     } else {
-      player.landingBoostArmed = true;
-      this.eventLabel = '落地冲刺已武装 · 瞄准跳台';
+      racer.landingBoostArmed = true;
+      this.setPlayerEvent(player, '落地冲刺已武装 · 瞄准跳台');
     }
   }
 
-  createQuestion(challenge: SectionChallenge | null = null): void {
+  createQuestion(player: PlayerState, challenge: SectionChallenge | null = null): void {
     this.questionId += 1;
-    this.question = createMathQuestion(this.random, this.questionId);
+    player.question = createMathQuestion(this.random, this.questionId);
+    player.answerInput = '';
     if (challenge) {
-      this.question.challenge = challenge.id;
-      this.question.rewardLabel = challenge.rewardLabel;
-      const lap = Math.max(0, Math.floor(this.player.distance / this.track.length));
-      this.challenged.add(`${lap}:${challenge.id}`);
+      player.question.challenge = challenge.id;
+      player.question.rewardLabel = challenge.rewardLabel;
+      const racer = this.getPlayerRacer(player.playerIndex);
+      const lap = Math.max(0, Math.floor(racer.distance / this.track.length));
+      this.challenged.add(`${player.playerIndex}:${lap}:${challenge.id}`);
     }
-    this.questionFeedback = null;
-    this.questionVisibleFor = 0;
+    player.questionFeedback = null;
+    player.questionVisibleFor = 0;
+    player.nextQuestionIn = QUESTION_INTERVAL;
   }
 
   update(delta: number): void {
@@ -248,6 +314,7 @@ export class RaceSimulation {
         this.phase = 'racing';
         this.countdown = 0;
         this.eventLabel = '自动驾驶接管 · 出发';
+        for (const player of this.playerStates) this.createQuestion(player);
         this.emit('boost');
       }
       return;
@@ -255,9 +322,7 @@ export class RaceSimulation {
 
     this.elapsed += delta;
     this.driftSoundCooldown = Math.max(0, this.driftSoundCooldown - delta);
-    this.rivalAlertTimer = Math.max(0, this.rivalAlertTimer - delta);
-    if (this.rivalAlertTimer === 0) this.rivalAlert = '';
-    this.updateQuestion(delta);
+    for (const player of this.playerStates) this.updateQuestion(player, delta);
     for (let index = 0; index < this.racers.length; index += 1) {
       const racer = this.racers[index];
       racer.boost = Math.max(0, racer.boost - delta);
@@ -272,13 +337,12 @@ export class RaceSimulation {
         racer.distance += racer.speed * delta;
         continue;
       }
-      if (racer.id !== this.selectedKart) this.updateAiPowerUp(racer, delta);
       this.updateAutomaticItem(racer, delta);
       const previousDrift = racer.drift;
-      this.updateDrive(racer, index, delta);
-      if (racer.id === this.selectedKart && this.driftSoundCooldown <= 0 && previousDrift < 0.12 && racer.drift >= 0.12) {
+      this.updateDrive(racer, delta);
+      if (this.driftSoundCooldown <= 0 && previousDrift < 0.12 && racer.drift >= 0.12) {
         this.driftSoundCooldown = 2.8;
-        this.emit('drift');
+        this.emit('drift', racer.playerIndex);
       }
       racer.distance += racer.speed * delta;
       this.updateJump(racer, delta);
@@ -286,25 +350,29 @@ export class RaceSimulation {
       if (racer.distance >= finishDistance) {
         racer.finished = true;
         racer.finishTime = this.elapsed;
-        this.eventLabel = racer.id === this.selectedKart ? `第 ${this.getPosition(racer.id)} 名冲线` : `${this.getName(racer.id)} 已冲线`;
-        if (racer.id === this.selectedKart) this.emit('finish');
+        const player = this.playerStates[racer.playerIndex];
+        this.setPlayerEvent(player, `第 ${this.getPosition(racer.id)} 名冲线`);
+        this.emit('finish', racer.playerIndex);
       }
     }
     this.resolveCollisions();
     this.resolveObstacleCollisions();
-    const position = this.getPosition(this.selectedKart);
-    if (position < this.previousPlayerPosition) {
-      this.overtakeCount += this.previousPlayerPosition - position;
-      if (this.player.collisionCooldown <= 0) this.eventLabel = `超越成功 · 当前第 ${position} 名`;
+    for (const player of this.playerStates) {
+      const racer = this.getPlayerRacer(player.playerIndex);
+      const position = this.getPosition(racer.id);
+      if (position < player.previousPosition) {
+        player.overtakeCount += player.previousPosition - position;
+        if (racer.collisionCooldown <= 0) this.setPlayerEvent(player, `超越成功 · 当前第 ${position} 名`);
+      }
+      player.previousPosition = position;
     }
-    this.previousPlayerPosition = position;
     if (this.racers.every((racer) => racer.finished)) {
       this.phase = 'finished';
       this.eventLabel = '比赛完成';
     }
   }
 
-  private updateDrive(racer: RacerState, index: number, delta: number): void {
+  private updateDrive(racer: RacerState, delta: number): void {
     racer.decisionTimer -= delta;
     if (racer.decisionTimer <= 0) {
       this.chooseLane(racer);
@@ -315,21 +383,12 @@ export class RaceSimulation {
     racer.drift += (driftTarget - racer.drift) * Math.min(1, delta * (driftTarget > racer.drift ? 5 : 8));
     racer.driftDirection = curvature === 0 ? 0 : Math.sign(curvature);
 
-    const lap = Math.max(0, Math.floor(racer.distance / this.track.length));
-    const isPlayer = racer.id === this.selectedKart;
-    let targetSpeed = isPlayer ? MAX_SPEED : AI_BASE_SPEED + index * 0.22 + lap * 0.42;
-    const gap = this.player.distance - racer.distance;
-    if (!isPlayer) targetSpeed *= gap > 34 ? 1.09 : gap < -32 ? 0.965 : 1;
-    else {
-      const bestOpponent = Math.max(...this.racers.filter((item) => item.id !== this.selectedKart).map((item) => item.distance));
-      if (racer.distance - bestOpponent > 40) targetSpeed *= 0.975;
-      if (bestOpponent - racer.distance > 36) targetSpeed *= 1.035;
-    }
+    let targetSpeed = MAX_SPEED;
     targetSpeed -= Math.min(4.8, Math.abs(curvature) * 17);
     if (racer.boost > 0) targetSpeed = Math.max(targetSpeed, 29.5);
     if (racer.routeBoost > 0) targetSpeed = Math.max(targetSpeed, 31);
     if (racer.overdrive > 0) targetSpeed = Math.max(targetSpeed, 34);
-    targetSpeed = Math.min(targetSpeed, isPlayer ? 31 : 31.5);
+    targetSpeed = Math.min(targetSpeed, 31);
     if (racer.impactSlow > 0) targetSpeed = Math.min(targetSpeed, 10.5 + (1 - racer.impactSlow / 0.9) * 5);
 
     let closestAhead: RacerState | null = null;
@@ -417,41 +476,13 @@ export class RaceSimulation {
       racer.overdrive = Math.max(racer.overdrive, 5);
       racer.boost = Math.max(racer.boost, 5);
     }
-    if (racer.id === this.selectedKart) {
-      this.eventLabel = `自动使用 · ${POWER_UP_LABELS[item]}`;
-      this.emit('boost');
-    }
+    const player = this.playerStates[racer.playerIndex];
+    this.setPlayerEvent(player, `自动使用 · ${POWER_UP_LABELS[item]}`);
+    this.emit('boost', racer.playerIndex);
   }
 
   private hasCloseTraffic(racer: RacerState): boolean {
     return this.racers.some((other) => other !== racer && Math.abs(other.distance - racer.distance) < 6 && Math.abs(other.lane - racer.lane) < 2.2);
-  }
-
-  private updateAiPowerUp(racer: RacerState, delta: number): void {
-    if (racer.telegraph > 0) {
-      racer.telegraph = Math.max(0, racer.telegraph - delta);
-      if (racer.telegraph === 0 && racer.telegraphKind) {
-        const item = racer.telegraphKind;
-        if (item === 'shield') racer.shield = Math.max(racer.shield, 4.5);
-        else {
-          racer.boost = Math.max(racer.boost, item === 'overdrive' ? 3.8 : 2.6);
-          if (item === 'overdrive') racer.overdrive = Math.max(racer.overdrive, 3.8);
-        }
-        racer.telegraphKind = null;
-        this.rivalAlert = `${this.getName(racer.id)} · ${POWER_UP_LABELS[item]}启动`;
-        this.rivalAlertTimer = 1.8;
-      }
-      return;
-    }
-    if (this.elapsed < racer.nextBoostAt) return;
-    const roll = this.random();
-    const item: StoredPowerUp = roll < 0.58 ? 'nitro' : roll < 0.82 ? 'shield' : 'overdrive';
-    racer.telegraph = 1.4;
-    racer.telegraphKind = item;
-    racer.nextBoostAt = this.elapsed + 12 + this.random() * 5;
-    this.rivalAlert = `预告 · ${this.getName(racer.id)}准备${POWER_UP_LABELS[item]}`;
-    this.rivalAlertTimer = 2.2;
-    if (Math.abs(racer.distance - this.player.distance) < 40) this.emit('telegraph');
   }
 
   private updateJump(racer: RacerState, delta: number): void {
@@ -466,18 +497,17 @@ export class RaceSimulation {
       if (racer.airHeight <= 0 && racer.airVelocity < 0) {
         racer.airHeight = 0;
         racer.airVelocity = 0;
-        if (racer.id === this.selectedKart) {
-          if (racer.landingBoostArmed) {
-            racer.landingBoostArmed = false;
-            racer.overdrive = Math.max(racer.overdrive, 4.5);
-            racer.boost = Math.max(racer.boost, 4.5);
-            this.eventLabel = '完美落地 · 冲刺启动';
-            this.emit('boost');
-          } else {
-            this.eventLabel = '平稳落地 · 自动回正';
-          }
-          this.emit('land');
+        const player = this.playerStates[racer.playerIndex];
+        if (racer.landingBoostArmed) {
+          racer.landingBoostArmed = false;
+          racer.overdrive = Math.max(racer.overdrive, 4.5);
+          racer.boost = Math.max(racer.boost, 4.5);
+          this.setPlayerEvent(player, '完美落地 · 冲刺启动');
+          this.emit('boost', racer.playerIndex);
+        } else {
+          this.setPlayerEvent(player, '平稳落地 · 自动回正');
         }
+        this.emit('land', racer.playerIndex);
       }
     }
     racer.lastProgress = progress;
@@ -504,7 +534,7 @@ export class RaceSimulation {
             follower.distance -= (1.7 - Math.abs(longitudinal)) * 0.25;
             if (follower.shield <= 0) follower.speed *= 0.992;
           }
-          if (a.collisionCooldown <= 0 && b.collisionCooldown <= 0 && (a.id === this.selectedKart || b.id === this.selectedKart)) this.emit('impact');
+          if (a.collisionCooldown <= 0 && b.collisionCooldown <= 0) this.emit('impact', a.playerIndex);
           a.collisionCooldown = 0.4;
           b.collisionCooldown = 0.4;
         }
@@ -523,58 +553,85 @@ export class RaceSimulation {
         racer.collisionCooldown = 1;
         const direction = racer.lane === obstacle.lane ? (index % 2 === 0 ? 1 : -1) : Math.sign(racer.lane - obstacle.lane);
         racer.lane = Math.max(-5.25, Math.min(5.25, racer.lane + direction * 0.45));
+        const player = this.playerStates[racer.playerIndex];
         if (racer.shield > 0) {
           racer.shield = Math.max(0, racer.shield - 1.25);
-          if (racer.id === this.selectedKart) this.eventLabel = '护盾抵挡路障 · 速度保持';
+          this.setPlayerEvent(player, '护盾抵挡路障 · 速度保持');
         } else {
           racer.speed = Math.max(7, racer.speed * 0.58);
           racer.impactSlow = Math.max(racer.impactSlow, 0.9);
           racer.autoStatus = '碰撞减速 · 自动回到行车线';
-          if (racer.id === this.selectedKart) {
-            this.obstacleHits += 1;
-            this.eventLabel = '碰到路障 · 短暂减速';
-          }
+          player.obstacleHits += 1;
+          this.setPlayerEvent(player, '碰到路障 · 短暂减速');
         }
-        if (racer.id === this.selectedKart) this.emit('impact');
+        this.emit('impact', racer.playerIndex);
         break;
       }
     }
   }
 
-  private updateQuestion(delta: number): void {
-    if (this.player.finished) return;
-    const challenge = this.getUpcomingChallenge();
-    if (challenge && (!this.question || this.question.selectedIndex === null)) {
-      if (this.question?.challenge !== challenge.id) this.createQuestion(challenge);
+  private updateQuestion(player: PlayerState, delta: number): void {
+    const racer = this.getPlayerRacer(player.playerIndex);
+    if (racer.finished) return;
+    const challenge = this.getUpcomingChallenge(player);
+    if (challenge && (!player.question || player.question.submittedAnswer === null)) {
+      if (player.question?.challenge !== challenge.id) this.createQuestion(player, challenge);
       return;
     }
-    if (this.question && this.question.selectedIndex === null) {
-      this.questionVisibleFor += delta;
-      if (this.questionVisibleFor >= QUESTION_INTERVAL) this.createQuestion();
+    if (player.question && player.question.submittedAnswer === null) {
+      player.questionVisibleFor += delta;
+      if (player.questionVisibleFor >= QUESTION_INTERVAL) this.createQuestion(player);
       return;
     }
-    this.nextQuestionIn -= delta;
-    if (this.nextQuestionIn <= 0) {
-      this.createQuestion();
-      this.nextQuestionIn = QUESTION_INTERVAL;
-    } else if (this.question?.selectedIndex !== null && this.nextQuestionIn < 1.25) {
-      this.question = null;
-      this.questionFeedback = null;
+    player.nextQuestionIn -= delta;
+    if (player.nextQuestionIn <= 0) {
+      this.createQuestion(player);
+    } else if (player.question?.submittedAnswer !== null && player.nextQuestionIn < 1.25) {
+      player.question = null;
+      player.answerInput = '';
+      player.questionFeedback = null;
     }
   }
 
-  private getUpcomingChallenge(): SectionChallenge | null {
-    const lap = Math.max(0, Math.floor(this.player.distance / this.track.length));
-    const progress = this.track.progress(this.player.distance);
+  private getUpcomingChallenge(player: PlayerState): SectionChallenge | null {
+    const racer = this.getPlayerRacer(player.playerIndex);
+    const lap = Math.max(0, Math.floor(racer.distance / this.track.length));
+    const progress = this.track.progress(racer.distance);
     for (const challenge of SECTION_CHALLENGES) {
-      if (this.challenged.has(`${lap}:${challenge.id}`)) continue;
+      if (this.challenged.has(`${player.playerIndex}:${lap}:${challenge.id}`)) continue;
       if (progress >= challenge.at - 0.018 && progress <= challenge.at + 0.025) return challenge;
     }
     return null;
   }
 
+  get selectedKart(): KartId {
+    return this.selectedKarts[0];
+  }
+
   get player(): RacerState {
-    return this.racers.find((racer) => racer.id === this.selectedKart)!;
+    return this.getPlayerRacer(0);
+  }
+
+  get question(): IMathQuestion | null {
+    return this.playerStates[0]?.question ?? null;
+  }
+
+  get questionFeedback(): 'correct' | 'wrong' | null {
+    return this.playerStates[0]?.questionFeedback ?? null;
+  }
+
+  get correctCount(): number { return this.playerStates[0]?.correctCount ?? 0; }
+  get streak(): number { return this.playerStates[0]?.streak ?? 0; }
+  get bestStreak(): number { return this.playerStates[0]?.bestStreak ?? 0; }
+  get energy(): number { return this.playerStates[0]?.energy ?? 0; }
+  set energy(value: number) { if (this.playerStates[0]) this.playerStates[0].energy = value; }
+  get overtakeCount(): number { return this.playerStates[0]?.overtakeCount ?? 0; }
+  get obstacleHits(): number { return this.playerStates[0]?.obstacleHits ?? 0; }
+  get routeRewards(): TrackSectionId[] { return this.playerStates[0]?.routeRewards ?? []; }
+  get activeRacers(): RacerState[] { return this.racers; }
+
+  getPlayerRacer(playerIndex: PlayerIndex): RacerState {
+    return this.racers.find((racer) => racer.playerIndex === playerIndex)!;
   }
 
   hasRacer(id: KartId): boolean {
@@ -598,25 +655,65 @@ export class RaceSimulation {
     });
   }
 
-  get powerUp(): PowerUpKind {
-    if (this.player.overdrive > 0) return 'overdrive';
-    if (this.player.boost > 0 || this.player.routeBoost > 0) return 'nitro';
-    if (this.player.shield > 0) return 'shield';
+  private getPowerUp(racer: RacerState): PowerUpKind {
+    if (racer.overdrive > 0) return 'overdrive';
+    if (racer.boost > 0 || racer.routeBoost > 0) return 'nitro';
+    if (racer.shield > 0) return 'shield';
     return null;
+  }
+
+  get powerUp(): PowerUpKind {
+    return this.getPowerUp(this.player);
   }
 
   getName(id: KartId): string {
     return KART_SPECS.find((spec) => spec.id === id)!.name;
   }
 
+  private getPlayerSnapshot(player: PlayerState): IPlayerSnapshot {
+    const racer = this.getPlayerRacer(player.playerIndex);
+    const section = this.track.getSection(racer.distance);
+    return {
+      playerIndex: player.playerIndex,
+      kartId: player.kartId,
+      question: player.question ? { ...player.question } : null,
+      answerInput: player.answerInput,
+      questionFeedback: player.questionFeedback,
+      correctCount: player.correctCount,
+      streak: player.streak,
+      bestStreak: player.bestStreak,
+      energy: player.energy,
+      powerUp: this.getPowerUp(racer),
+      inventory: racer.item,
+      boostRemaining: Math.max(racer.boost, racer.routeBoost),
+      shieldRemaining: racer.shield,
+      eventLabel: player.eventLabel,
+      autoStatus: racer.autoStatus,
+      overtakeCount: player.overtakeCount,
+      obstacleHits: player.obstacleHits,
+      collisionSlowRemaining: racer.impactSlow,
+      sectionId: section.id,
+      sectionName: section.name,
+      sectionProgress: this.track.getSectionProgress(racer.distance),
+      landingBoostArmed: racer.landingBoostArmed,
+      routeRewards: [...player.routeRewards],
+    };
+  }
+
   getSnapshot(): GameSnapshot {
     const ordered = this.getOrdered();
-    const section = this.track.getSection(this.player.distance);
+    const players = this.playerStates.map((player) => this.getPlayerSnapshot(player));
+    const primary = players[0];
     return {
       phase: this.phase,
-      selectedKart: this.selectedKart,
+      playerCount: this.playerCount,
+      cameraMode: 'shared',
+      cameraSeparation: 0,
+      selectedKarts: this.selectedKarts.slice(0, this.playerCount),
+      players,
       racers: this.racers.map((racer) => ({
         id: racer.id,
+        playerIndex: racer.playerIndex,
         name: this.getName(racer.id),
         color: KART_SPECS.find((spec) => spec.id === racer.id)!.color,
         lap: Math.min(TOTAL_LAPS, Math.max(1, Math.floor(Math.max(0, racer.distance) / this.track.length) + 1)),
@@ -627,7 +724,7 @@ export class RaceSimulation {
         lane: racer.lane,
         finished: racer.finished,
         finishTime: racer.finishTime,
-        isPlayer: racer.id === this.selectedKart,
+        isPlayer: true,
         boosting: racer.boost > 0 || racer.routeBoost > 0 || racer.overdrive > 0,
         drifting: racer.drift,
         airHeight: racer.airHeight,
@@ -635,38 +732,40 @@ export class RaceSimulation {
       })),
       elapsed: this.elapsed,
       countdown: this.countdown,
-      question: this.question ? { ...this.question, options: [...this.question.options] } : null,
-      questionFeedback: this.questionFeedback,
-      correctCount: this.correctCount,
-      streak: this.streak,
-      bestStreak: this.bestStreak,
-      energy: this.energy,
-      powerUp: this.powerUp,
-      inventory: this.player.item,
-      boostRemaining: Math.max(this.player.boost, this.player.routeBoost),
-      shieldRemaining: this.player.shield,
       results: this.phase === 'finished' ? ordered.map((racer, index) => ({
         rank: index + 1,
         id: racer.id,
+        playerIndex: racer.playerIndex,
         name: this.getName(racer.id),
         color: KART_SPECS.find((spec) => spec.id === racer.id)!.color,
         time: racer.finishTime ?? this.elapsed,
-        isPlayer: racer.id === this.selectedKart,
+        isPlayer: true,
       })) : [],
       muted: this.muted,
       loadedModels: [...this.loadedModels],
       loadedLandmarks: [...this.loadedLandmarks],
       eventLabel: this.eventLabel,
-      autoStatus: this.player.autoStatus,
-      rivalAlert: this.rivalAlert,
-      overtakeCount: this.overtakeCount,
-      obstacleHits: this.obstacleHits,
-      collisionSlowRemaining: this.player.impactSlow,
-      sectionId: section.id,
-      sectionName: section.name,
-      sectionProgress: this.track.getSectionProgress(this.player.distance),
-      landingBoostArmed: this.player.landingBoostArmed,
-      routeRewards: [...this.routeRewards],
+      rivalAlert: '',
+      selectedKart: this.selectedKart,
+      question: primary.question,
+      questionFeedback: primary.questionFeedback,
+      correctCount: primary.correctCount,
+      streak: primary.streak,
+      bestStreak: primary.bestStreak,
+      energy: primary.energy,
+      powerUp: primary.powerUp,
+      inventory: primary.inventory,
+      boostRemaining: primary.boostRemaining,
+      shieldRemaining: primary.shieldRemaining,
+      autoStatus: primary.autoStatus,
+      overtakeCount: primary.overtakeCount,
+      obstacleHits: primary.obstacleHits,
+      collisionSlowRemaining: primary.collisionSlowRemaining,
+      sectionId: primary.sectionId,
+      sectionName: primary.sectionName,
+      sectionProgress: primary.sectionProgress,
+      landingBoostArmed: primary.landingBoostArmed,
+      routeRewards: [...primary.routeRewards],
     };
   }
 }

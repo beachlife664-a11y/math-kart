@@ -13,7 +13,7 @@ export default function MathKartPage() {
 
   useEffect(() => {
     if (snapshot?.phase !== 'finished') return;
-    const player = snapshot.results.find((result) => result.isPlayer);
+    const player = snapshot.results.find((result) => result.playerIndex === 0);
     if (!player) return;
     try {
       const previous = JSON.parse(localStorage.getItem('math-kart:best') || 'null') as { time: number } | null;
@@ -21,8 +21,10 @@ export default function MathKartPage() {
     } catch { /* 本地记录不可用时仍可正常完赛 */ }
   }, [snapshot]);
 
+  const raceLayout = snapshot?.phase === 'racing' || snapshot?.phase === 'countdown' || snapshot?.phase === 'paused';
+
   return (
-    <main className="math-kart-app">
+    <main className={`math-kart-app ${raceLayout ? 'race-shell' : ''} players-${snapshot?.playerCount ?? 1}`}>
       <GameCanvas onReady={setEngine} onSnapshot={setSnapshot} />
       {!snapshot ? (
         <div className="loading-screen"><span className="loading-wheel" /><strong>正在搭建海岸赛道</strong></div>
@@ -31,10 +33,19 @@ export default function MathKartPage() {
           {(snapshot.phase === 'racing' || snapshot.phase === 'countdown') && (
             <GameHud snapshot={snapshot} onPause={() => engine?.togglePause()} onMute={() => engine?.toggleMute()} />
           )}
-          {snapshot.phase === 'racing' && <MathPanel snapshot={snapshot} onAnswer={(index) => engine?.answer(index)} />}
+          {raceLayout && (
+            <MathPanel
+              snapshot={snapshot}
+              onDigit={(playerIndex, digit) => engine?.inputDigit(playerIndex, digit)}
+              onBackspace={(playerIndex) => engine?.backspace(playerIndex)}
+              onClear={(playerIndex) => engine?.clearInput(playerIndex)}
+              onSubmit={(playerIndex) => engine?.submitAnswer(playerIndex)}
+            />
+          )}
           <RaceOverlays
             snapshot={snapshot}
-            onSelect={(id) => engine?.selectKart(id)}
+            onSelect={(playerIndex, id) => engine?.selectKart(id, playerIndex)}
+            onPlayerCount={(count) => engine?.setPlayerCount(count)}
             onStart={() => { void engine?.start(); }}
             onResume={() => engine?.togglePause()}
             onResetView={() => engine?.resetShowroom()}

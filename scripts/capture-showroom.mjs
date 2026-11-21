@@ -4,13 +4,13 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:28474/?qa=1';
 const output = process.env.OUTPUT_DIR ?? 'artifacts/v4.1-showroom-karts';
 const karts = [
-  ['comet', '选择彗星号'],
-  ['reef', '选择浪花号'],
-  ['bolt', '选择闪电号'],
-  ['sprout', '选择嫩芽号'],
-  ['nova', '选择星辉号'],
-  ['titan', '选择巨石号'],
-  ['mochi', '选择麻薯号'],
+  ['comet', 'P1 选择彗星号'],
+  ['reef', 'P1 选择浪花号'],
+  ['bolt', 'P1 选择闪电号'],
+  ['sprout', 'P1 选择嫩芽号'],
+  ['nova', 'P1 选择星辉号'],
+  ['titan', 'P1 选择巨石号'],
+  ['mochi', 'P1 选择麻薯号'],
 ];
 
 await mkdir(output, { recursive: true });
@@ -39,7 +39,7 @@ for (const [id, buttonName] of karts) {
     await page.screenshot({ path: `${output}/${id}-side.png` });
   }
 }
-await page.getByRole('button', { name: '选择彗星号' }).click();
+await page.getByRole('button', { name: 'P1 选择彗星号' }).click();
 await page.mouse.move(760, 480);
 await page.mouse.down();
 await page.waitForFunction(() => window.__THREE_GAME_DIAGNOSTICS__.showroom.dragging);

@@ -293,6 +293,509 @@
   .journey-strip { display: none; }
 }
 
+/* 1–2 名真实玩家：大屏数字答题与双车库 */
+.player-mode { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 15px; }
+.player-mode > button { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; border: 1px solid rgba(255,249,233,.18); border-radius: 5px; color: rgba(255,249,233,.72); background: rgba(4,22,29,.5); cursor: pointer; }
+.player-mode > button.selected { color: var(--ink); border-color: var(--aqua); background: var(--aqua); box-shadow: inset 0 -3px 0 rgba(16,43,56,.22); }
+.player-mode > button span { display: grid; gap: 2px; text-align: left; }
+.player-mode > button b { font-size: 14px; }
+.player-mode > button small { font-size: 9px; opacity: .75; }
+.start-layout.players-2 .start-panel { width: min(650px, 100%); }
+.garage-players.players-2 { display: grid; gap: 4px; }
+.garage-players.players-2 .player-garage + .player-garage { padding-top: 2px; border-top: 1px solid rgba(85,228,210,.13); }
+.garage-players.players-2 .kart-picker { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.garage-players.players-2 .kart-picker button { height: 82px; }
+.garage-players.players-2 .kart-picker button img { height: 49px; }
+.garage-players.players-2 .kart-picker-label { margin: 10px 0 7px; }
+.kart-picker button:disabled:not(.selected) { opacity: .26; cursor: not-allowed; filter: grayscale(1); }
+.start-action-note { margin-top: 13px; color: #657476; font-size: 11px; text-align: center; }
+.player-result-summaries { display: grid; gap: 10px; }
+.player-result-summaries.players-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.player-result-summaries .results-summary { grid-template-columns: repeat(2, 1fr); margin: 16px 0; }
+.player-result-summaries .results-summary > strong { grid-column: 1 / -1; color: var(--coral); font-size: 13px; }
+.results-panel:has(.player-result-summaries.players-2) { width: min(650px, 100%); }
+
+.dual-position-lockups { position: absolute; top: calc(18px + env(safe-area-inset-top)); left: calc(20px + env(safe-area-inset-left)); display: flex; gap: 10px; }
+.dual-position { display: flex; align-items: center; min-width: 150px; padding: 9px 13px; color: var(--cream); background: rgba(12,39,49,.84); border-left: 4px solid var(--racer-color); clip-path: polygon(0 0, 94% 0, 100% 20%, 100% 100%, 0 100%); }
+.dual-position > b { color: var(--racer-color); font-size: 13px; }
+.dual-position > strong { margin-left: 13px; font-family: 'Trebuchet MS', sans-serif; font-size: 43px; line-height: 1; }
+.dual-position > span { margin-left: 7px; font-size: 13px; font-weight: 800; }
+.dual-position small { display: block; margin-top: 4px; color: var(--aqua); font-size: 9px; white-space: nowrap; }
+.player-speed { position: relative; display: grid; justify-items: end; gap: 8px; }
+.speed-player-label { position: absolute; top: -8px; left: -8px; z-index: 2; padding: 4px 7px; color: var(--ink); background: var(--yellow); border-radius: 3px; font-size: 11px; }
+.dual-speed-cluster { display: flex; align-items: end; gap: 14px; }
+.race-hud.players-2 .speed-cluster { bottom: calc(390px + env(safe-area-inset-bottom)); }
+.race-hud.players-2 .auto-pilot-chip { display: none; }
+.race-hud.players-2 .speed-dial { width: 92px; height: 92px; }
+.race-hud.players-2 .speed-dial::before { width: 74px; height: 74px; }
+.race-hud.players-2 .speed-dial strong { font-size: 26px; }
+
+.math-panels { position: absolute; z-index: 8; right: max(18px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); left: max(18px, env(safe-area-inset-left)); display: grid; gap: 16px; width: auto; margin: auto; pointer-events: auto; }
+.math-panels.players-1 { max-width: 1080px; }
+.math-panels.players-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 1720px; }
+.math-panels .math-panel { position: relative; inset: auto; width: 100%; max-width: none; min-height: 326px; margin: 0; padding: 15px 18px 14px; border-top: 4px solid var(--player-color, var(--aqua)); clip-path: polygon(1.5% 0, 98.5% 0, 100% 7%, 100% 100%, 0 100%, 0 7%); box-shadow: 0 14px 42px rgba(0,0,0,.3); }
+.math-panels .math-panel.challenge { border-top-color: var(--yellow); }
+.math-panels .math-meta { min-height: 34px; margin-bottom: 10px; gap: 12px; font-size: 11px; letter-spacing: .02em; }
+.player-panel-title { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.player-panel-title > b { padding: 5px 8px; color: var(--ink); background: var(--player-color, var(--aqua)); border-radius: 3px; font-size: 14px; }
+.player-panel-title > span { color: var(--cream); font-size: 13px; }
+.player-panel-title > small { color: rgba(255,255,255,.6); font-size: 10px; }
+.math-panels .energy-meter { margin: 0 0 0 auto; }
+.math-panels .energy-meter i { width: 82px; height: 6px; }
+.math-panels .energy-meter b { font-size: 10px; }
+.math-panels .math-score { white-space: nowrap; font-size: 11px; }
+.math-panels .question-row { grid-template-columns: minmax(0, 1fr) 238px; gap: 18px; align-items: stretch; }
+.math-panels.players-2 .question-row { grid-template-columns: minmax(0, 1fr) 216px; gap: 14px; }
+.question-entry { display: flex; min-width: 0; flex-direction: column; justify-content: space-between; gap: 8px; }
+.math-panels .question-text { min-width: 0; text-align: center; }
+.math-panels .question-text small { margin-bottom: 6px; color: var(--aqua); font-size: 11px; font-weight: 800; letter-spacing: .06em; }
+.math-panels .question-text strong { display: block; font-size: clamp(42px, 4.2vw, 68px); line-height: 1.08; letter-spacing: .01em; white-space: nowrap; }
+.math-panels.players-2 .question-text strong { font-size: clamp(38px, 3.2vw, 56px); }
+.numeric-answer { display: flex; align-items: center; justify-content: space-between; min-height: 58px; padding: 5px 16px; border: 2px solid rgba(255,255,255,.18); border-radius: 7px; background: rgba(0,0,0,.2); }
+.numeric-answer.has-value { border-color: var(--player-color, var(--aqua)); background: rgba(85,228,210,.08); }
+.numeric-answer span { color: rgba(255,255,255,.58); font-size: 11px; font-weight: 800; }
+.numeric-answer strong { min-width: 90px; color: var(--cream); font-family: 'Trebuchet MS', sans-serif; font-size: 39px; line-height: 1; text-align: right; font-variant-numeric: tabular-nums; }
+.submit-answer { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 53px; border: 0; border-radius: 6px; color: var(--ink); background: var(--yellow); box-shadow: 0 4px 0 #a97814; cursor: pointer; font-size: 16px; font-weight: 900; }
+.submit-answer:hover:not(:disabled) { filter: brightness(1.08); transform: translateY(-1px); }
+.submit-answer:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 2px 0 #a97814; }
+.submit-answer:disabled { opacity: .38; cursor: default; box-shadow: none; }
+.keyboard-hint { display: flex; align-items: center; justify-content: center; gap: 6px; color: rgba(255,255,255,.55); font-size: 9px; white-space: nowrap; }
+.numeric-keypad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(48px, 1fr)); gap: 8px; }
+.keypad-key { display: grid; place-items: center; min-width: 0; min-height: 52px; padding: 0; border: 2px solid rgba(255,255,255,.18); border-radius: 7px; color: var(--cream); background: #1c4653; box-shadow: 0 3px 0 #071d26; cursor: pointer; font-family: 'Trebuchet MS', sans-serif; font-size: 29px; font-weight: 900; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.keypad-key:hover:not(:disabled) { color: var(--ink); border-color: var(--yellow); background: var(--yellow); transform: translateY(-1px); }
+.keypad-key:active:not(:disabled) { transform: translateY(2px); box-shadow: none; }
+.keypad-key:disabled { opacity: .4; cursor: default; }
+.keypad-key.utility { grid-auto-flow: column; align-content: center; gap: 3px; color: var(--aqua); background: #153844; }
+.keypad-key.utility small { font-family: 'Avenir Next', 'PingFang SC', sans-serif; font-size: 8px; }
+.keypad-key.zero { color: var(--yellow); }
+.panel-bottom-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 38px; margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.1); }
+.math-panels .reward-hint { flex: 0 1 auto; font-size: 9px; }
+.math-panels .reward-hint b { font-size: 10px; }
+.math-panels .answer-feedback { display: flex; align-items: center; justify-content: flex-end; gap: 5px; margin: 0; font-size: 10px; text-align: right; }
+.math-panels .answer-feedback.neutral { color: rgba(255,255,255,.52); }
+
+@media (min-width: 1800px) {
+  .math-panels .math-panel { min-height: 356px; padding: 18px 24px; }
+  .math-panels .question-row { grid-template-columns: minmax(0, 1fr) 270px; }
+  .math-panels.players-2 .question-row { grid-template-columns: minmax(0, 1fr) 250px; }
+  .keypad-key { min-height: 59px; font-size: 33px; }
+  .math-panels.players-2 .question-text strong { font-size: 60px; }
+}
+
+@media (max-width: 1100px) {
+  .math-panels { gap: 10px; right: 10px; left: 10px; }
+  .math-panels .math-panel { padding: 12px; }
+  .math-panels.players-2 .question-row { grid-template-columns: minmax(0, 1fr) 174px; gap: 10px; }
+  .math-panels.players-2 .question-text strong { font-size: 37px; }
+  .math-panels .player-panel-title > small, .math-panels.players-2 .math-score { display: none; }
+  .keypad-key { min-height: 48px; font-size: 25px; }
+  .keyboard-hint { white-space: normal; text-align: center; }
+  .math-panels .reward-hint { display: none; }
+  .panel-bottom-line { justify-content: center; }
+  .math-panels .answer-feedback { text-align: center; }
+}
+
+@media (max-width: 700px) {
+  .start-layout.players-2 { align-items: flex-end; }
+  .start-layout.players-2 .start-panel { max-height: 82dvh; }
+  .garage-players.players-2 .kart-picker { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .player-mode { margin-top: 10px; }
+  .player-mode > button { min-height: 49px; }
+  .player-mode > button small { display: none; }
+  .math-panels, .math-panels.players-2 { right: max(7px, env(safe-area-inset-right)); bottom: max(7px, env(safe-area-inset-bottom)); left: max(7px, env(safe-area-inset-left)); grid-template-columns: 1fr; max-height: 76dvh; overflow-y: auto; }
+  .math-panels .math-panel { min-height: 250px; padding: 10px; }
+  .math-panels .question-row, .math-panels.players-2 .question-row { grid-template-columns: minmax(0, 1fr) 148px; gap: 9px; }
+  .math-panels .question-text { display: block; }
+  .math-panels .question-text strong, .math-panels.players-2 .question-text strong { font-size: 32px; }
+  .math-panels .question-text small { font-size: 8px; }
+  .numeric-answer { min-height: 43px; padding: 4px 9px; }
+  .numeric-answer strong { min-width: 50px; font-size: 29px; }
+  .numeric-answer span { font-size: 8px; }
+  .submit-answer { min-height: 43px; font-size: 12px; }
+  .submit-answer svg { width: 18px; }
+  .keyboard-hint { display: none; }
+  .numeric-keypad { grid-template-rows: repeat(4, minmax(38px, 1fr)); gap: 5px; }
+  .keypad-key { min-height: 38px; border-width: 1px; font-size: 22px; }
+  .keypad-key.utility svg { width: 18px; }
+  .keypad-key.utility small { display: none; }
+  .math-panels .math-meta { min-height: 26px; margin-bottom: 6px; }
+  .player-panel-title > span { font-size: 10px; }
+  .math-panels .energy-meter i { width: 45px; }
+  .math-panels .math-score { display: none; }
+  .panel-bottom-line { min-height: 25px; margin-top: 6px; padding-top: 5px; }
+  .math-panels .answer-feedback { font-size: 8px; }
+  .race-hud.players-2 .speed-cluster, .race-hud.players-2 .auto-pilot-chip { display: none; }
+  .dual-position-lockups { top: calc(10px + env(safe-area-inset-top)); left: calc(10px + env(safe-area-inset-left)); gap: 5px; }
+  .dual-position { min-width: 90px; padding: 6px 8px; }
+  .dual-position > strong { margin-left: 7px; font-size: 30px; }
+  .dual-position > b { font-size: 10px; }
+  .dual-position > span { font-size: 9px; }
+  .dual-position small { font-size: 7px; }
+  .player-result-summaries.players-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-height: 700px) and (orientation: landscape) {
+  .math-panels .math-panel { min-height: 238px; padding: 9px 13px; }
+  .math-panels .question-row, .math-panels.players-2 .question-row { grid-template-columns: minmax(0, 1fr) 190px; }
+  .math-panels .question-text strong, .math-panels.players-2 .question-text strong { font-size: 37px; }
+  .numeric-answer { min-height: 40px; }
+  .numeric-answer strong { font-size: 28px; }
+  .submit-answer { min-height: 40px; font-size: 13px; }
+  .keyboard-hint { display: none; }
+  .numeric-keypad { grid-template-rows: repeat(4, minmax(34px, 1fr)); gap: 5px; }
+  .keypad-key { min-height: 34px; font-size: 21px; }
+  .panel-bottom-line { min-height: 22px; margin-top: 5px; padding-top: 4px; }
+  .race-hud.players-2 .speed-cluster, .race-hud.players-2 .auto-pilot-chip { display: none; }
+}
+
+/* v11：左右玩具答题机，中央赛道始终留空。数字键盘改为 6×2，减少面板高度。 */
+.math-panels,
+.math-panels.players-1,
+.math-panels.players-2 {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.math-panels .math-panel {
+  position: absolute;
+  inset: auto auto max(16px, env(safe-area-inset-bottom)) auto;
+  width: clamp(340px, 25vw, 440px);
+  min-height: 0;
+  margin: 0;
+  padding: 12px;
+  overflow: visible;
+  color: var(--ink);
+  background: linear-gradient(155deg, #fffdf0 0%, #ffedbd 100%);
+  border: 3px solid var(--player-color, var(--aqua));
+  border-radius: 25px;
+  clip-path: none;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.72), 0 7px 0 var(--player-color, var(--aqua)), 0 15px 30px rgba(9,29,40,.28);
+  pointer-events: auto;
+}
+.math-panels .math-panel::before {
+  content: '答';
+  position: absolute;
+  top: -17px;
+  right: 22px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  color: var(--ink);
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 0 3px 0 rgba(16,43,56,.28);
+  font-size: 16px;
+  font-weight: 950;
+  transform: rotate(8deg);
+}
+.math-panels.players-1 .math-panel,
+.math-panels.players-2 .math-panel[data-player-index='0'] { right: auto; left: max(18px, env(safe-area-inset-left)); }
+.math-panels.players-2 .math-panel[data-player-index='1'] { right: max(18px, env(safe-area-inset-right)); left: auto; }
+.math-panels .math-panel.correct { background: linear-gradient(155deg, #f4ffe7, #c9f6c7); }
+.math-panels .math-panel.wrong { background: linear-gradient(155deg, #fff7e9, #ffd7c9); }
+.math-panels .math-panel.correct,
+.math-panels .math-panel.wrong { animation: cartoon-panel-pop .3s ease-out; }
+@keyframes cartoon-panel-pop {
+  0% { transform: translateY(3px) scale(.99); }
+  55% { transform: translateY(-3px) scale(1.01); }
+  100% { transform: none; }
+}
+.math-panels .math-panel.challenge { border-color: var(--yellow); }
+.math-panels .math-meta { min-height: 27px; margin-bottom: 7px; gap: 8px; color: var(--ink); }
+.player-panel-title { gap: 6px; }
+.math-panels .player-panel-title > b { padding: 4px 7px; border: 2px solid var(--ink); border-radius: 9px; box-shadow: 0 2px 0 var(--ink); font-size: 12px; }
+.math-panels .player-panel-title > span { color: var(--ink); font-size: 11px; }
+.math-panels .player-panel-title > small { color: #607079; font-size: 9px; }
+.math-panels .energy-meter { gap: 5px; color: var(--ink); }
+.math-panels .energy-meter i { width: 54px; height: 7px; background: rgba(16,43,56,.14); border: 1px solid rgba(16,43,56,.28); border-radius: 8px; }
+.math-panels .energy-meter b { color: var(--ink); font-size: 8px; }
+.math-panels .math-score { color: #5d6e73; font-size: 9px; }
+.math-panels .question-row,
+.math-panels.players-2 .question-row { display: flex; flex-direction: column; gap: 10px; }
+.math-panels .question-entry { display: grid; grid-template-columns: minmax(0, 1fr) 104px; gap: 8px; }
+.math-panels .question-text { display: block; grid-column: 1; align-self: stretch; text-align: left; }
+.math-panels .question-text small { margin-bottom: 3px; color: #658086; font-size: 9px; font-weight: 900; letter-spacing: .02em; }
+.math-panels .question-text strong,
+.math-panels.players-2 .question-text strong { color: var(--ink); font-size: clamp(31px, 2.2vw, 42px); line-height: 1.12; text-shadow: 0 2px 0 rgba(255,255,255,.8); }
+.math-panels .numeric-answer { grid-column: 2; min-height: 63px; padding: 4px 7px; justify-content: center; border: 2px dashed #71919a; border-radius: 15px; background: rgba(255,255,255,.58); }
+.math-panels .numeric-answer.has-value { border-style: solid; border-color: var(--player-color, var(--aqua)); background: #fff; }
+.math-panels .numeric-answer span { display: none; }
+.math-panels .numeric-answer strong { min-width: 0; color: var(--ink); font-size: 35px; text-align: center; }
+.math-panels .submit-answer { grid-column: 1 / -1; min-height: 42px; border: 2px solid var(--ink); border-radius: 14px; box-shadow: 0 4px 0 var(--ink); font-size: 14px; }
+.math-panels .keyboard-hint { display: none; }
+.math-panels .numeric-keypad { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(2, 44px); gap: 6px; }
+.math-panels .keypad-key { min-height: 44px; padding: 0; color: var(--ink); background: #fffdf2; border: 2px solid var(--ink); border-radius: 12px; box-shadow: 0 3px 0 var(--ink); font-size: 23px; }
+.math-panels .keypad-key:nth-child(3n + 1) { background: #ffdcd0; }
+.math-panels .keypad-key:nth-child(3n + 2) { background: #d7f3e7; }
+.math-panels .keypad-key:nth-child(3n) { background: #fff0a9; }
+.math-panels .keypad-key:hover:not(:disabled) { color: var(--ink); background: var(--yellow); border-color: var(--ink); }
+.math-panels .keypad-key.utility { display: grid; grid-auto-flow: row; gap: 0; color: var(--ink); background: #dceaf4; }
+.math-panels .keypad-key.utility svg { width: 19px; height: 19px; }
+.math-panels .keypad-key.utility small { display: none; }
+.math-panels .keypad-key.zero { color: var(--ink); background: var(--yellow); }
+.math-panels .reward-hint { display: none; }
+.math-panels .panel-bottom-line { justify-content: center; min-height: 22px; margin-top: 7px; padding-top: 5px; border-top: 2px dashed rgba(16,43,56,.13); }
+.math-panels .answer-feedback { justify-content: center; color: var(--ink); font-size: 9px; text-align: center; }
+.math-panels .answer-feedback.correct { color: #147461; }
+.math-panels .answer-feedback.wrong { color: #bd4a43; }
+.math-panels .answer-feedback.neutral { color: #68787b; }
+.race-hud.players-2 .speed-cluster { display: none; }
+.split-camera-divider { position: absolute; z-index: 5; top: 0; bottom: 0; left: 50%; width: 4px; background: linear-gradient(180deg, transparent, rgba(255,255,255,.92) 18%, rgba(255,255,255,.92) 82%, transparent); box-shadow: 0 0 0 2px rgba(16,43,56,.38); transform: translateX(-50%); pointer-events: none; }
+.split-camera-label { position: absolute; z-index: 6; top: 116px; padding: 5px 10px; color: var(--ink); background: var(--yellow); border: 2px solid var(--ink); border-radius: 10px; box-shadow: 0 3px 0 var(--ink); font-size: 10px; font-weight: 900; pointer-events: none; }
+.split-camera-label.p1 { left: 25%; transform: translateX(-50%) rotate(-2deg); }
+.split-camera-label.p2 { left: 75%; transform: translateX(-50%) rotate(2deg); }
+.split-camera-notice { position: absolute; z-index: 6; top: 79px; left: 50%; padding: 4px 9px; color: var(--cream); background: rgba(16,43,56,.78); border-radius: 8px; font-size: 9px; transform: translateX(-50%); pointer-events: none; }
+
+@media (min-width: 1800px) {
+  .math-panels .math-panel { min-height: 0; padding: 13px; }
+  .math-panels .question-text strong,
+  .math-panels.players-2 .question-text strong { font-size: 42px; }
+  .math-panels .keypad-key { min-height: 44px; font-size: 24px; }
+}
+
+@media (max-width: 1100px) and (min-width: 701px) {
+  .math-panels .math-panel { width: 300px; padding: 10px; }
+  .math-panels .question-entry { grid-template-columns: minmax(0, 1fr) 88px; }
+  .math-panels .question-text strong,
+  .math-panels.players-2 .question-text strong { font-size: 30px; }
+  .math-panels .numeric-keypad { grid-template-rows: repeat(2, 42px); gap: 5px; }
+  .math-panels .keypad-key { min-height: 42px; font-size: 21px; }
+  .math-panels .math-score { display: none; }
+}
+
+@media (max-width: 700px) {
+  .math-panels .math-panel { padding: 10px; border-radius: 21px; }
+  .math-panels.players-1 .math-panel { right: max(7px, env(safe-area-inset-right)); bottom: max(7px, env(safe-area-inset-bottom)); left: max(7px, env(safe-area-inset-left)); width: auto; }
+  .math-panels.players-2 .math-panel { bottom: max(7px, env(safe-area-inset-bottom)); width: calc(50% - 11px); }
+  .math-panels.players-2 .math-panel[data-player-index='0'] { left: 7px; }
+  .math-panels.players-2 .math-panel[data-player-index='1'] { right: 7px; }
+  .math-panels .player-panel-title > span,
+  .math-panels .player-panel-title > small { display: none; }
+  .math-panels .question-text strong,
+  .math-panels.players-2 .question-text strong { font-size: 31px; }
+  .math-panels .numeric-keypad { grid-template-rows: repeat(2, 42px); gap: 5px; }
+  .math-panels .keypad-key { min-height: 42px; font-size: 21px; }
+  .math-panels.players-2 .question-entry { display: flex; flex-direction: column; gap: 6px; }
+  .math-panels.players-2 .question-text { text-align: center; }
+  .math-panels.players-2 .question-text strong { font-size: 23px; }
+  .math-panels.players-2 .question-text small { font-size: 8px; }
+  .math-panels.players-2 .numeric-answer { min-height: 40px; }
+  .math-panels.players-2 .numeric-answer strong { font-size: 27px; }
+  .math-panels.players-2 .submit-answer { min-height: 40px; font-size: 12px; }
+  .math-panels.players-2 .numeric-keypad { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(4, 38px); }
+  .math-panels.players-2 .keypad-key { min-height: 38px; font-size: 19px; }
+  .math-panels.players-2 .energy-meter i { width: 36px; }
+  .math-panels.players-2 .energy-meter b { display: none; }
+  .split-camera-label { top: 93px; font-size: 8px; }
+  .split-camera-notice { display: none; }
+}
+
+@media (max-height: 700px) and (orientation: landscape) {
+  .math-panels .math-panel { bottom: 9px; width: 320px; padding: 9px; }
+  .math-panels .math-meta { min-height: 21px; margin-bottom: 4px; }
+  .math-panels .question-text strong,
+  .math-panels.players-2 .question-text strong { font-size: 29px; }
+  .math-panels .question-text small { margin-bottom: 1px; font-size: 8px; }
+  .math-panels .numeric-answer { min-height: 44px; }
+  .math-panels .numeric-answer strong { font-size: 28px; }
+  .math-panels .submit-answer { min-height: 36px; font-size: 12px; }
+  .math-panels .numeric-keypad { grid-template-rows: repeat(2, 34px); gap: 5px; }
+  .math-panels .keypad-key { min-height: 34px; font-size: 19px; }
+  .math-panels .panel-bottom-line { display: none; }
+  .split-camera-label { top: 65px; }
+}
+
+/* v13：已确认的评审稿布局。桌面比赛使用真实上下分区，答题面板不再覆盖 3D 画布。 */
+@media (min-width: 900px) and (min-height: 600px) {
+  .race-shell { --race-height: 60%; background: #123c49; }
+  .race-shell .game-canvas { inset: 0 0 auto; height: var(--race-height); }
+  .race-shell .race-hud,
+  .race-shell .countdown-overlay { bottom: calc(100% - var(--race-height)); }
+  .race-shell .math-panels,
+  .race-shell .math-panels.players-1,
+  .race-shell .math-panels.players-2 {
+    position: absolute;
+    inset: var(--race-height) 0 0;
+    display: grid;
+    gap: 18px;
+    width: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 16px 22px 14px;
+    overflow: visible;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 2px, transparent 2px 18px),
+      linear-gradient(180deg, #164b58, #0d303d);
+    border-top: 4px solid rgba(85,228,210,.42);
+    pointer-events: auto;
+  }
+  .race-shell .math-panels.players-1 { grid-template-columns: minmax(0, 1080px); justify-content: center; }
+  .race-shell .math-panels.players-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .race-shell .math-panels .math-panel,
+  .race-shell .math-panels .math-panel[data-player-index] {
+    position: relative;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 14px 20px 10px;
+    overflow: visible;
+    color: var(--ink);
+    background: linear-gradient(155deg, #fffdf0 0%, #ffedbd 100%);
+    border: 3px solid var(--player-color, var(--aqua));
+    border-radius: 28px;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.72), 0 7px 0 var(--player-color, var(--aqua)), 0 15px 30px rgba(9,29,40,.28);
+  }
+  .race-shell .math-panels .math-panel::before { top: -14px; right: 24px; }
+  .race-shell .math-panels .math-meta { flex: 0 0 34px; min-height: 34px; margin-bottom: 8px; }
+  .race-shell .math-panels .player-panel-title > b { padding: 5px 9px; font-size: 14px; }
+  .race-shell .math-panels .player-panel-title > span { font-size: 13px; }
+  .race-shell .math-panels .player-panel-title > small { font-size: 11px; }
+  .race-shell .math-panels .math-score { font-size: 12px; }
+  .race-shell .math-panels .question-row,
+  .race-shell .math-panels.players-2 .question-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(250px, 18.3vw, 350px);
+    flex: 1;
+    gap: 18px;
+    min-height: 0;
+  }
+  .race-shell .math-panels .question-entry {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 170px;
+    grid-template-rows: minmax(0, 1fr) 64px;
+    gap: 10px;
+    min-width: 0;
+    min-height: 0;
+  }
+  .race-shell .math-panels .question-text {
+    display: flex;
+    grid-column: 1 / -1;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    text-align: left;
+  }
+  .race-shell .math-panels .question-text small { margin-bottom: 7px; color: #658086; font-size: 14px; }
+  .race-shell .math-panels .question-text strong,
+  .race-shell .math-panels.players-2 .question-text strong {
+    color: var(--ink);
+    font-size: clamp(44px, 3.85vw, 74px);
+    line-height: 1.05;
+    letter-spacing: .01em;
+    white-space: nowrap;
+  }
+  .race-shell .math-panels .question-text strong.long-formula,
+  .race-shell .math-panels.players-2 .question-text strong.long-formula { font-size: clamp(34px, 2.8vw, 54px); }
+  .race-shell .math-panels .numeric-answer {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 64px;
+    padding: 4px 14px;
+    justify-content: space-between;
+    border: 3px solid rgba(16,43,56,.24);
+    border-radius: 15px;
+    background: rgba(255,255,255,.68);
+  }
+  .race-shell .math-panels .numeric-answer span { display: block; color: #6a7c81; font-size: 12px; }
+  .race-shell .math-panels .numeric-answer strong { color: var(--ink); font-size: 40px; }
+  .race-shell .math-panels .submit-answer {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 64px;
+    border: 3px solid var(--ink);
+    border-radius: 15px;
+    font-size: 18px;
+  }
+  .race-shell .math-panels .keyboard-hint { display: none; }
+  .race-shell .math-panels .numeric-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    height: 100%;
+    min-height: 0;
+  }
+  .race-shell .math-panels .keypad-key {
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    box-shadow: 0 4px 0 var(--ink);
+    font-size: 32px;
+  }
+  .race-shell .math-panels .keypad-key.utility { display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .race-shell .math-panels .keypad-key.utility small { display: block; font-size: 10px; }
+  .race-shell .math-panels .panel-bottom-line {
+    flex: 0 0 16px;
+    min-height: 16px;
+    margin-top: 0;
+    padding-top: 0;
+    justify-content: center;
+    line-height: 14px;
+  }
+  .race-shell .math-panels .reward-hint { display: none; }
+  .race-shell .math-panels .answer-feedback { justify-content: center; font-size: 12px; text-align: center; }
+  .race-shell .race-hud.players-2 .speed-cluster { display: none; }
+  .race-shell .auto-pilot-chip { bottom: 18px; }
+}
+
+@media (min-width: 900px) and (max-width: 1200px), (min-width: 900px) and (max-height: 850px) {
+  .race-shell .math-panels,
+  .race-shell .math-panels.players-1,
+  .race-shell .math-panels.players-2 { gap: 12px; padding: 12px 14px 12px; }
+  .race-shell .math-panels .math-panel,
+  .race-shell .math-panels .math-panel[data-player-index] { padding: 10px 12px 8px; border-radius: 22px; }
+  .race-shell .math-panels .math-meta { flex-basis: 28px; min-height: 28px; margin-bottom: 5px; }
+  .race-shell .math-panels .player-panel-title > small,
+  .race-shell .math-panels .math-score { display: none; }
+  .race-shell .math-panels .question-row,
+  .race-shell .math-panels.players-2 .question-row { grid-template-columns: minmax(0, 1fr) clamp(150px, 20vw, 240px); gap: 10px; }
+  .race-shell .math-panels .question-entry { grid-template-columns: minmax(0, 1fr) clamp(76px, 10vw, 112px); grid-template-rows: minmax(0, 1fr) 48px; gap: 7px; }
+  .race-shell .math-panels .question-text small { margin-bottom: 3px; font-size: 10px; }
+  .race-shell .math-panels .question-text strong,
+  .race-shell .math-panels.players-2 .question-text strong { font-size: clamp(34px, 4vw, 50px); }
+  .race-shell .math-panels .question-text strong.long-formula,
+  .race-shell .math-panels.players-2 .question-text strong.long-formula { font-size: clamp(26px, 3vw, 38px); }
+  .race-shell .math-panels .numeric-answer,
+  .race-shell .math-panels .submit-answer { min-height: 48px; }
+  .race-shell .math-panels .numeric-answer { padding: 3px 8px; }
+  .race-shell .math-panels .numeric-answer span { display: none; }
+  .race-shell .math-panels .numeric-answer strong { font-size: 30px; }
+  .race-shell .math-panels .submit-answer { font-size: 13px; }
+  .race-shell .math-panels .numeric-keypad { gap: 5px; }
+  .race-shell .math-panels .keypad-key { border-radius: 10px; font-size: 24px; }
+  .race-shell .math-panels .keypad-key.utility small { display: none; }
+  .race-shell .math-panels .panel-bottom-line { display: none; }
+}
+
+@media (min-width: 900px) and (max-height: 700px) {
+  .race-shell .math-panels .math-panel,
+  .race-shell .math-panels .math-panel[data-player-index] { padding: 8px 10px; }
+  .race-shell .math-panels .math-meta { position: absolute; z-index: 2; top: 8px; left: 10px; min-height: 0; margin: 0; pointer-events: none; }
+  .race-shell .math-panels .player-panel-title > span,
+  .race-shell .math-panels .player-panel-title > small,
+  .race-shell .math-panels .math-score,
+  .race-shell .math-panels .question-text small { display: none; }
+  .race-shell .math-panels .numeric-keypad { gap: 4px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .math-kart-app *, .math-kart-app *::before, .math-kart-app *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 }

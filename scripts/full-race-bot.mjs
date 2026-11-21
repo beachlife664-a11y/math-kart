@@ -3,7 +3,8 @@ import { mkdir, writeFile } from 'node:fs/promises';
 
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:28474/?qa=1';
 const answerQuestions = process.env.ANSWERS !== '0';
-const runName = process.env.RUN_NAME ?? (answerQuestions ? 'full-race-v6' : 'no-answer-v6');
+const playerCount = process.env.PLAYERS === '1' ? 1 : 2;
+const runName = process.env.RUN_NAME ?? (answerQuestions ? `full-race-${playerCount}p-v10` : `no-answer-${playerCount}p-v10`);
 const output = `artifacts/${runName}`;
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ channel: 'chromium', headless: true });
@@ -23,12 +24,11 @@ let initialDistance = 0;
 let lastDistance = 0;
 let lastProgressAt = Date.now();
 let softlockWindows = 0;
-let answeredQuestion = 0;
+const answeredQuestions = [0, 0];
 let samples = 0;
 let peakCalls = 0;
 let peakTriangles = 0;
 let peakState = null;
-let telegraphsSeen = 0;
 const sections = new Set();
 const rewardEvents = new Set();
 
@@ -37,6 +37,7 @@ try {
   await page.waitForSelector('canvas', { state: 'visible' });
   await page.waitForFunction(() => Boolean(window.__THREE_GAME_DIAGNOSTICS__?.state));
   await page.evaluate(() => window.__THREE_GAME_TEST_HOOKS__.seed(42));
+  if (playerCount === 2) await page.getByRole('button', { name: /2 人同屏/ }).click();
   await page.getByRole('button', { name: '开始比赛' }).click();
   const initial = await page.evaluate(() => window.__THREE_GAME_DIAGNOSTICS__.state);
   initialFrame = initial.frame;
@@ -50,17 +51,24 @@ try {
     }));
     const { state, render } = snapshot;
     samples += 1;
-    sections.add(state.sectionName);
+    for (const player of state.players) {
+      sections.add(player.sectionName);
+      if (/捷径|高速线|落地冲刺|加速线/.test(player.eventLabel)) rewardEvents.add(`P${player.playerIndex + 1}: ${player.eventLabel}`);
+    }
     peakCalls = Math.max(peakCalls, render.calls);
     if (render.triangles > peakTriangles) {
       peakTriangles = render.triangles;
       peakState = state;
     }
-    if (state.rivalAlert) telegraphsSeen += 1;
-    if (/捷径|高速线|落地冲刺|加速线/.test(state.eventLabel)) rewardEvents.add(state.eventLabel);
-    if (answerQuestions && state.phase === 'racing' && state.question && state.question.selectedIndex === null && state.question.id !== answeredQuestion) {
-      answeredQuestion = state.question.id;
-      await page.locator('.answer-button').nth(state.question.correctIndex).click();
+    if (answerQuestions && state.phase === 'racing') {
+      for (const player of state.players) {
+        const question = player.question;
+        if (!question || question.submittedAnswer !== null || question.id === answeredQuestions[player.playerIndex]) continue;
+        answeredQuestions[player.playerIndex] = question.id;
+        const panel = page.locator(`.math-panel[data-player-index="${player.playerIndex}"]`);
+        for (const digit of String(question.answer)) await panel.locator(`[data-digit="${digit}"]`).click();
+        await page.getByRole('button', { name: `P${player.playerIndex + 1} 确认答案` }).click();
+      }
     }
     if (state.playerDistance > lastDistance + 0.2) {
       lastDistance = state.playerDistance;
@@ -75,26 +83,28 @@ try {
   await page.waitForSelector('.results-panel', { state: 'visible', timeout: 5000 });
   await page.screenshot({ path: `${output}/final-ranking.png` });
   const final = await page.evaluate(() => window.__THREE_GAME_DIAGNOSTICS__.state);
-  const player = final.results.find((result) => result.isPlayer);
+  const player = final.results.find((result) => result.playerIndex === 0);
   const renderBudget = { calls: peakCalls <= 300, triangles: peakTriangles <= 750000 };
+  const allRouteRewards = final.players.every((item) => item.routeRewards.length === 4);
+  const allAnswered = final.players.every((item) => item.correctCount > 0);
   const report = {
-    ok: final.phase === 'finished' && final.results.length === 5 && softlockWindows <= 1 && errors.length === 0 && sections.size === 5 && renderBudget.calls && renderBudget.triangles && final.audio?.loadErrors?.length === 0 && final.audio?.musicVoices === 1 && (!answerQuestions || (player.rank <= 2 && final.routeRewards.length === 4)),
+    ok: final.phase === 'finished' && final.results.length === playerCount && softlockWindows <= 1 && errors.length === 0 && sections.size === 5 && renderBudget.calls && renderBudget.triangles && final.audio?.loadErrors?.length === 0 && final.audio?.musicVoices === 1 && (!answerQuestions || (allRouteRewards && allAnswered)),
     seed: 42,
-    input: answerQuestions ? 'start button + real answer clicks only; no driving keys, no setState hook' : 'start button only; no answers, no driving keys, no setState hook',
+    players: playerCount,
+    input: answerQuestions ? 'start button + real numeric keypad clicks for every player; no driving keys, no setState hook' : 'start button only; no answers, no driving keys, no setState hook',
     wallSeconds: (Date.now() - startedAt) / 1000,
     framesAdvanced: final.frame - initialFrame,
     distanceTravelled: final.playerDistance - initialDistance,
-    correctAnswers: final.correctCount,
-    obstacleHits: final.obstacleHits,
+    correctAnswers: final.players.map((item) => item.correctCount),
+    obstacleHits: final.players.map((item) => item.obstacleHits),
     audio: final.audio,
     audioLoadErrors: final.audio?.loadErrors ?? ['missing diagnostics'],
-    bestStreak: final.bestStreak,
-    overtakes: final.overtakeCount,
+    bestStreak: final.players.map((item) => item.bestStreak),
+    overtakes: final.players.map((item) => item.overtakeCount),
     playerRank: player.rank,
     sections: [...sections],
-    routeRewards: final.routeRewards,
+    routeRewards: final.players.map((item) => item.routeRewards),
     rewardEvents: [...rewardEvents],
-    telegraphSamples: telegraphsSeen,
     softlockWindows,
     samples,
     peakCalls,

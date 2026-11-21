@@ -17,6 +17,7 @@
     "test:audio": "playwright test tests/audio-collision.spec.ts",
     "test:compat": "node scripts/browser-smoke.mjs",
     "test:race": "node scripts/full-race-bot.mjs",
+    "test:camera": "node scripts/asymmetric-camera-bot.mjs",
     "test:release": "node scripts/release-smoke.mjs",
     "prepare:preview": "node scripts/prepare-preview.mjs",
     "preview:static": "node scripts/static-server.mjs",

@@ -1,5 +1,5 @@
 {
-  "url": "http://127.0.0.1:28476/?qa=1",
+  "url": "http://127.0.0.1:28474/?qa=1",
   "mode": "mobile",
   "state": "active-play",
   "requestedState": "active-play",
@@ -16,42 +16,42 @@
     "ok": true,
     "reason": "nonblank",
     "metrics": {
-      "colorBuckets": 690,
-      "colorEntropyBits": 5.43,
-      "edgeDensity": 0.155,
+      "colorBuckets": 464,
+      "colorEntropyBits": 4.85,
+      "edgeDensity": 0.134,
       "luminance": {
-        "mean": 104.1,
-        "p5": 33.8,
-        "p95": 206.1,
-        "contrast": 172.3
+        "mean": 94,
+        "p5": 33.5,
+        "p95": 196.8,
+        "contrast": 163.3
       },
-      "dominantColorShare": 0.156,
-      "nonBackgroundShare": 0.844
+      "dominantColorShare": 0.179,
+      "nonBackgroundShare": 0.821
     },
     "renderBudget": {
       "tier": "mobile",
       "rows": [
         {
           "metric": "calls",
-          "actual": 74,
+          "actual": 36,
           "limit": 150,
           "ok": true
         },
         {
           "metric": "triangles",
-          "actual": 214860,
+          "actual": 146510,
           "limit": 300000,
           "ok": true
         },
         {
           "metric": "geometries",
-          "actual": 164,
+          "actual": 126,
           "limit": 200,
           "ok": true
         },
         {
           "metric": "textures",
-          "actual": 20,
+          "actual": 16,
           "limit": 40,
           "ok": true
         }
@@ -61,15 +61,15 @@
     "diagnostics": {
       "renderer": {
         "render": {
-          "frame": 104,
-          "calls": 74,
-          "triangles": 214860,
+          "frame": 101,
+          "calls": 36,
+          "triangles": 146510,
           "points": 0,
           "lines": 0
         },
         "memory": {
-          "geometries": 164,
-          "textures": 20
+          "geometries": 126,
+          "textures": 16
         }
       }
     },

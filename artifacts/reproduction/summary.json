@@ -1,14 +1,13 @@
 {
   "ok": true,
-  "origin": "http://127.0.0.1:28476",
+  "origin": "http://127.0.0.1:28474",
   "checks": [
     "assets",
     "lint",
     "production-build",
-    "playwright-9-of-9",
+    "playwright-10-of-10",
     "three-browsers",
     "production-player-entry",
-    "desktop-mobile-pixels-and-budgets",
-    "full-two-lap-answer-only-race"
+    "desktop-mobile-pixels-and-budgets"
   ]
 }

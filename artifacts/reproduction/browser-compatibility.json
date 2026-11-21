@@ -18,7 +18,7 @@
         "phase": "racing",
         "autoOnly": true,
         "correctCount": 1,
-        "distance": 30.590753786833154,
+        "distance": 13.218774189989787,
         "loadedModels": [
           "comet",
           "reef",
@@ -34,14 +34,14 @@
           "cave",
           "bridge"
         ],
-        "fps": 60.002355646999135,
-        "calls": 134,
-        "triangles": 624304,
-        "geometries": 261,
-        "textures": 46,
+        "fps": 60.005309924174824,
+        "calls": 89,
+        "triangles": 402700,
+        "geometries": 212,
+        "textures": 40,
         "gpu": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
       },
-      "distanceTravelled": 17.831080449682986
+      "distanceTravelled": 13.218774189989787
     },
     {
       "browser": "firefox",
@@ -61,7 +61,7 @@
         "phase": "racing",
         "autoOnly": true,
         "correctCount": 1,
-        "distance": 30.926271506419663,
+        "distance": 14.116834484100726,
         "loadedModels": [
           "comet",
           "reef",
@@ -77,14 +77,14 @@
           "cave",
           "bridge"
         ],
-        "fps": 59.999338141891144,
-        "calls": 164,
-        "triangles": 624456,
-        "geometries": 266,
-        "textures": 46,
+        "fps": 59.99650493613429,
+        "calls": 119,
+        "triangles": 402852,
+        "geometries": 217,
+        "textures": 40,
         "gpu": "Apple M1, or similar"
       },
-      "distanceTravelled": 18.166598169269495
+      "distanceTravelled": 14.116834484100726
     },
     {
       "browser": "webkit",
@@ -104,7 +104,7 @@
         "phase": "racing",
         "autoOnly": true,
         "correctCount": 1,
-        "distance": 31.26213744566525,
+        "distance": 13.218774189989787,
         "loadedModels": [
           "comet",
           "reef",
@@ -120,14 +120,14 @@
           "cave",
           "bridge"
         ],
-        "fps": 53.61624186325676,
-        "calls": 134,
-        "triangles": 624304,
-        "geometries": 264,
-        "textures": 46,
+        "fps": 155.79957500305497,
+        "calls": 89,
+        "triangles": 402700,
+        "geometries": 210,
+        "textures": 40,
         "gpu": "Apple GPU"
       },
-      "distanceTravelled": 18.50246410851508
+      "distanceTravelled": 13.218774189989787
     }
   ]
 }

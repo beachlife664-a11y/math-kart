@@ -31,17 +31,5 @@ export function createMathQuestion(random: () => number, id: number): IMathQuest
     text = `${a} × ${b} + ${c} = ?`;
   }
 
-  const values = new Set<number>([answer]);
-  const offsets = [-10, -5, -3, -2, -1, 1, 2, 3, 5, 10];
-  while (values.size < 4) {
-    const offset = offsets[Math.floor(random() * offsets.length)];
-    const candidate = Math.max(0, answer + offset);
-    values.add(candidate);
-  }
-  const options = [...values];
-  for (let i = options.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(random() * (i + 1));
-    [options[i], options[j]] = [options[j], options[i]];
-  }
-  return { id, text, options, correctIndex: options.indexOf(answer), selectedIndex: null, isCorrect: null, challenge: null, rewardLabel: null };
+  return { id, text, answer, submittedAnswer: null, isCorrect: null, challenge: null, rewardLabel: null };
 }

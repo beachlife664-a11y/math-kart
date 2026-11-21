@@ -46,7 +46,8 @@ try {
     checks.push('deterministic-math', 'production-http-and-runtime-assets');
   } else {
     run(npm, ['test'], { ...process.env, BASE_URL: origin });
-    run(npm, ['run', 'test:audio'], { ...process.env, BASE_URL: origin }); checks.push('playwright-9-of-9');
+    run(npm, ['run', 'test:audio'], { ...process.env, BASE_URL: origin }); checks.push('playwright-11-of-11');
+    run(npm, ['run', 'test:camera'], { ...process.env, BASE_URL: origin }); checks.push('asymmetric-real-input-camera');
     run(npm, ['run', 'test:compat'], { ...process.env, BASE_URL: `${origin}/?qa=1`, REPORT_PATH: 'artifacts/reproduction/browser-compatibility.json' }); checks.push('three-browsers');
     run(npm, ['run', 'test:release'], { ...process.env, BASE_URL: origin, REPORT_PATH: 'artifacts/reproduction/release-smoke.json' }); checks.push('production-player-entry');
     run(process.execPath, ['scripts/inspect-threejs-canvas.mjs', '--manifest', 'artifacts/reproduction-manifest.json', '--seed', '42'], { ...process.env, BASE_URL: `${origin}/?qa=1` });

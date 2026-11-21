@@ -139,6 +139,8 @@ interface CameraFadeModel {
   boxes: THREE.Box3[];
   materials: THREE.Material[];
   opacity: number;
+  fadeDistance?: number;
+  fadeOpacity?: number;
 }
 
 export class World {
@@ -404,6 +406,14 @@ export class World {
       lights.setColorAt(i, new THREE.Color([0xf2554d, 0xf4bd32, 0x68d97c][i]));
     }
     group.add(lights);
+    group.updateMatrixWorld(true);
+    this.cameraFadeModels.push({
+      boxes: [new THREE.Box3().setFromObject(banner)],
+      materials: [banner.material as THREE.Material, ivory, coral, lights.material as THREE.Material],
+      opacity: 1,
+      fadeDistance: 11,
+      fadeOpacity: 0,
+    });
     const grid = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 0.025, 0.8), new THREE.MeshStandardMaterial({ roughness: 0.8 }), 11);
     const gridMatrix = new THREE.Matrix4();
     for (let i = -5; i <= 5; i += 1) {
@@ -999,8 +1009,8 @@ export class World {
 
   updateCameraFade(cameraPosition: THREE.Vector3, delta: number): void {
     for (const model of this.cameraFadeModels) {
-      const close = model.boxes.some((box) => box.distanceToPoint(cameraPosition) < 2.8);
-      model.opacity = THREE.MathUtils.damp(model.opacity, close ? 0.14 : 1, 12, delta);
+      const close = model.boxes.some((box) => box.distanceToPoint(cameraPosition) < (model.fadeDistance ?? 2.8));
+      model.opacity = THREE.MathUtils.damp(model.opacity, close ? (model.fadeOpacity ?? 0.14) : 1, 12, delta);
       const transparent = model.opacity < 0.985;
       for (const material of model.materials) {
         material.opacity = model.opacity;

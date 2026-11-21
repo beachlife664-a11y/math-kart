@@ -1,5 +1,5 @@
 {
-  "url": "http://127.0.0.1:28476/?qa=1",
+  "url": "http://127.0.0.1:28474/?qa=1",
   "mode": "desktop",
   "state": "cliff",
   "requestedState": "cliff",
@@ -16,42 +16,42 @@
     "ok": true,
     "reason": "nonblank",
     "metrics": {
-      "colorBuckets": 853,
-      "colorEntropyBits": 6.34,
-      "edgeDensity": 0.184,
+      "colorBuckets": 652,
+      "colorEntropyBits": 5.74,
+      "edgeDensity": 0.162,
       "luminance": {
-        "mean": 123.8,
-        "p5": 33.8,
-        "p95": 215.6,
-        "contrast": 181.9
+        "mean": 100.5,
+        "p5": 29.7,
+        "p95": 201.1,
+        "contrast": 171.3
       },
-      "dominantColorShare": 0.082,
-      "nonBackgroundShare": 0.918
+      "dominantColorShare": 0.118,
+      "nonBackgroundShare": 0.882
     },
     "renderBudget": {
       "tier": "desktop",
       "rows": [
         {
           "metric": "calls",
-          "actual": 122,
+          "actual": 64,
           "limit": 300,
           "ok": true
         },
         {
           "metric": "triangles",
-          "actual": 534262,
+          "actual": 342146,
           "limit": 750000,
           "ok": true
         },
         {
           "metric": "geometries",
-          "actual": 205,
+          "actual": 147,
           "limit": 300,
           "ok": true
         },
         {
           "metric": "textures",
-          "actual": 27,
+          "actual": 23,
           "limit": 60,
           "ok": true
         }
@@ -61,15 +61,15 @@
     "diagnostics": {
       "renderer": {
         "render": {
-          "frame": 93,
-          "calls": 122,
-          "triangles": 534262,
+          "frame": 97,
+          "calls": 64,
+          "triangles": 342146,
           "points": 0,
           "lines": 0
         },
         "memory": {
-          "geometries": 205,
-          "textures": 27
+          "geometries": 147,
+          "textures": 23
         }
       }
     },

@@ -4,8 +4,8 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:28474/?qa=1';
 const output = process.env.OUTPUT_DIR ?? 'artifacts/v8-audit/drivers-before';
 const karts = [
-  ['comet', '选择彗星号'], ['reef', '选择浪花号'], ['bolt', '选择闪电号'],
-  ['sprout', '选择嫩芽号'], ['nova', '选择星辉号'], ['titan', '选择巨石号'], ['mochi', '选择麻薯号'],
+  ['comet', 'P1 选择彗星号'], ['reef', 'P1 选择浪花号'], ['bolt', 'P1 选择闪电号'],
+  ['sprout', 'P1 选择嫩芽号'], ['nova', 'P1 选择星辉号'], ['titan', 'P1 选择巨石号'], ['mochi', 'P1 选择麻薯号'],
 ];
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ channel: 'chromium', headless: true });

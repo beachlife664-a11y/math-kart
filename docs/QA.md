@@ -8,9 +8,9 @@ npm run verify:local
 npm run verify:local -- --full-race
 ```
 
-`verify:local` 会自行启动和关闭静态服务器。它执行资源校验、TypeScript/ESLint、生产构建、9 项 Playwright、三浏览器、普通玩家入口和四组桌面/手机画布检查。
+`verify:local` 会自行启动和关闭静态服务器。它执行资源校验、TypeScript/ESLint、生产构建、11 项 Playwright、真实不对称答题镜头、三浏览器、普通玩家入口和四组桌面/手机画布检查。
 
-GitHub 托管 runner 没有硬件 WebGL，因此推送时执行 `npm run verify:ci`：资源 SHA-256、TypeScript/ESLint、生产构建、300 道数学题的确定性检查，以及正式 HTTP 入口和 GLB/WAV/PNG 资源可访问性。它不替代上方在本机已通过的 9 项真实输入、三浏览器和图形回归；完整测试用例均保留，未因 CI 环境删除或标记跳过。
+GitHub 托管 runner 没有硬件 WebGL，因此推送时执行 `npm run verify:ci`：资源 SHA-256、TypeScript/ESLint、生产构建、300 道数学题的确定性检查，以及正式 HTTP 入口和 GLB/WAV/PNG 资源可访问性。它不替代上方在本机已通过的 11 项真实输入、三浏览器和图形回归；完整测试用例均保留，未因 CI 环境删除或标记跳过。
 
 ## 2. 单项命令
 
@@ -18,8 +18,9 @@ GitHub 托管 runner 没有硬件 WebGL，因此推送时执行 `npm run verify:
 
 ```bash
 npm run lint
-npm test                    # 七项玩法、车库、手机与赛道回归
+npm test                    # 九项玩法、布局、镜头、车库、手机与赛道回归
 npm run test:audio          # 双 BGM、事件采样、碰撞和护盾
+npm run test:camera         # 真实不对称答题拉开/追赶 + 车辆视野检查
 npm run test:compat         # Chromium / Firefox / WebKit
 npm run test:release        # 正式玩家入口、无 QA、无驾驶按钮、无坏响应
 npm run test:race           # 完整两圈答案-only + 视频 + 排名
@@ -30,13 +31,14 @@ npm run inspect:canvas      # 声明的桌面/手机状态和预算
 ## 3. 当前功能基线
 
 - TypeScript / ESLint：PASS。
-- Playwright：9/9 PASS。
+- Playwright：11/11 PASS（9 项玩法/布局/镜头 + 2 项音频/碰撞）。
+- 真实不对称答题：P1 连续答题拉开后分屏，P2 追赶后合并；两车中心均在画面内且不被看板覆盖，0 浏览器错误。
 - Chromium、Firefox、WebKit：PASS。
 - 普通生产入口：0 QA 暴露、0 驾驶按钮、0 页面错误、0 坏响应。
-- 完整答案-only 比赛：五车完赛、0 软锁、0 浏览器错误、0 音频加载错误。
+- 完整答案-only 比赛：两名真实玩家完赛、各答对 21 题、各获得 4 类路段奖励，0 软锁、0 浏览器错误、0 音频加载错误。
 - 音乐同时实例数为 1；暂停和重开不叠加。
 
-## 4. 全新仓库复刻结果
+## 4. 原单人版全新仓库复刻结果
 
 在没有 `node_modules` 的 `math-kart-github` 新目录中执行 `node scripts/setup.mjs --with-tests`，再执行 `PORT=28476 npm run verify:local -- --full-race`：
 

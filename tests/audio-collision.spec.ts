@@ -33,7 +33,7 @@ test('双 BGM、采样音效、循环、暂停重开和静音均按真实场景�
   page.on('response', (response) => { if (response.status() >= 400) badResponses.push(`${response.status()} ${response.url()}`); });
 
   expect((await audioState(page)).contextState).toBe('locked');
-  await page.getByRole('button', { name: '选择浪花号' }).click();
+  await page.getByRole('button', { name: 'P1 选择浪花号' }).click();
   await expect.poll(async () => (await audioState(page)).activeMusic).toBe('menu');
   let audio = await audioState(page);
   expect(audio.contextState).toBe('running');
@@ -56,8 +56,10 @@ test('双 BGM、采样音效、循环、暂停重开和静音均按真实场景�
   expect(audio.sampleEvents.boost).toBeGreaterThan(0);
 
   await expect.poll(async () => Boolean((await state(page)).question)).toBe(true);
-  const question = (await state(page)).question;
-  await page.locator('.answer-button').nth(question.correctIndex).click();
+  const question = (await state(page)).players[0].question;
+  const panel = page.locator('.math-panel[data-player-index="0"]');
+  for (const digit of String(question.answer)) await panel.locator(`[data-digit="${digit}"]`).click();
+  await page.getByRole('button', { name: 'P1 确认答案' }).click();
   await expect.poll(async () => (await audioState(page)).sampleEvents.correct ?? 0).toBeGreaterThan(0);
 
   await page.getByRole('button', { name: '暂停比赛' }).click();

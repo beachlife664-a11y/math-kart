@@ -2,13 +2,13 @@ import { chromium } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const karts = [
-  ['comet', '选择彗星号'],
-  ['bolt', '选择闪电号'],
-  ['sprout', '选择嫩芽号'],
-  ['nova', '选择星辉号'],
-  ['reef', '选择浪花号'],
-  ['titan', '选择巨石号'],
-  ['mochi', '选择麻薯号'],
+  ['comet', 'P1 选择彗星号'],
+  ['bolt', 'P1 选择闪电号'],
+  ['sprout', 'P1 选择嫩芽号'],
+  ['nova', 'P1 选择星辉号'],
+  ['reef', 'P1 选择浪花号'],
+  ['titan', 'P1 选择巨石号'],
+  ['mochi', 'P1 选择麻薯号'],
 ];
 await mkdir('artifacts/hero-assets-1', { recursive: true });
 const browser = await chromium.launch({ channel: 'chromium', headless: true });
