@@ -22,6 +22,8 @@ playwright-report/
 artifacts/art-v*/
 artifacts/v*/
 artifacts/reproduction/
+artifacts/browser-compatibility-*.json
+artifacts/release-smoke-*.json
 assets/models/
 assets/concepts/
 

@@ -27,7 +27,7 @@ npm run preview:static
 # 首次需要安装测试浏览器
 node scripts/setup.mjs --with-tests
 
-# 自动启动预览，执行资源校验、构建、10 项玩法/音频测试、
+# 自动启动预览，执行资源校验、构建、11 项玩法/布局/镜头与 2 项音频测试、
 # 三浏览器、普通玩家入口和桌面/手机画面检查，最后关闭服务器
 npm run verify:local
 
@@ -50,7 +50,7 @@ npm run verify:local -- --full-race
 | 静音 | M 或声音按钮 | 声音按钮 |
 
 - 开局可选 1 人或 2 人同屏；双人各有独立题目、输入框、连对能量、加速和结算，没有 AI 对手。
-- 卡通答题机位于左右下角，采用大算式和 6×2 数字键盘，中央赛道不放大面板；手机单人也保留完整车体视野。
+- 卡通答题区位于赛道下方，双人并排大面板，采用大算式和 6×2 数字键盘，不遮挡赛道；手机单人也保留完整车体视野。
 - 双人接近时共享镜头，距离拉开后切换左右独立追踪画面，重新接近后自动合并，避免中点镜头无限拉远。
 - 答对：自己的赛车立即喷射，连对充能，自动择机使用氮气、护盾和超级涡轮。
 - 答错：显示正确答案，失去本次奖励，不停车、不倒退。
@@ -80,8 +80,6 @@ docs/                      架构、编码规则、资产/音频管线、过程�
 
 大型原始建模包、历史截图和测试录像不纳入 Git，详见 [`docs/REPOSITORY_CONTENTS.md`](docs/REPOSITORY_CONTENTS.md)。模型采用 Meshopt 压缩且不减三角形；加载器已内置解码支持。
 
-完整目录说明见 [`docs/REPOSITORY_CONTENTS.md`](docs/REPOSITORY_CONTENTS.md)。
-
 ## “1:1 复刻”的准确定义
 
 - **精确复刻当前版本**：使用仓库内锁定源码和 GLB/WAV/贴图；`assets/runtime-manifest.json` 保存全部运行资源 SHA-256，`repository-files.sha256` 保存交付时整仓库文件清单。
@@ -106,7 +104,7 @@ docs/                      架构、编码规则、资产/音频管线、过程�
 
 ## 当前验证基线
 
-- TypeScript / ESLint、生产构建、Playwright **11/11**。
+- TypeScript / ESLint、生产构建、Playwright **13/13**（11 项玩法/布局/镜头 + 2 项音频/碰撞）。
 - Chromium / Firefox / WebKit 全部通过。
 - 完整两圈双人真实数字输入比赛：两车完赛、各答对 21 题、各获得 4 类路段奖励，0 软锁、0 浏览器错误。
 - 双人完整比赛实测峰值 **212 draw calls / 556,428 triangles**。
