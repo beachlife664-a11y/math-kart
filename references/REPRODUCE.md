@@ -4,7 +4,7 @@
 
 - Node.js `^20.19.0` 或 `>=22.12.0`；推荐 Node.js 22 LTS。
 - npm 10+。
-- 仅运行游戏不需要 Python、Blender、Hyper3D、Seed Audio、API Key 或全局 npm 包。
+- 使用 Skill 的复制与结构校验脚本需要 Python 3；复制出游戏项目后，仅运行游戏不需要 Python、Blender、Hyper3D、Seed Audio、API Key 或全局 npm 包。
 - 仅重新生成缩略图或压缩 GLB 贴图时，才需要 Python 3 与 Pillow。
 
 首次 `npm ci` 需要访问 `https://registry.npmjs.org/`。依赖安装后，页面及所有模型、贴图和音频均从本地加载。
@@ -12,8 +12,9 @@
 ## 2. 一键安装与运行
 
 ```bash
-git clone https://github.com/beachlife664-a11y/math-kart.git math-kart
-cd math-kart
+git clone https://github.com/beachlife664-a11y/math-kart.git math-kart-skill
+python3 math-kart-skill/scripts/create_project.py --destination ./math-kart-project
+cd math-kart-project
 node scripts/setup.mjs
 npm run preview:static
 ```
@@ -63,7 +64,8 @@ npm run verify:local
 
 - 运行资源 SHA-256 校验；
 - TypeScript 与 ESLint；
-- 七项玩法测试和两项音频/碰撞测试；
+- 11 项玩法、布局和镜头测试，以及 2 项音频/碰撞测试；
+- P1 真实答题拉开、P2 追赶后的分屏与合并镜头；
 - Chromium、Firefox、WebKit；
 - 普通玩家入口与无 QA 暴露检查；
 - 桌面/手机实际画布截图、像素和渲染预算；
@@ -127,4 +129,4 @@ Linux CI 或最小系统可增加 `--with-deps`。
 
 ### 想重新生成 Hyper3D 或音频
 
-这不是运行游戏的必要步骤。按 `docs/ASSET_PIPELINE.md`、`docs/AUDIO_PIPELINE.md` 和 `assets/generation-log.json` 进行再创作，并自行提供服务账号与授权。新结果不能替代当前已验证资源而不重新验收。
+这不是运行游戏的必要步骤。按 [ASSET_PIPELINE.md](ASSET_PIPELINE.md)、[AUDIO_PIPELINE.md](AUDIO_PIPELINE.md) 和游戏项目中的 `assets/generation-log.json` 进行再创作，并自行提供服务账号与授权。新结果不能替代当前已验证资源而不重新验收。

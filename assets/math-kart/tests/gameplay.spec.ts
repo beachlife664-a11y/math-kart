@@ -337,7 +337,8 @@ test('手机真实触摸数字答题、旋转布局与渲染预算', async ({ br
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, hasTouch: true, isMobile: true });
   const page = await context.newPage();
   const messages = monitor(page);
-  await page.goto('http://127.0.0.1:28474/?qa=1');
+  const baseURL = process.env.BASE_URL ?? 'http://127.0.0.1:28474';
+  await page.goto(new URL('/?qa=1', baseURL).toString());
   await expect(page.locator('canvas')).toBeVisible();
   await setState(page, 'active-play');
   await expect.poll(async () => Boolean((await state(page)).players[0].question)).toBe(true);

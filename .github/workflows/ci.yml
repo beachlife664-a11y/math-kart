@@ -10,18 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Validate Skill structure and bundled assets
+        run: python3 scripts/validate_package.py
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: assets/math-kart/package-lock.json
       - run: npm ci --no-audit --no-fund
+        working-directory: assets/math-kart
       - run: npx playwright install --with-deps --no-shell chromium
+        working-directory: assets/math-kart
       # Hosted runners have no hardware WebGL. Run the deterministic and production
       # asset checks here; verify:local retains the full real-input graphics suite.
       - run: npm run verify:ci
+        working-directory: assets/math-kart
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: reproduction-evidence
-          path: artifacts/reproduction/
+          path: assets/math-kart/artifacts/reproduction/
           if-no-files-found: ignore

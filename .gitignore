@@ -18,14 +18,14 @@ test-results/
 playwright-report/
 
 # Local QA evidence and raw authoring inputs (not needed to run or build)
-# Keep small design/process notes under artifacts/ and assets/ in Git.
-artifacts/art-v*/
-artifacts/v*/
-artifacts/reproduction/
-artifacts/browser-compatibility-*.json
-artifacts/release-smoke-*.json
-assets/models/
-assets/concepts/
+# Keep only small reproducible manifests and final notes in Git.
+**/artifacts/art-v*/
+**/artifacts/v*/
+**/artifacts/reproduction/
+**/artifacts/browser-compatibility-*.json
+**/artifacts/release-smoke-*.json
+**/assets/models/
+**/assets/concepts/
 
 # Delivery archives
 *.zip
@@ -82,3 +82,6 @@ pnpm-lock.yaml
 
 # Agent files
 .agent/
+__pycache__/
+*.py[cod]
+.pytest_cache/
